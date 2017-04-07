@@ -6,6 +6,6 @@ All my School Work
 Hopefully you can see me improve my code over time.
 
 ## Spring 2017
-CS 241
-CS 247
-CS 301
+1. CS 241
+2. CS 247
+3. CS 301

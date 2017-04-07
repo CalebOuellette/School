@@ -27,6 +27,14 @@ public class Tests {
         if(i != 0){
             throw new java.lang.Error("UnExpected Value");
         }
+
+        int w = Alphabet.getPosition(")");
+        if(w != -1){
+            throw new java.lang.Error("UnExpected Value");
+        }
+
+
+
     }
 
 
@@ -81,6 +89,10 @@ public class Tests {
     public void decoderTest(){
         Decoder d = new Decoder();
 
+        String clean = d.cleanText("123123123123ABC12341234");
+        if(clean != "ABC"){
+            throw new java.lang.Error("Decoder CleanText Error");
+        }
 
         String testText = "MEETMEATmidNIGHT";
         String aa = Cipher.cipherString(testText, "e");

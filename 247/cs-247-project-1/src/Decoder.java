@@ -14,10 +14,13 @@ public class Decoder {
         float[] scores = new float[Constants.Letters.length];
         LetterDistribution[] possibleCiphers = new LetterDistribution[Constants.Letters.length];
 
-        for(int i = 0; i < Constants.Letters.length; i++){
+        for(int i = 0; i < Constants.Letters.length - 1; i++){
             possibleCiphers[i] = input.shift(i);
+
             scores[i] = statisticalNorm.proximityScore(possibleCiphers[i]);
+
             System.out.println(Alphabet.getLetter(i)+ ": " + scores[i]);
+
             if(scores[i] < bestScore){
                 best = i;
                 bestScore = scores[i];
@@ -29,34 +32,21 @@ public class Decoder {
         return Alphabet.getLetter(best);
     }
 
-    public String cleanText(String inputString){
-        String cleanString = "";
-
-        for (int i = 0; i < inputString.length(); i++) {
-            if(Alphabet.getPosition(Character.toString(inputString.charAt(i))) != -1){
-                cleanString = cleanString + Character.toString(inputString.charAt(i));
-            }
-        }
 
 
-
-        return cleanString;
-
-    }
+    public Float calculateZValue(float[] scores){
+        float average = average(scores);
 
 
-    public Float calculateZValue(Float[] Scores){
-        float average = 0;
-
-
-        for (int i = 0; i < Scores.length; i++) {
+        for (int i = 0; i < scores.length; i++) {
 
         }
 
         return 0f;
     }
 
-    public Float average(Float[] scores){
+
+    public Float average(float[] scores){
         float average = 0;
         float sum = 0;
 
@@ -68,5 +58,18 @@ public class Decoder {
         return average;
     }
 
+    public Float standardDeviation(float[] scores){
+        float average = this.average(scores);
+        float[] deviation = new float[Constants.Letters.length];
+
+        for (int i = 0; i < scores.length; i++) {
+            float v = scores[i] - average;
+            float sq = v * v;
+            deviation[i] = sq;
+        }
+
+        return this.average(deviation);
+
+    }
 
 }

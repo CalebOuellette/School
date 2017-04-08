@@ -20,16 +20,14 @@ public class Alphabet {
     }
 
     public static int getPosition(String letter){
-        letter = letter.toLowerCase();
         //return position of given letter
-
+        letter = letter.toLowerCase();
         if(Constants.hLetters.containsKey(letter)){
             int test = Constants.hLetters.get(letter);
             return test;
         }else{
             return -1;
         }
-
     }
 
 }

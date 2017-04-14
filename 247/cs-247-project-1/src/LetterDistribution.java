@@ -72,7 +72,7 @@ public class LetterDistribution {
         float[] percents = new float[Constants.Letters.length];
 
         for(int i = 0; i < letters.length; i++) {
-            percents[i] = ((float) letters[i]) / (float)  (totalLetterCount);
+            percents[i] = (((float) letters[i]) / (float)  (totalLetterCount)) * 100;
         }
         return percents;
     }

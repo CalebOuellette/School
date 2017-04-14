@@ -19,7 +19,7 @@ public class Decoder {
 
             scores[i] = statisticalNorm.proximityScore(possibleCiphers[i]);
 
-            System.out.println(Alphabet.getLetter(i)+ ": " + scores[i]);
+          //  System.out.println(Alphabet.getLetter(i)+ ": " + scores[i]);
 
             if(scores[i] < bestScore){
                 best = i;

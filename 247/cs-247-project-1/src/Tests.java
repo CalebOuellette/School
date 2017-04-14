@@ -87,9 +87,16 @@ public class Tests {
         Decoder d = new Decoder();
 
 
-        String testText = "Meet me, at midnight!";
+        String testText = "EEE!";
         String aa = Cipher.cipherString(testText, "e");
+
+
         LetterDistribution ls = new LetterDistribution(testText);
+
+
+        for (int i = 0; i <  Constants.Letters.length; i++) {
+            System.out.println(Constants.Letters[i] + ": " + ls.letterPercents[i]);
+        }
 
 
 

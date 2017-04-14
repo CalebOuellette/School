@@ -3,7 +3,7 @@ import java.util.Map;
 
 /**
  * Created by Caleb on 4/5/17.
- *
+ * <p>
  * This class is used for all the things that won't change at run time. Like the alphabet.
  */
 public final class Constants {
@@ -12,11 +12,11 @@ public final class Constants {
     }
 
 
-    public static final String[] Letters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+    public static final String[] Letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
     public static final Map<String, Integer> hLetters;
-    static
-    {
+
+    static {
         hLetters = new HashMap<String, Integer>();
         hLetters.put("a", 0);
         hLetters.put("b", 1);
@@ -45,6 +45,38 @@ public final class Constants {
         hLetters.put("y", 24);
         hLetters.put("z", 25);
     }
+
+
+
+//https://en.wikipedia.org/wiki/Letter_frequency
+    public static final Float[] LetterDist = {
+            8.167f,
+            1.492f,
+            2.782f,
+            4.253f,
+            12.702f,
+            2.228f,
+            2.015f,
+            6.094f,
+            6.966f,
+            0.153f,
+            0.772f,
+            4.025f,
+            2.406f,
+            6.749f,
+            7.507f,
+            1.929f,
+            0.095f,
+            5.987f,
+            6.327f,
+            9.056f,
+            2.758f,
+            0.978f,
+            2.360f,
+            0.150f,
+            1.974f,
+            0.074f
+    };
 
 
 }

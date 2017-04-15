@@ -49,7 +49,7 @@ public final class Constants {
 
 
 //https://en.wikipedia.org/wiki/Letter_frequency
-    public static final Float[] LetterDist = {
+    public static final float[] EnglishLetterDist = {
             8.167f,
             1.492f,
             2.782f,

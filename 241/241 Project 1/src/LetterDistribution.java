@@ -27,7 +27,6 @@ public class LetterDistribution {
         this.setTotalLetterCount();
         this.letterCounts = this.getLetterDistribution(text);
         this.letterPercents = this.getLetterDistributionPercents(text);
-
     }
 
     LetterDistribution(float[] letterDist){
@@ -44,9 +43,7 @@ public class LetterDistribution {
             if(letterPos != -1){
                 totalLetterCount = totalLetterCount + 1;
             }
-
         }
-
     }
 
     private int[] getLetterDistribution(String inputString){
@@ -77,6 +74,7 @@ public class LetterDistribution {
         return percents;
     }
 
+
     public int[] initLetterCountArray(){
         //creates an empty array that we will add to as we find letters.
         int[] a = new int[Constants.Letters.length];
@@ -86,6 +84,7 @@ public class LetterDistribution {
         }
         return a;
     }
+
 
     public LetterDistribution subtractDistribution(LetterDistribution subtractor){
         //subtracts one LetterDistribution from another

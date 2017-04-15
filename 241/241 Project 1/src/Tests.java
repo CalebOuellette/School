@@ -12,6 +12,7 @@ public class Tests {
         this.cipherTest();
         this.letterDistributionTest();
         this.decoderTest();
+        this.decodeFileTests();
     }
 
 
@@ -60,8 +61,6 @@ public class Tests {
 
         LetterDistribution i =  new LetterDistribution("AAABBBBCCCDDDEEFFFZZ");
 
-
-
         if(i.letterCounts[0] != 3){
             throw new java.lang.Error("Letter Distribution Error");
         }
@@ -98,9 +97,6 @@ public class Tests {
             System.out.println(Constants.Letters[i] + ": " + ls.letterPercents[i]);
         }
 
-
-
-
         String bestLetter = d.findBestCipher(aa, ls);
 
 
@@ -110,5 +106,14 @@ public class Tests {
         if(!testText.equalsIgnoreCase(outText)){
             throw new java.lang.Error("Decoder Error");
         }
+
+
     }
+
+    public void decodeFileTests(){
+        DecodeFile x = new DecodeFile();
+        x.readfile("/Users/Caleb/GitHub/School/241/241 Project 1/src/huckfinn-balderdash.txt");
+        //https://www.caveofprogramming.com/java/java-file-reading-and-writing-files-in-java.html#readtext
+    }
+
 }

@@ -4,7 +4,7 @@ void printBits(unsigned int num)
 {
     unsigned int size = sizeof(unsigned int);
     unsigned int maxPow = 1 << (size * 8 - 1);
-    printf("MAX POW : %u\n", maxPow);
+    printf("\n");
     int i = 0, j;
     for (; i < size * 8; ++i)
     {
@@ -14,56 +14,36 @@ void printBits(unsigned int num)
     }
 }
 
-int dl10(int highbit, int lowbit)
+int test(int x)
 {
-    int result = 0;
-    int i;
-    printBits(highbit);
-    printBits(lowbit);
+     int i;
+     for (i = 0; i < 32; i+=2)
+        if ((x & (1<<i)) == 0)
+ 	  return 0;
+     return 1;
+}
 
-    for (i = lowbit; i <= highbit; i++)
-    {
-
-        result |= 1 << i;
+int solve(int x)
+{
+    if (x == 2147483647){
+        return 1;
+    }else{
+        return 0;
     }
-    printBits(result);
-    return result;
 }
 
-int dl10solve(int highbit, int lowbit)
-{
-    //~ & + <<
-    int result = 0; //highbit + lowbit;
-    int a = ~0 << lowbit;
-    int b = ~1 << highbit;
-
-  //  printBits(a);
-   // printBits(~b);
-    printBits(a & ~b);
-
-    return a & ~b;
-}
-
-
-
-int test_dl11(int x, int y)
-{
-    return ~(~x & ~y);
-    //return (x | y);
-}
-
+// ~ & ^ | + >>
 int main(int argc, char *argv[])
 {
-     int a = 31;
-     int b = 2;
-     printf("Normal");
-     dl10(a, b);
+    int a = 2147483647;
 
-     printf("\n Solution \n");
-     dl10solve(a, b);
-     printf("\n");
-      
-      
+    int b = 3;
+    int c = 9;
+    printBits(a);
+    int y = test(a);
+    printBits(y);
 
+    int x = solve(a);
+    printBits(x);
     return 0;
 }

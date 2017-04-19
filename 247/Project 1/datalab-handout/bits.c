@@ -186,12 +186,14 @@ NOTES:
  */
 int dl10(int highbit, int lowbit)
 {
-    int a = ~0 << lowbit;
-    int b = ~1<< highbit;
+  /* shifts an int over by lowbits and highbits
+  then flip the high bits with ~ and use and to see where the two line up */
+  int a = ~0 << lowbit;
+  int b = ~1 << highbit;
 
-   // printf("result %i", result);
-  
-    return a & ~b;
+  // printf("result %i", result);
+
+  return a & ~b;
 }
 /* 
  *
@@ -210,7 +212,9 @@ int dl10(int highbit, int lowbit)
  */
 int dl11(int x, int y)
 {
-   return (~x & ~y);;
+  /* not (x or y) is equal to return only if both are 0s. 
+  another way to write if both are 0 is not x and not y */
+  return (~x & ~y);
 }
 /* 
  * int test_dl12(int x, int y)
@@ -225,7 +229,9 @@ int dl11(int x, int y)
  */
 int dl12(int x, int y)
 {
-   return ~(~x & ~y);
+  /* another way to think of or is only return false if both are empty. 
+  we can re-write that to not x and not y then return false. */
+  return ~(~x & ~y);
 }
 /*
  *
@@ -242,7 +248,14 @@ int dl12(int x, int y)
  */
 int dl13(int x)
 {
-  return 2;
+  /* count the bits, then see if that number is odd with & 1 */
+  int c;
+    c = x - ((x >> 1) & 0x55555555);
+    c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
+    c = ((c >> 4) + c) & 0x0F0F0F0F;
+    c = ((c >> 8) + c) & 0x00FF00FF;
+    c = ((c >> 16) + c) & 0x0000FFFF;
+    return c & 1;
 }
 /* 
  *
@@ -263,7 +276,8 @@ int dl13(int x)
  */
 int dl14(int x, int y)
 {
-  return 2;
+  /* if x and y are set return false. and use code from problem 11 to get an or */
+  return ~(x & y) & ~(~x & ~y);
 }
 /* 
  *
@@ -357,7 +371,11 @@ int dl15(int x, int n, int m)
  */
 int dl16(int x, int y, int z)
 {
-  return 2;
+  /* test x and use the result to form a mask to apply y and z */
+  int w = !x & ~0;
+  int e = w << 31;
+  int q = e >> 31;
+  return (~q & y) | (q & z);
 }
 /* 
  *
@@ -379,7 +397,10 @@ int dl16(int x, int y, int z)
  */
 int dl17(int x)
 {
-  return 2;
+  /* just apply the first bit to all the values */
+  int e = x << 31;
+  int w = e >> 31;
+  return w;
 }
 /* 
  *
@@ -402,7 +423,7 @@ int dl17(int x)
  */
 int dl18(int x, int n)
 {
-  return 2;
+  return x >> n;
 }
 /* 
  *
@@ -429,7 +450,7 @@ int dl18(int x, int n)
  */
 int dl19(void)
 {
-  return 2;
+   return  0x55555555;
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -445,7 +466,10 @@ int dl19(void)
  */
 int dl1(int x)
 {
-  return 2;
+  /*Create mask , then flip if mask is 1111..1 */
+   int m = x >> 31; 
+   
+   return (~x + 1 & m) | (x & ~m);
 }
 /*
  *
@@ -468,7 +492,7 @@ int dl1(int x)
  */
 int dl20(int x)
 {
-  return 2;
+  return (x >>3) << 4;
 }
 /* 
  * Reproduce the functionality of the following C function
@@ -581,7 +605,8 @@ int dl2(int x, int y)
  */
 int dl3(int x)
 {
-  return 2;
+      int z = (x & 2147483647);
+   return !!z;
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -619,7 +644,12 @@ int dl4(int x)
  */
 int dl5(int x)
 {
-  return 2;
+ /* if the number and the number - 1 have no overlaps it's a power of 2'  translate rresult to inverse true false*/
+       int z = (x & 2147483647);
+   return !!z;
+
+
+     //TODO fix 1s case
 }
 /* 
  * 
@@ -639,7 +669,8 @@ int dl5(int x)
  */
 int dl6(int x)
 {
-  return 2;
+  //If it intersects. Inverse twice to get 1 or 0;
+    return !!(x & 0xAAAAAAAA);
 }
 /* 
 * 
@@ -657,7 +688,9 @@ int dl6(int x)
  */
 int dl7(int x)
 {
-  return 2;
+    int y = ~(1 >> 31) & ~x;  
+   return y & 1;
+ // return !x;
 }
 /* 
  *
@@ -676,7 +709,8 @@ int dl7(int x)
  */
 int dl8(int x, int y)
 {
-  return 2;
+  //only return true if both x and y are true. so x or y can't be false return inverse'
+   return ~(~x | ~y);
 }
 /*
  *   
@@ -697,5 +731,12 @@ int dl8(int x, int y)
  */
 int dl9(int x)
 {
-  return 2;
+  /* count the bits */
+   int c;
+    c = x - ((x >> 1) & 0x55555555);
+    c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
+    c = ((c >> 4) + c) & 0x0F0F0F0F;
+    c = ((c >> 8) + c) & 0x00FF00FF;
+    c = ((c >> 16) + c) & 0x0000FFFF;
+    return c;
 }

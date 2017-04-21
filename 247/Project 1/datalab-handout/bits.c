@@ -191,8 +191,6 @@ int dl10(int highbit, int lowbit)
   int a = ~0 << lowbit;
   int b = ~1 << highbit;
 
-  // printf("result %i", result);
-
   return a & ~b;
 }
 /* 
@@ -423,7 +421,15 @@ int dl17(int x)
  */
 int dl18(int x, int n)
 {
-  return x >> n;
+  
+     /* the slides describe unsigned divsion by power of two as u >> k gives  ⎣ u / 2k ⎦. in order to apply this to two's complement we must isolate the signed bit */
+    int xSignedBit = x >> 31; //get the x signed bit to be replicated across the number
+    //if signed bit is set we need to find the perfect power of two to use
+    int stage = (xSignedBit & ((1 << n) + ~0));
+   
+    int pOfTwo = (x + stage);
+    int out = pOfTwo >> n;
+    return out;
 }
 /* 
  *
@@ -492,7 +498,14 @@ int dl1(int x)
  */
 int dl20(int x)
 {
-  return (x >>3) << 4;
+  int timesthree = x + x + x;
+    int xSignedBit = timesthree >> 31; //get the x signed bit to be replicated across the number
+    //if signed bit is set we need to find the perfect power of two to use
+    int stage = (xSignedBit & ((1 << 2) + ~0));
+   
+    int pOfTwo = (timesthree + stage);
+    int out = pOfTwo >> 2;
+    return out;
 }
 /* 
  * Reproduce the functionality of the following C function
@@ -524,7 +537,7 @@ unsigned dl21(unsigned uf)
  */
 unsigned dl22(int x)
 {
-  return 2;
+  return x;
 }
 /* 
  * reproduce the functionality of the following C function
@@ -586,7 +599,28 @@ int dl24(int x)
  */
 int dl2(int x, int y)
 {
-  return 2;
+
+  //code from homework 2 test for overflow and return 0 if there is some overflow.
+       int added = x + y; //Add x and y
+
+
+    int intW = (sizeof(int) << 3) - 1; //get the size of int on this machine. shifting 3 is like multipling by 8
+
+    int xSignedBit = x >> intW; //get the x signed bit to be replicated across the number
+    int ySignedBit = y >> intW; //get the y signed bit to be replicated across the number
+    int addedSignedBit = added >> intW; //get the added signed bit to be replicated across the number
+    
+
+    int pmask = ~xSignedBit & ~ySignedBit & addedSignedBit; //positive overflow check. if xS. and yS. are both 0 and added 1 this will be return all 1s
+    int nmask = xSignedBit & ySignedBit & ~addedSignedBit; //negative overflow check. if xS. and yS. are both 1 and added 0 this will be return all 1s
+
+    int omask = pmask | nmask; //if there is an overflow omask will be all 1s else 0s
+
+
+    int result = (pmask & 0) | (nmask & 0) | (1 & ~omask);
+
+    return result; 
+
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -605,8 +639,9 @@ int dl2(int x, int y)
  */
 int dl3(int x)
 {
-      int z = (x & 2147483647);
-   return !!z;
+    int v =  ~x; //if we get one digit back from y we are good.
+    
+  return (v & -v) == v;
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -625,7 +660,9 @@ int dl3(int x)
  */
 int dl4(int x)
 {
-  return 2;
+    int v =  ~x; //if we get one digit back from y we are good.
+    
+    return v && (v & -v) == v;
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -644,12 +681,8 @@ int dl4(int x)
  */
 int dl5(int x)
 {
- /* if the number and the number - 1 have no overlaps it's a power of 2'  translate rresult to inverse true false*/
-       int z = (x & 2147483647);
-   return !!z;
-
-
-     //TODO fix 1s case
+      //If it intersects. Inverse twice to get 1 or 0;
+       return !!(x & 0x55555555);
 }
 /* 
  * 
@@ -688,9 +721,21 @@ int dl6(int x)
  */
 int dl7(int x)
 {
-    int y = ~(1 >> 31) & ~x;  
-   return y & 1;
- // return !x;
+     //fold x down into 1 bit. take half overlay with the other half and use or. keep doing down to 1 bit
+    int c;
+    c = x | x >> 16;
+    c = c | c >> 8;
+    c = c | c >> 4;
+    c = c | c >> 2;
+    c = c | c >> 1;
+    //printBits(c);
+    //count bits with an or so we we set the 1's place don't change it.'
+    int shift = c << 31;    //shift our count over 31
+    int mask = shift >> 31; //shift it back over to get all 1s or 0s
+    //if 1 bet is set mask is all 1s else all 0s
+
+//    printBits(mask);
+    return (mask & 0) | (~mask & 1);
 }
 /* 
  *

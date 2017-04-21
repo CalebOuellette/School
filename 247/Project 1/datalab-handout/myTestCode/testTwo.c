@@ -38,7 +38,10 @@ void printBits(unsigned int num)
       x &= 0x00FFFFFF;
       break;
      }
- 
+      printf("\n N X: ");
+     printBits(x);
+      printf("\n nmask: ");
+      printBits(nmask);
     switch(m) {
     case 0:
       mmask = x & 0xFF;
@@ -57,7 +60,11 @@ void printBits(unsigned int num)
       x &= 0x00FFFFFF;
       break;
     }
- 
+      printf("\n X: ");
+    printBits(x);
+     printf("\n mmask: ");
+      printBits(mmask);
+
     nmask <<= 8*m;
     mmask <<= 8*n;
  
@@ -71,8 +78,14 @@ void printBits(unsigned int num)
 //    Rating: 2
 
 int test_dl15solve(int x, int n, int m){
-     nmask = x & 0xFF >> (8 * n);
-      x &= 0xFFFFFF00;
+    // nmask = x & 0xFF >> (8 * n);
+    //  x &= 0xFFFFFF00;
+       int nmask = x & 0xFF * (n + 1);
+      x &= ~(0xFFFFFFF & (0xFF * (n + 1)));
+       printf("\n X: ");
+     printBits(x);
+      printf("\n nmask: ");
+      printBits(nmask);
 
 
 
@@ -83,8 +96,8 @@ int test_dl15solve(int x, int n, int m){
 
 int main(int argc, char *argv[])
 {
-    int a = 1;
-    int b = 2;
+    int a = 0xFF00;
+    int b = 1;
     int c = 2;
 
     int y = test_dl15(a, b, c);
@@ -92,5 +105,8 @@ int main(int argc, char *argv[])
 
     int x = test_dl15solve(a, b, c);
      printBits(x);
+
+
     return 0;
+
 }

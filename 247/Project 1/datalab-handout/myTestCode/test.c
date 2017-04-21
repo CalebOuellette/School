@@ -16,33 +16,35 @@ void printBits(unsigned int num)
 
 int test(int x)
 {
-     int i;
-     for (i = 0; i < 32; i+=2)
-        if ((x & (1<<i)) == 0)
- 	  return 0;
-     return 1;
+    int i;
+    for (i = 0; i < 32; i += 2)
+        if ((x & (1 << i)) == 0)
+            return 0;
+    return 1;
 }
 
 int solve(int x)
 {
-    if (x == 2147483647){
-        return 1;
-    }else{
-        return 0;
-    }
+
+
+    int v =  ~x; //if we get one digit back from y we are good.
+    
+   return v && !(v & (v - 1));
 }
 
 // ~ & ^ | + >>
 int main(int argc, char *argv[])
 {
-    int a = 2147483647;
+    int a = 2147483645;
 
-    int b = 3;
-    int c = 9;
+    int b = 99;
+    printf("\n Inputs");
+    //  printBits(b);
     printBits(a);
+    printf("\n Should be");
     int y = test(a);
     printBits(y);
-
+    printf("\n Is");
     int x = solve(a);
     printBits(x);
     return 0;

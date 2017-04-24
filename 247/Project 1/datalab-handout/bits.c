@@ -248,12 +248,12 @@ int dl13(int x)
 {
   /* count the bits, then see if that number is odd with & 1 */
   int c;
-    c = x - ((x >> 1) & 0x55555555);
-    c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
-    c = ((c >> 4) + c) & 0x0F0F0F0F;
-    c = ((c >> 8) + c) & 0x00FF00FF;
-    c = ((c >> 16) + c) & 0x0000FFFF;
-    return c & 1;
+  c = x - ((x >> 1) & 0x55555555);
+  c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
+  c = ((c >> 4) + c) & 0x0F0F0F0F;
+  c = ((c >> 8) + c) & 0x00FF00FF;
+  c = ((c >> 16) + c) & 0x0000FFFF;
+  return c & 1;
 }
 /* 
  *
@@ -421,15 +421,15 @@ int dl17(int x)
  */
 int dl18(int x, int n)
 {
-  
-     /* the slides describe unsigned divsion by power of two as u >> k gives  ⎣ u / 2k ⎦. in order to apply this to two's complement we must isolate the signed bit */
-    int xSignedBit = x >> 31; //get the x signed bit to be replicated across the number
-    //if signed bit is set we need to find the perfect power of two to use
-    int stage = (xSignedBit & ((1 << n) + ~0));
-   
-    int pOfTwo = (x + stage);
-    int out = pOfTwo >> n;
-    return out;
+
+  /* the slides describe unsigned divsion by power of two as u >> k gives  ⎣ u / 2k ⎦. in order to apply this to two's complement we must isolate the signed bit */
+  int xSignedBit = x >> 31; //get the x signed bit to be replicated across the number
+  //if signed bit is set we need to find the perfect power of two to use
+  int stage = (xSignedBit & ((1 << n) + ~0));
+
+  int pOfTwo = (x + stage);
+  int out = pOfTwo >> n;
+  return out;
 }
 /* 
  *
@@ -456,7 +456,7 @@ int dl18(int x, int n)
  */
 int dl19(void)
 {
-   return  0x55555555;
+  return 0x55555555;
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -473,9 +473,9 @@ int dl19(void)
 int dl1(int x)
 {
   /*Create mask , then flip if mask is 1111..1 */
-   int m = x >> 31; 
-   
-   return (~x + 1 & m) | (x & ~m);
+  int m = x >> 31;
+
+  return (~x + 1 & m) | (x & ~m);
 }
 /*
  *
@@ -499,13 +499,13 @@ int dl1(int x)
 int dl20(int x)
 {
   int timesthree = x + x + x;
-    int xSignedBit = timesthree >> 31; //get the x signed bit to be replicated across the number
-    //if signed bit is set we need to find the perfect power of two to use
-    int stage = (xSignedBit & ((1 << 2) + ~0));
-   
-    int pOfTwo = (timesthree + stage);
-    int out = pOfTwo >> 2;
-    return out;
+  int xSignedBit = timesthree >> 31; //get the x signed bit to be replicated across the number
+  //if signed bit is set we need to find the perfect power of two to use
+  int stage = (xSignedBit & ((1 << 2) + ~0));
+
+  int pOfTwo = (timesthree + stage);
+  int out = pOfTwo >> 2;
+  return out;
 }
 /* 
  * Reproduce the functionality of the following C function
@@ -601,26 +601,22 @@ int dl2(int x, int y)
 {
 
   //code from homework 2 test for overflow and return 0 if there is some overflow.
-       int added = x + y; //Add x and y
+  int added = x + y; //Add x and y
 
+  int intW = (sizeof(int) << 3) - 1; //get the size of int on this machine. shifting 3 is like multipling by 8
 
-    int intW = (sizeof(int) << 3) - 1; //get the size of int on this machine. shifting 3 is like multipling by 8
+  int xSignedBit = x >> intW;         //get the x signed bit to be replicated across the number
+  int ySignedBit = y >> intW;         //get the y signed bit to be replicated across the number
+  int addedSignedBit = added >> intW; //get the added signed bit to be replicated across the number
 
-    int xSignedBit = x >> intW; //get the x signed bit to be replicated across the number
-    int ySignedBit = y >> intW; //get the y signed bit to be replicated across the number
-    int addedSignedBit = added >> intW; //get the added signed bit to be replicated across the number
-    
+  int pmask = ~xSignedBit & ~ySignedBit & addedSignedBit; //positive overflow check. if xS. and yS. are both 0 and added 1 this will be return all 1s
+  int nmask = xSignedBit & ySignedBit & ~addedSignedBit;  //negative overflow check. if xS. and yS. are both 1 and added 0 this will be return all 1s
 
-    int pmask = ~xSignedBit & ~ySignedBit & addedSignedBit; //positive overflow check. if xS. and yS. are both 0 and added 1 this will be return all 1s
-    int nmask = xSignedBit & ySignedBit & ~addedSignedBit; //negative overflow check. if xS. and yS. are both 1 and added 0 this will be return all 1s
+  int omask = pmask | nmask; //if there is an overflow omask will be all 1s else 0s
 
-    int omask = pmask | nmask; //if there is an overflow omask will be all 1s else 0s
+  int result = (pmask & 0) | (nmask & 0) | (1 & ~omask);
 
-
-    int result = (pmask & 0) | (nmask & 0) | (1 & ~omask);
-
-    return result; 
-
+  return result;
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -639,9 +635,8 @@ int dl2(int x, int y)
  */
 int dl3(int x)
 {
-    int v =  ~x; //if we get one digit back from y we are good.
-    
-  return (v & -v) == v;
+  int test = ~x & 0x55555555;
+  return !(test);
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -660,9 +655,9 @@ int dl3(int x)
  */
 int dl4(int x)
 {
-    int v =  ~x; //if we get one digit back from y we are good.
-    
-    return v && (v & -v) == v;
+  /* check if there is  a spot to put the bit. if there is a spot, return 0, if no spots return 1; */
+  int test = ~x & 0xAAAAAAAA;
+  return !(test);
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -681,8 +676,8 @@ int dl4(int x)
  */
 int dl5(int x)
 {
-      //If it intersects. Inverse twice to get 1 or 0;
-       return !!(x & 0x55555555);
+  //If it intersects. Inverse twice to get 1 or 0;
+  return !!(x & 0x55555555);
 }
 /* 
  * 
@@ -703,7 +698,7 @@ int dl5(int x)
 int dl6(int x)
 {
   //If it intersects. Inverse twice to get 1 or 0;
-    return !!(x & 0xAAAAAAAA);
+  return !!(x & 0xAAAAAAAA);
 }
 /* 
 * 
@@ -721,21 +716,21 @@ int dl6(int x)
  */
 int dl7(int x)
 {
-     //fold x down into 1 bit. take half overlay with the other half and use or. keep doing down to 1 bit
-    int c;
-    c = x | x >> 16;
-    c = c | c >> 8;
-    c = c | c >> 4;
-    c = c | c >> 2;
-    c = c | c >> 1;
-    //printBits(c);
-    //count bits with an or so we we set the 1's place don't change it.'
-    int shift = c << 31;    //shift our count over 31
-    int mask = shift >> 31; //shift it back over to get all 1s or 0s
-    //if 1 bet is set mask is all 1s else all 0s
+  //fold x down into 1 bit. take half overlay with the other half and use or. keep doing down to 1 bit
+  int c;
+  c = x | x >> 16;
+  c = c | c >> 8;
+  c = c | c >> 4;
+  c = c | c >> 2;
+  c = c | c >> 1;
+  //printBits(c);
+  //count bits with an or so we we set the 1's place don't change it.'
+  int shift = c << 31;    //shift our count over 31
+  int mask = shift >> 31; //shift it back over to get all 1s or 0s
+  //if 1 bet is set mask is all 1s else all 0s
 
-//    printBits(mask);
-    return (mask & 0) | (~mask & 1);
+  //    printBits(mask);
+  return (mask & 0) | (~mask & 1);
 }
 /* 
  *
@@ -755,7 +750,7 @@ int dl7(int x)
 int dl8(int x, int y)
 {
   //only return true if both x and y are true. so x or y can't be false return inverse'
-   return ~(~x | ~y);
+  return ~(~x | ~y);
 }
 /*
  *   
@@ -777,11 +772,11 @@ int dl8(int x, int y)
 int dl9(int x)
 {
   /* count the bits */
-   int c;
-    c = x - ((x >> 1) & 0x55555555);
-    c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
-    c = ((c >> 4) + c) & 0x0F0F0F0F;
-    c = ((c >> 8) + c) & 0x00FF00FF;
-    c = ((c >> 16) + c) & 0x0000FFFF;
-    return c;
+  int c;
+  c = x - ((x >> 1) & 0x55555555);
+  c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
+  c = ((c >> 4) + c) & 0x0F0F0F0F;
+  c = ((c >> 8) + c) & 0x00FF00FF;
+  c = ((c >> 16) + c) & 0x0000FFFF;
+  return c;
 }

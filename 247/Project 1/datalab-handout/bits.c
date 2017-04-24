@@ -582,7 +582,24 @@ unsigned dl23(unsigned uf)
  */
 int dl24(int x)
 {
-  return 0;
+    int m = x >> 31;
+    unsigned int v =  (~x + 1 & m) | (x & ~m); // compute the next highest power of 2 of 32-bit v
+    int ptwo = !(v & (v - 1)); //find the biggest value.
+    v |= v >> 1;
+    v |= v >> 2;
+    v |= v >> 4;
+    v |= v >> 8;
+    v |= v >> 16;
+
+    int c; //count how many digits the number is 
+    c = v - ((v >> 1) & 0x55555555);
+    c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
+    c = ((c >> 4) + c) & 0x0F0F0F0F;
+    c = ((c >> 8) + c) & 0x00FF00FF;
+    c = ((c >> 16) + c) & 0x0000FFFF;
+
+
+     return  (m & (c + 1 - ptwo)) | (~m & (c + 1)); //if negative watch out for power of twos 
 }
 /* 
  *
@@ -635,7 +652,7 @@ int dl2(int x, int y)
  */
 int dl3(int x)
 {
-   /* check if there is  a spot to put the bit. if there is a spot, return 0, if no spots return 1; */
+  /* check if there is  a spot to put the bit. if there is a spot, return 0, if no spots return 1; */
   int test = ~x & 0x55555555;
   return !(test);
 }

@@ -15,27 +15,27 @@ void printBits(unsigned int num)
 }
 
 int test(int x)
-{
+{     printf("hi");
     int i;
-   for (i = 1; i < 32; i+=2)
-        printBits((1<<i));
-      if ((x & (1<<i)) == 0)
+     for (i = 0; i < 32; i+=2)
+       printBits((1<<i));
+        if ((x & (1<<i)) == 0)
  	  return 0;
-     return 1;
+     return 1; 
 }
 
 int solve(int x)
 {   
-    int test = ~x & 0xAAAAAAAA;
+    int test = ~x & 0x55555555;
      printBits(~x);
-     printBits(0xAAAAAAAA);
-    return !(test);
+     printBits(0x55555555);
+    return !!(test);
 }
 
 // ~ & ^ | + >>
 int main(int argc, char *argv[])
 {
-    int a = 0xFFFFFFFF;
+    int a = -2147483648;
 
     int b = 99;
     printf("\n Inputs");

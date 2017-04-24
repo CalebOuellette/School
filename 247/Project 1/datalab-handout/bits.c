@@ -635,6 +635,7 @@ int dl2(int x, int y)
  */
 int dl3(int x)
 {
+   /* check if there is  a spot to put the bit. if there is a spot, return 0, if no spots return 1; */
   int test = ~x & 0x55555555;
   return !(test);
 }

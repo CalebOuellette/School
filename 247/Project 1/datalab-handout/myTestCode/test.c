@@ -50,19 +50,13 @@ int solve(int x)
 // ~ & ^ | + >>
 int main(int argc, char *argv[])
 {
-    unsigned a = 1;
 
-    printf("\n Inputs");
-    //  printBits(b);
-    printBits(a);
+    int c = 0x55;
+     c = c | c << 4;
+     c = c | c << 8;
+      c = c | c << 16;
+    printBits(c);
+    printBits(0x55555555);
 
-    int y = test(a);
-
-    //printBits(y);
-    printf("\n Should be");
-    printf("\n  %i \n", y);
-    int x = solve(a);
-    printf("\n  %i \n", x);
-    //   printBits(x);
     return 0;
 }

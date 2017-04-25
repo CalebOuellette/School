@@ -456,7 +456,11 @@ int dl18(int x, int n)
  */
 int dl19(void)
 {
-  return 0x55555555;
+   int c5 = 0x55;
+  c5 = c5 | c5 << 4;
+  c5 = c5 | c5 << 8;
+  c5 = c5 | c5 << 16;
+  return c5;
 }
 /* 
  *   reproduce the functionality of the following C function
@@ -582,24 +586,23 @@ unsigned dl23(unsigned uf)
  */
 int dl24(int x)
 {
-    int m = x >> 31;
-    unsigned int v =  (~x + 1 & m) | (x & ~m); // compute the next highest power of 2 of 32-bit v
-    int ptwo = !(v & (v - 1)); //find the biggest value.
-    v |= v >> 1;
-    v |= v >> 2;
-    v |= v >> 4;
-    v |= v >> 8;
-    v |= v >> 16;
+  int m = x >> 31;
+  unsigned int v = (~x + 1 & m) | (x & ~m); // compute the next highest power of 2 of 32-bit v
+  int ptwo = !(v & (v - 1));                //find the biggest value.
+  v |= v >> 1;
+  v |= v >> 2;
+  v |= v >> 4;
+  v |= v >> 8;
+  v |= v >> 16;
 
-    int c; //count how many digits the number is 
-    c = v - ((v >> 1) & 0x55555555);
-    c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
-    c = ((c >> 4) + c) & 0x0F0F0F0F;
-    c = ((c >> 8) + c) & 0x00FF00FF;
-    c = ((c >> 16) + c) & 0x0000FFFF;
+  int c; //count how many digits the number is
+  c = v - ((v >> 1) & 0x55555555);
+  c = ((c >> 2) & 0x33333333) + (c & 0x33333333);
+  c = ((c >> 4) + c) & 0x0F0F0F0F;
+  c = ((c >> 8) + c) & 0x00FF00FF;
+  c = ((c >> 16) + c) & 0x0000FFFF;
 
-
-     return  (m & (c + 1 - ptwo)) | (~m & (c + 1)); //if negative watch out for power of twos 
+  return (m & (c + 1 - ptwo)) | (~m & (c + 1)); //if negative watch out for power of twos
 }
 /* 
  *
@@ -620,7 +623,7 @@ int dl2(int x, int y)
   //code from homework 2 test for overflow and return 0 if there is some overflow.
   int added = x + y; //Add x and y
 
-  int intW = (sizeof(int) << 3) - 1; //get the size of int on this machine. shifting 3 is like multipling by 8
+  int intW = 31; //get the size of int on this machine. shifting 3 is like multipling by 8
 
   int xSignedBit = x >> intW;         //get the x signed bit to be replicated across the number
   int ySignedBit = y >> intW;         //get the y signed bit to be replicated across the number
@@ -653,7 +656,11 @@ int dl2(int x, int y)
 int dl3(int x)
 {
   /* check if there is  a spot to put the bit. if there is a spot, return 0, if no spots return 1; */
-  int test = ~x & 0x55555555;
+  int c5 = 0x55;
+  c5 = c5 | c5 << 4;
+  c5 = c5 | c5 << 8;
+  c5 = c5 | c5 << 16;
+  int test = ~x & c5;
   return !(test);
 }
 /* 
@@ -695,7 +702,11 @@ int dl4(int x)
 int dl5(int x)
 {
   //If it intersects. Inverse twice to get 1 or 0;
-  return !!(x & 0x55555555);
+   int c5 = 0x55;
+  c5 = c5 | c5 << 4;
+  c5 = c5 | c5 << 8;
+  c5 = c5 | c5 << 16;
+  return !!(x & c5);
 }
 /* 
  * 
@@ -748,7 +759,8 @@ int dl7(int x)
   //if 1 bet is set mask is all 1s else all 0s
 
   //    printBits(mask);
-  return (mask & 0) | (~mask & 1);
+  int out = (mask & 0) | (~mask & 1);
+  return out;
 }
 /* 
  *

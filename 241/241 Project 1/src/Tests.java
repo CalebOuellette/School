@@ -112,7 +112,7 @@ public class Tests {
 
     public void decodeFileTests(){
         DecodeFile x = new DecodeFile();
-        x.readfile("/Users/Caleb/GitHub/School/241/241 Project 1/src/huckfinn-balderdash.txt");
+       // x.readfile("/Users/Caleb/GitHub/School/241/241 Project 1/src/huckfinn-balderdash.txt");
         //https://www.caveofprogramming.com/java/java-file-reading-and-writing-files-in-java.html#readtext
     }
 

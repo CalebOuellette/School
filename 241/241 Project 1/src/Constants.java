@@ -10,7 +10,8 @@ public final class Constants {
 
     private Constants() {
     }
-
+    public static final String infile = ""; //file to read from
+    public static final String outfile = ""; //file to write to
 
     public static final String[] Letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 

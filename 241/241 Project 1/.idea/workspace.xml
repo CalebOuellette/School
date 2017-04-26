@@ -71,8 +71,13 @@
       <file leaf-file-name="Tests.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tests.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="373">
               <caret line="114" column="9" lean-forward="false" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
+=======
+            <state relative-caret-position="793">
+              <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
+>>>>>>> 247Project1
               <folding />
             </state>
           </provider>
@@ -582,12 +587,19 @@
       <workItem from="1492286328001" duration="90000" />
       <workItem from="1492286508693" duration="1000" />
       <workItem from="1492291529984" duration="1841000" />
+<<<<<<< HEAD
       <workItem from="1493186429312" duration="492000" />
+=======
+>>>>>>> 247Project1
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="2447000" />
+=======
+    <option name="totallyTimeSpent" value="1955000" />
+>>>>>>> 247Project1
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1046" extended-state="0" />
@@ -760,8 +772,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Decoder.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="396">
           <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+=======
+        <state relative-caret-position="793">
+          <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
+>>>>>>> 247Project1
           <folding />
         </state>
       </provider>

@@ -7,15 +7,12 @@ public class Main {
         t.runAllTests();
 
 
-        FileManager x = new FileManager();
-        String filePath = new File("").getAbsolutePath();
-        filePath = filePath.concat("\\src\\huckfinn-balderdash.txt");
-        String fileText = x.readfile(filePath);
+        FileManager fm = new FileManager();
+        String fileText = fm.readfile(Constants.inputFileName);
 
         VigenereDecoder vd = new VigenereDecoder(fileText);
         String decodeWord = vd.getDecodeWord();
 
-        x.decodeFileTwo(filePath, Constants.outPutFile, decodeWord);
-
+        fm.decodeFileTwo( Constants.inputFileName, Constants.outPutFile, decodeWord);
     }
 }

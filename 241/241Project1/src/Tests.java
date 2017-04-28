@@ -110,7 +110,7 @@ public class Tests {
     public void decodeFileTests(){
         FileManager x = new FileManager();
         String filePath = new File("").getAbsolutePath();
-        filePath = filePath.concat("\\src\\huckfinn-balderdash.txt");
+        filePath = filePath.concat("\\src\\ciphertext.txt");
       //  x.readfile(filePath);
         //https://www.caveofprogramming.com/java/java-file-reading-and-writing-files-in-java.html#readtext
     }

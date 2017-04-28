@@ -31,12 +31,18 @@ public class Cipher {
     public static String decipherString(String inputString, String keyWord){
         //encodes a string using a keyword
 
+        return decipherString(inputString, keyWord, 0);
+    }
+
+    public static String decipherString(String inputString, String keyWord, int keyWordShift){
+        //encodes a string using a keyword
+
         String encodedString = "";
-        int k =0;
+        int k =0 + keyWordShift;
         for(int i =0; i < inputString.length(); i++){  //for each letter in the input string...
-            String newLetter = "";
+            String newLetter;
             if(Alphabet.getPosition(Character.toString(inputString.charAt(i))) != -1){
-                newLetter = decipherLetter( Character.toString(inputString.charAt(i)),  Character.toString(keyWord.charAt(i % keyWord.length())));
+                newLetter = decipherLetter( Character.toString(inputString.charAt(i)),  Character.toString(keyWord.charAt(k % keyWord.length())));
                 k++;
             }else{
                 newLetter = Character.toString(inputString.charAt(i));
@@ -46,6 +52,20 @@ public class Cipher {
 
         return encodedString;
     }
+
+    public static int characterInString(String inputString){
+        int k = 0;
+        for(int i =0; i < inputString.length(); i++){  //for each letter in the input string...
+            String newLetter;
+            if(Alphabet.getPosition(Character.toString(inputString.charAt(i))) != -1){
+                k++;
+            }
+
+        }
+
+        return k;
+    }
+
 
 
     public static String cipherLetter(String letter, String cypher){

@@ -52,8 +52,9 @@ public class Tests {
 
         String bb = Cipher.cipherString("MEETMEATmidNIGHT", "FUMBle");
 
-        String cc = Cipher.decipherString(Cipher.cipherString("badfadsfasdf", "FUMBle"), "Fumble");
-        if(!cc.equals("badfadsfasdf")){
+        String ecc = Cipher.cipherString("Meet me, at midnight!", "FUMBle");
+        String cc = Cipher.decipherString(ecc, "Fumble");
+        if(!cc.equals("Meet me, at midnight!")){
             throw new java.lang.Error("Not encoding String correctly");
         }
     }
@@ -98,10 +99,8 @@ public class Tests {
         String testTextTwo = "aaaaaaaabcccddddeeeeeeeeeeeeffgghhhhhhiiiiiiikllllmmnnnnnnoooooooprrrrrrsssssstttttttttuuvwwyy"; //roug letter dist
         String bb = Cipher.cipherString(testTextTwo, "x");
 
-        LetterDistribution eng = new LetterDistribution(Constants.EnglishLetterDist); //english
 
-
-        Decoder dtwo = new Decoder(bb, eng);
+        Decoder dtwo = new Decoder(bb, Constants.EnglishDistObj);
 
 
 
@@ -109,10 +108,10 @@ public class Tests {
     }
 
     public void decodeFileTests(){
-        DecodeFile x = new DecodeFile();
+        FileManager x = new FileManager();
         String filePath = new File("").getAbsolutePath();
         filePath = filePath.concat("\\src\\huckfinn-balderdash.txt");
-        x.readfile(filePath);
+      //  x.readfile(filePath);
         //https://www.caveofprogramming.com/java/java-file-reading-and-writing-files-in-java.html#readtext
     }
 

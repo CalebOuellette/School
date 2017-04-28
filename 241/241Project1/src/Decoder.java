@@ -7,7 +7,7 @@ public class Decoder {
 
     public float[] scores;
     public float average;
-    public float standardDeviation;
+    public double standardDeviation;
     public float bestScore = 1000000;
     public int best;
     public String bestLetter;
@@ -35,19 +35,20 @@ public class Decoder {
 
         this.average = findAverage(this.scores);
         this.setStandardDeviation();
-        this.zScore = this.zScoreProb(this.bestScore);
+        this.zScore = this.zScoreProb(this.calculateZValue(bestScore));
 
         this.bestLetter =  Alphabet.getLetter(best);
     }
 
 
 
-    public float calculateZValue(float score){
-        return (score - this.average) / this.standardDeviation;
+    public double calculateZValue(float score){
+        double x = (score - this.average);
+        return Math.abs(x / this.standardDeviation);
     }
 
-    public  double zScoreProb(float zScore){
-        double out = Math.pow(zScore, 1);
+    public  double zScoreProb(double zScore){
+        double out = Math.pow(zScore, 1.3);
         out = out * -1.2;
         out = 1 - (.5 * Math.pow(Math.E, out));
 
@@ -76,8 +77,7 @@ public class Decoder {
             float sq = v * v;
             deviation[i] = sq;
         }
-
-        this.standardDeviation =  this.findAverage(deviation);
+        this.standardDeviation =  Math.sqrt(this.findAverage(deviation));
     }
 
 }

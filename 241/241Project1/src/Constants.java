@@ -14,6 +14,9 @@ public final class Constants {
     public static String inputFileName = "ciphertext.txt";
     public static String outPutFile = "plaintext.txt";
 
+    public static int defaultHigh= 20;
+    public static int defaultLow= 1;
+
     public static final String[] Letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
     public static final Map<String, Integer> hLetters;
@@ -51,6 +54,7 @@ public final class Constants {
 
 
 //https://en.wikipedia.org/wiki/Letter_frequency
+
     public static final float[] EnglishLetterDist = {
             8.167f,
             1.492f,
@@ -79,6 +83,8 @@ public final class Constants {
             1.974f,
             0.074f
     };
+
+    public static final LetterDistribution EnglishDistObj = new LetterDistribution(Constants.EnglishLetterDist); //english
 
 
 }

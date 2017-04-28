@@ -14,8 +14,8 @@ public final class Constants {
     public static String inputFileName = "ciphertext.txt";
     public static String outPutFile = "plaintext.txt";
 
-    public static int defaultHigh= 20;
-    public static int defaultLow= 1;
+    public static int defaultHigh= 11;
+    public static int defaultLow= 5;
 
     public static final String[] Letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 

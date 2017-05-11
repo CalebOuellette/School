@@ -14,7 +14,7 @@ public class mySphere extends Point3D {
 
 
     mySphere(double x, double y, double z, double _radius, Color color){
-        super(x, y, z);
+        super(x, -1 * y, z);
         this.radius = _radius;
         this.color = color;
     }

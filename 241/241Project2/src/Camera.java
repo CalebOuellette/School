@@ -6,6 +6,6 @@ import javafx.geometry.Point3D;
 public class Camera extends Point3D {
 
     Camera( double distance){
-        super(0, 0, distance);
+        super(0, 0,  distance);
     }
 }

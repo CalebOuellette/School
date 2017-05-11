@@ -15,16 +15,21 @@ public class World {
     public LambertianLight light;
 
     //method for reading in file.
-    World(double cameraDistance, Color background, double _scale, LambertianLight light){
+    World(double cameraDistance, Color background, double _scale){
         this.camera = new Camera(cameraDistance);
         this.backgroundColor = background;
         this.scl = _scale;
-        this.light  = light;
+
     }
 
     public void addSphere(mySphere s){
         sphereArray.add(s);
     }
+
+    public void setLight(LambertianLight l){
+        this.light  = l;
+    }
+
 
     public Color getColor(double x,double y){
         Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0);
@@ -36,6 +41,7 @@ public class World {
             Point3D v = pixel.subtract(camera).normalize();
 
             Point3D q = camera.subtract(aSphere);
+
 
 
             double distance = calcDistance(v, q, aSphere.radius);

@@ -9,16 +9,15 @@ public class mySphere extends Point3D {
 
 
     public double radius;
-    public double red;
-    public double blue;
-    public double green;
+
+    public Color color;
 
 
-    mySphere(double x, double y, double z, double _radius, double _red, double _blue, double _green){
+    mySphere(double x, double y, double z, double _radius, Color color){
         super(x, y, z);
         this.radius = _radius;
-        this.red = _red;
-        this.blue = _blue;
-        this.green = _green;
+        this.color = color;
     }
+
+
 }

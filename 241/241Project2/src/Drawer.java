@@ -56,16 +56,6 @@ public class Drawer extends Frame {
     }
 
     /**
-     * You are to replace this method with one which does
-     * raytracing in line with the description in the
-     * proejct document.
-     **/
-    public Color getColor(int u, int v) {
-        float uf = (float)u/WIDTH;
-        float vf = (float)v/HEIGHT;
-        return new Color(uf, vf, 1.0f-uf);
-    }
-    /**
      * The paint method provides the real magic.  Here we
      * cast the Graphics object to Graphics2D to illustrate
      * that we may use the same old graphics capabilities with
@@ -74,7 +64,7 @@ public class Drawer extends Frame {
     public void paint(Graphics g) {
         for (int u = 0 ; u < WIDTH; u++) {
             for (int v = 0 ; v < HEIGHT; v++) {
-                g.setColor(getColor(u,v));
+                g.setColor(world.getColor(u,v));
 		/* For some reason the designers of Java
 		   graphics didn't include a primitive to
 		   draw a single pixel.  So... */

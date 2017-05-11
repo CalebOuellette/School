@@ -21,8 +21,6 @@ import java.awt.event.*;
 
 public class Drawer extends Frame {
 
-    public static final int WIDTH = 512;
-    public static final int HEIGHT = 512;
 
     private World world;
 
@@ -39,7 +37,7 @@ public class Drawer extends Frame {
 
         this.world = w;
         //Set the size for the frame.
-        setSize(WIDTH, HEIGHT);
+        setSize(Constants.WIDTH, Constants.HEIGHT);
 
         //We need to turn on the visibility of our frame
         //by setting the Visible parameter to true.
@@ -62,8 +60,8 @@ public class Drawer extends Frame {
      * Graphics2D that we are used to using with Graphics.
      **/
     public void paint(Graphics g) {
-        for (int u = 0 ; u < WIDTH; u++) {
-            for (int v = 0 ; v < HEIGHT; v++) {
+        for (int u = 0 ; u < Constants.WIDTH; u++) {
+            for (int v = 0 ; v < Constants.HEIGHT; v++) {
                 g.setColor(world.getColor(u,v));
 		/* For some reason the designers of Java
 		   graphics didn't include a primitive to

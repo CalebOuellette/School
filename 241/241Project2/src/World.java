@@ -12,14 +12,14 @@ public class World {
     public ArrayList<mySphere> sphereArray = new ArrayList<mySphere>();
     public Camera camera;
     public double scl; //scale
-    public double width = 512;
-    public double height = 512;
+    public LambertianLight light;
 
     //method for reading in file.
-    World(double cameraDistance, Color background, double _scale){
+    World(double cameraDistance, Color background, double _scale, LambertianLight light){
         this.camera = new Camera(cameraDistance);
         this.backgroundColor = background;
         this.scl = _scale;
+        this.light  = light;
     }
 
     public void addSphere(mySphere s){
@@ -27,10 +27,11 @@ public class World {
     }
 
     public Color getColor(double x,double y){
-        Point3D pixel = new Point3D((scl *((2 *x)/width -1)),(scl *((2 *y)/height -1)), 0);
+        Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0);
 
         Double bestDistance = null;
         mySphere bestSphere = null;
+        Point3D intersect = null;
         for (mySphere aSphere : sphereArray) {
             Point3D v = pixel.subtract(camera).normalize();
 
@@ -42,19 +43,39 @@ public class World {
                 if( bestDistance == null){
                     bestDistance = distance;
                     bestSphere = aSphere;
+                    intersect = camera.add(v.multiply(bestDistance));
                 } else if ( bestDistance > distance){
                     bestDistance = distance;
                     bestSphere = aSphere;
+                    intersect = camera.add(v.multiply(bestDistance));
                 }
             }
         }
 
         if(bestDistance != null){
-            return bestSphere.color;
+
+            return getShadedColor(intersect, bestSphere);
+
         }else{
             return backgroundColor;
         }
     }
+
+    public Color getShadedColor(Point3D point, mySphere s){
+
+        Point3D n = s.subtract(point).normalize();
+        n = n.normalize();
+
+        float shade = (float) n.dotProduct(this.light);
+        if(shade < 0.1f){
+            shade = 0.1f;
+        }
+        Color outColor  = new Color( shade *  s.color.getRed()/ 255f , shade * s.color.getGreen() / 255f, shade * s.color.getBlue() / 255f  );
+
+        return outColor;
+    }
+
+
 
     public void drawWorld(){
         Drawer e = new Drawer(this);

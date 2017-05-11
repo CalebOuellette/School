@@ -2,7 +2,6 @@ import javafx.geometry.Point3D;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Created by Caleb on 5/10/2017.

@@ -1,6 +1,10 @@
+import java.awt.*;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        World w = new World(20, new Color(1, 1, 1), 1);
+        w.drawWorld();
+
     }
 }

@@ -50,27 +50,27 @@ public class QTreeNode {
 
     public void insertSphere(mySphere s){
 
-        if((s.box.x2 < leftPixel + width || s.box.x1 > leftPixel) && (s.box.y1 > topPixel - height || s.box.x2 < topPixel)){
+        if((s.box.x2 >= leftPixel  && s.box.x1 <= leftPixel + width) && (s.box.y2 >= topPixel - height && s.box.y1 <= topPixel )){ //
             this.sphereArray.add(s);
             if(hasChildren){
                 this.TLChild.insertSphere(s);
                 this.TRChild.insertSphere(s);
                 this.BLChild.insertSphere(s);
-                this.BLChild.insertSphere(s);
+                this.BRChild.insertSphere(s);
             }
         }
     }
 
     public ArrayList<mySphere> getSpheresByLocation(Point3D pixel){
         ArrayList<mySphere> out = new ArrayList<>();
-        if(pixel.getY() < topPixel && pixel.getY() > topPixel - height && pixel.getX() < leftPixel + width && pixel.getX() > leftPixel){
+        if(pixel.getY() <= topPixel && pixel.getY() >= topPixel - height && pixel.getX() <= leftPixel + width && pixel.getX() >= leftPixel){
             if(!hasChildren){
                 out = this.sphereArray;
             }else{
                 out.addAll(this.TLChild.getSpheresByLocation(pixel));
                 out.addAll(this.TRChild.getSpheresByLocation(pixel));
                 out.addAll(this.BLChild.getSpheresByLocation(pixel));
-                out.addAll(this.BLChild.getSpheresByLocation(pixel));
+                out.addAll(this.BRChild.getSpheresByLocation(pixel));
             }
         }
         return out;

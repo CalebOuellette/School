@@ -12,7 +12,7 @@ import java.io.IOException;
 public class WorldFileAdapter {
 
 
-    private WorldFileAdapter(){
+    WorldFileAdapter(){
 
     }
 
@@ -23,7 +23,7 @@ public class WorldFileAdapter {
 
         Camera camera = null;
 
-        World w = new World(20, Constants.background, Constants.scale);
+        World w = new World( camera, Constants.background, Constants.scale);
 
         try {
             // FileReader reads text files in the default encoding.
@@ -34,21 +34,47 @@ public class WorldFileAdapter {
             BufferedReader bufferedReader =
                     new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
-                if(line.startsWith("camera")){
+                if(line.startsWith("camera:")){
+                    line = removeNextValue(line);
 
+                    double distance = Double.parseDouble(getNextValue(line));
+                    w.setCamera(new Camera(distance));
                 }
-                else if(line.startsWith("light")){
-                    LambertianLight l = new LambertianLight(-0.577, 0.577, -0.577);
+                else if(line.startsWith("light:")){
+
+                    line = removeNextValue(line);
+
+                    double x = Double.parseDouble(getNextValue(line));
+                    line = removeNextValue(line);
+                    double y = Double.parseDouble(getNextValue(line));
+                    line = removeNextValue(line);
+                    double z = Double.parseDouble(getNextValue(line));
+
+                    LambertianLight l = new LambertianLight(x, y, z);
                     w.setLight(l);
                 }
-                else if(line.startsWith("sphere")){
-                    mySphere r = new mySphere(2.0, 2.0, -1.0, 3, new Color(1.0f, 0.0f, 0.0f));
-                    w.addSphere(r);
+                else if(line.startsWith("sphere:")){
+
+                    line = removeNextValue(line);
+
+                    double x = Double.parseDouble(getNextValue(line));
+                    line = removeNextValue(line);
+                    double y = Double.parseDouble(getNextValue(line));
+                    line = removeNextValue(line);
+                    double z = Double.parseDouble(getNextValue(line));
+                    line = removeNextValue(line);
+                    double radius = Double.parseDouble(getNextValue(line));
+                    line = removeNextValue(line);
+                    float r = Float.parseFloat(getNextValue(line));
+                    line = removeNextValue(line);
+                    float g = Float.parseFloat(getNextValue(line));
+                    line = removeNextValue(line);
+                    float b = Float.parseFloat(getNextValue(line));
+
+
+                    mySphere sp = new mySphere(x, y, z, radius, new Color(r, g, b));
+                    w.addSphere(sp);
                 }
-
-
-
-
             }
 
             // Always close files.
@@ -63,12 +89,29 @@ public class WorldFileAdapter {
                             + fileName + "'");
         }
 
+
         return w;
     }
 
     private String getNextValue(String string){
 
-        return "";
+        String word = "";
+        if(string.contains(" ")){
+            word = string.substring(0, string.indexOf(" "));
+        }else{
+            word = string;
+        }
+        return word;
+    }
+
+    private String removeNextValue(String string){
+        String word = "";
+        if(string.contains(" ")){
+            word = string.substring(string.indexOf(" ") + 1, string.length());
+        }else{
+            word = string;
+        }
+        return word;
     }
 
 

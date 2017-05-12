@@ -7,7 +7,7 @@ public class LambertianLight extends Point3D {
 
 
     LambertianLight(double x, double y, double z){
-        super(x, y, z);
+        super(-1 * x, y, -1 * z);
 
     }
 

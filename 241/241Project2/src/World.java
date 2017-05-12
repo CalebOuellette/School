@@ -8,18 +8,20 @@ import java.util.ArrayList;
  */
 public class World {
 
-    public Color backgroundColor;
-    public ArrayList<mySphere> sphereArray = new ArrayList<mySphere>();
-    public Camera camera;
+    private Color backgroundColor;
+    private ArrayList<mySphere> sphereArray = new ArrayList<mySphere>();
+    private Camera camera;
     public double scl; //scale
-    public LambertianLight light;
+    private LambertianLight light;
 
-    //method for reading in file.
-    World(double cameraDistance, Color background, double _scale){
-        this.camera = new Camera(cameraDistance);
+    World(){
+
+    }
+
+    World(Camera camera, Color background, double _scale){
+        this.camera = camera;
         this.backgroundColor = background;
         this.scl = _scale;
-
     }
 
     public void addSphere(mySphere s){
@@ -30,6 +32,9 @@ public class World {
         this.light  = l;
     }
 
+    public void setCamera(Camera c){
+        this.camera  = c;
+    }
 
     public Color getColor(double x,double y){
         Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0);
@@ -68,7 +73,9 @@ public class World {
     }
 
     public Color getShadedColor(Point3D point, mySphere s){
-
+        if(this.light == null){
+            return s.color;
+        }
         Point3D n = s.subtract(point).normalize();
         n = n.normalize();
 

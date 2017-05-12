@@ -44,8 +44,6 @@ public class World {
 
         Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0);
 
-
-
         Double bestDistance = null;
         mySphere bestSphere = null;
         Point3D intersect = null;
@@ -97,8 +95,14 @@ public class World {
 
 
 
+
     public void drawWorld(){
         //create bounding boxes
+
+        for (mySphere aSphere : sphereArray) {
+            BoundingBox b = new BoundingBox(camera, aSphere);
+            aSphere.box = b;
+        }
 
         //build quad tree
 

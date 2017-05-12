@@ -20,5 +20,4 @@ public class mySphere extends Point3D {
         this.color = color;
     }
 
-
 }

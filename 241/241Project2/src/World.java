@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 /**
  * Created by Caleb on 5/10/2017.
+ * Holds data for creating a world and all elements in it.
  */
 public class World {
 
     private Color backgroundColor;
-    private ArrayList<mySphere> sphereArray = new ArrayList<mySphere>();
+    private ArrayList<mySphere> sphereArray = new ArrayList<>();
     private Camera camera;
-    public double scl; //scale
+    private double scl; //scale
     private LambertianLight light;
 
     World(){
@@ -37,7 +38,13 @@ public class World {
     }
 
     public Color getColor(double x,double y){
+
+        //get list of spheres based on quad tree
+
+
         Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0);
+
+
 
         Double bestDistance = null;
         mySphere bestSphere = null;
@@ -91,6 +98,13 @@ public class World {
 
 
     public void drawWorld(){
+        //create bounding boxes
+
+        //build quad tree
+
+        //insert into quad tree
+
+
         Drawer e = new Drawer(this);
     }
 

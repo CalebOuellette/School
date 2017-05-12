@@ -2,16 +2,18 @@ import javafx.geometry.Point3D;
 
 /**
  * Created by Caleb on 5/11/17.
+ * Represents a 2d box on the XY plane.
  */
 public class BoundingBox {
 
-    public double x1;
-    public double x2;
-    public double y1;
-    public double y2;
+    public double x1; //lower x coord
+    public double x2; //upper x coord
+    public double y1; //lower y coord
+    public double y2; //upper y coord
 
 
     BoundingBox(Point3D camera, mySphere sphere){
+        //Create Box based on camera and sphere
 
         double a = Math.sqrt((sphere.getY()*sphere.getY()) + Math.pow((sphere.getZ() - camera.getZ()), 2));
 

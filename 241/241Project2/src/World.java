@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Caleb on 5/10/2017.
- * Holds data for creating a world and all elements in it.
+ * Holds data for creating a world and all elements in it. All executes the drawing of the world.
  */
 public class World {
 
@@ -15,14 +15,11 @@ public class World {
     private double scl; //scale
     private LambertianLight light;
 
+    public double pixelsTested = 0;
     private QTreeNode tree;
 
-    World(){
 
-    }
-
-    World(Camera camera, Color background, double _scale){
-        this.camera = camera;
+    World( Color background, double _scale){
         this.backgroundColor = background;
         this.scl = _scale;
     }
@@ -40,7 +37,8 @@ public class World {
     }
 
 
-    public Color getColor(double x,double y) {
+    private Color getColorBoundingBox(double x,double y) {
+        //used for testing bounding boxes.
         Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0);
         ArrayList<mySphere> sl = tree.getSpheresByLocation(pixel);
 
@@ -53,23 +51,21 @@ public class World {
         }
     }
 
-    public Color getColorShade(double x,double y){
+    protected Color getColor(double x,double y){
+        //main function to get a color for each pixel
 
-        //get list of spheres based on quad tree
+        Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0); //calculate pixel on image plane.
 
+        ArrayList<mySphere> sl = tree.getSpheresByLocation(pixel); //get list of sphere from quad tree.
 
-        Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0);
-
-        Double bestDistance = null;
-        mySphere bestSphere = null;
-        Point3D intersect = null;
-        for (mySphere aSphere : sphereArray) {
+        Double bestDistance = null; //the shortest distance found
+        mySphere bestSphere = null; //the sphere of shorted distance
+        Point3D intersect = null; //the intersection of the sphere and the ray.
+        for (mySphere aSphere : sl) {
+            //for each sphere calculate the intersection, note that if there are no spheres in the this part of the tree we don't enter this code
             Point3D v = pixel.subtract(camera).normalize();
 
             Point3D q = camera.subtract(aSphere);
-
-
-
             double distance = calcDistance(v, q, aSphere.radius);
             if(!Double.isNaN(distance)){
                 if( bestDistance == null){
@@ -84,17 +80,36 @@ public class World {
             }
         }
 
-        if(bestDistance != null){
-
-            return getShadedColor(intersect, bestSphere);
-
+        if(bestDistance != null){//if we found an intersection, get the color
+            return getShadedColor(intersect, bestSphere); //apply shading
         }else{
-            return backgroundColor;
+            return backgroundColor; //return background
         }
     }
 
+
+    private double calcDistance(Point3D v, Point3D q, double r){
+        //calculates the distance between the camera and sphere. returns the lower value.
+        double a = v.dotProduct(v);
+        double b = q.dotProduct(v) * 2;
+        double c = q.dotProduct(q) - (r*r);
+
+        double root1, root2, d, returnRoot;
+
+        d = b * b - 4 * a * c;
+
+        root1 = ( - b + Math.sqrt(d))/(2*a);
+        root2 = (-b - Math.sqrt(d))/(2*a);
+
+        returnRoot = root1 > root2 ? root2: root1; //check what root is lower.
+
+        return returnRoot;
+    }
+
+
     public Color getShadedColor(Point3D point, mySphere s){
-        if(this.light == null){
+        //calculates the shaded color using the sphere, intersection and light.
+        if(this.light == null){ //if no light no need to shade.
             return s.color;
         }
         Point3D n = s.subtract(point).normalize();
@@ -113,9 +128,14 @@ public class World {
 
 
     public void drawWorld(){
-        //create bounding boxes
+        if(camera == null){
+            System.out.println("Error drawing: No Camera Found");
+            return;
+        }
+
 
         for (mySphere aSphere : sphereArray) {
+            //create bounding boxes
             BoundingBox b = new BoundingBox(camera, aSphere);
             aSphere.box = b;
         }
@@ -126,34 +146,15 @@ public class World {
             this.tree.createChildren();
         }
 
-
-        //insert into quad tree
+        //insert into quad tree each sphere
         for (mySphere aSphere : sphereArray) {
             this.tree.insertSphere(aSphere);
         }
 
+        //start the drawing process
         Drawer e = new Drawer(this);
     }
 
-
-    private double calcDistance(Point3D v, Point3D q, double r){
-
-        double a = v.dotProduct(v);
-        double b = q.dotProduct(v) * 2;
-        double c = q.dotProduct(q) - (r*r);
-
-        double root1, root2, d, returnRoot;
-
-        d = b * b - 4 * a * c;
-
-        root1 = ( - b + Math.sqrt(d))/(2*a);
-        root2 = (-b - Math.sqrt(d))/(2*a);
-
-        returnRoot = root1 > root2 ? root2: root1;
-
-
-        return returnRoot;
-    }
 
 
 }

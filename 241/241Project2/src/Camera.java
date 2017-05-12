@@ -2,6 +2,7 @@ import javafx.geometry.Point3D;
 
 /**
  * Created by Caleb on 5/10/2017.
+ * Represents a Camera.
  */
 public class Camera extends Point3D {
 

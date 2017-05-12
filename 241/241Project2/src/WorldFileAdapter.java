@@ -8,6 +8,7 @@ import java.io.IOException;
 
 /**
  * Created by Caleb on 5/11/2017.
+ * Reads in file and creates world object.
  */
 public class WorldFileAdapter {
 
@@ -23,7 +24,7 @@ public class WorldFileAdapter {
 
         Camera camera = null;
 
-        World w = new World( camera, Constants.background, Constants.scale);
+        World w = new World( Constants.background, Constants.scale);
 
         try {
             // FileReader reads text files in the default encoding.

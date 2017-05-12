@@ -2,6 +2,7 @@ import java.awt.*;
 
 /**
  * Created by Caleb on 5/10/2017.
+ * Constants for the project.
  */
 public class Constants {
 

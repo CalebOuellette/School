@@ -15,6 +15,8 @@ public class World {
     private double scl; //scale
     private LambertianLight light;
 
+    private QTreeNode tree;
+
     World(){
 
     }
@@ -37,7 +39,21 @@ public class World {
         this.camera  = c;
     }
 
-    public Color getColor(double x,double y){
+
+    public Color getColor(double x,double y) {
+        Point3D pixel = new Point3D((scl *((2 *x)/Constants.WIDTH -1)),(scl *((2 *y)/Constants.HEIGHT -1)), 0);
+        ArrayList<mySphere> sl = tree.getSpheresByLocation(pixel);
+
+        if(sl.size() > 0 ){
+
+            return sl.get(0).color;
+
+        }else{
+            return backgroundColor;
+        }
+    }
+
+    public Color getColorShade(double x,double y){
 
         //get list of spheres based on quad tree
 
@@ -105,9 +121,16 @@ public class World {
         }
 
         //build quad tree
+        this.tree = new QTreeNode(scl * 2, scl * 2, -1 * (scl *((2)/Constants.WIDTH -1)),  (scl *((2)/Constants.HEIGHT -1)));
+        for (int i = 0; i < Constants.treeHeight; i++) {
+            this.tree.createChildren();
+        }
+
 
         //insert into quad tree
-
+        for (mySphere aSphere : sphereArray) {
+            this.tree.insertSphere(aSphere);
+        }
 
         Drawer e = new Drawer(this);
     }

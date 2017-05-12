@@ -15,4 +15,5 @@ public class Constants {
     public static final int WIDTH = 512;
     public static final int HEIGHT = 512;
 
+    public static int treeHeight = 3;
 }

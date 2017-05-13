@@ -13,8 +13,8 @@ public class Constants {
     public static Color background = new Color(0.4f, 1.0f, 1.0f);
 
 
-    public static final int WIDTH = 512;
-    public static final int HEIGHT = 512;
+    public static int WIDTH = 512;
+    public static int HEIGHT = 512;
 
     public static int treeHeight = 3;
 }

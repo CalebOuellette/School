@@ -1,17 +1,17 @@
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Random;
+import java.util.*;
+
 /**
  * Created by Caleb on 5/17/17.
  */
 public class Maze {
 
 
-    private int rows;
-    private int columns;
+    public int rows;
+    public int columns;
 
-    private Set<Set> CellSet = new HashSet<Set>();
-    private Set<Set> adjacentCells = new HashSet<Set>();
+
+    public Map<Integer, Cell> cellMap = new HashMap<Integer, Cell>();
+    public List<Wall> walls = new ArrayList<Wall>();
 
     public Maze(int rows, int columns){
         this.rows = rows;
@@ -23,19 +23,22 @@ public class Maze {
         //(since it is separated from the others by walls). Thus, we have a partition of the set of n cells into n
         //sets.
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; i < columns; i++) {
-                Set<Integer> cell = new HashSet<Integer>();
-                cell.add(cellIndex);
-                CellSet.add(cell);
+            for (int j = 0; j < columns; j++) {
+                Cell x = new Cell(cellIndex);
+                cellMap.put(cellIndex, x);
                 cellIndex++;
             }
         }
 
         for(int x = 0; x < (rows * columns); x = x+1){
-            Set<Set> adj  = getAdjacent(x);
-            adjacentCells.addAll(adj);
+            List<Wall> adj  = getAdjacent(x);
+            walls.addAll(adj);
         }
+        this.randomizeMaze();
+
+        this.buildMaze();
     }
+
 
 
 
@@ -45,40 +48,73 @@ public class Maze {
         return n;
     }
 
-    public Set<Set> getAdjacent(int n){
-        Set<Set> adjacentList = new HashSet<Set>();
+    public List<Wall> getAdjacent(int n){
+        List<Wall> adjacentList = new ArrayList<Wall>();
 
-        //up
-        if(n > (columns - 1)){
-            Set<Integer> up = new HashSet<Integer>();
-            up.add(n);
-            up.add(n - columns);
-            adjacentList.add(up);
-        }
 
         //down
         if(n < (rows * columns) - columns){
-            Set<Integer> dn = new HashSet<Integer>();
-            dn.add(n);
-            dn.add(n + columns);
+            Wall dn = new Wall(n, n + columns);
             adjacentList.add(dn);
         }
-        //left
-        if(n % columns != 0){
-            Set<Integer> l = new HashSet<Integer>();
-            l.add(n);
-            l.add(n-1);
-            adjacentList.add(l);
-        }
+
         //right
         if((n +1) % columns != 0){
-            Set<Integer> r = new HashSet<Integer>();
-            r.add(n);
-            r.add(n + 1);
+            Wall r = new Wall(n, n + 1);
             adjacentList.add(r);
         }
 
         return adjacentList;
+    }
+
+
+
+    public void buildMaze(){
+        //Removes wall to create maze
+        List<Wall> doorCells = new ArrayList<Wall>();
+
+        for (Wall testWall : this.walls) {
+            Cell ACell = cellMap.get(testWall.cellA);
+            Cell BCell =  cellMap.get(testWall.cellB);
+            if(ACell.getRoot() != BCell.getRoot()){
+                doorCells.add(testWall); //add wall to doors
+                cellMap.get(testWall.cellA).getRoot().setParent(cellMap.get(testWall.cellB)); //set parent
+            }
+        }
+
+        this.walls.removeAll(doorCells);
+
+
+    }
+
+    public void randomizeMaze(){
+
+        for (int i = 0; i < this.walls.size(); i++) {
+            //get random
+            int r = selectRandomCell();
+            //swap this with random
+            Wall tempWall = this.walls.get(i);
+            this.walls.set(i, this.walls.get(r));
+            this.walls.set(r, tempWall);
+        }
+        
+        
+        
+    }
+    
+    
+    public void mazeRender(){
+         new Drawer(this);
+    }
+
+
+
+    public void getXY(Cell cell){
+
+        int yInt = cell.value / rows;
+        int xInt = cell.value % rows;
+
+
     }
 
 

@@ -14,9 +14,7 @@ public class Tests {
 
     static void MazeTest(){
 
-        Maze mazeOne = new Maze(4,4);
-
-
+        Maze mazeOne = new Maze(2,2);
 
 
     }

@@ -60,7 +60,7 @@ public class Drawer extends Frame {
      * Graphics2D that we are used to using with Graphics.
      **/
     public void paint(Graphics g) {
-        int scale = 512 / (maze.columns + 1);
+        int scale = (512 - 10) / (maze.columns + 1);
         int pixelOffsetY = 40;
         int pixelOffsetX = 30;
 

@@ -35,6 +35,11 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        for(int i=0;i<conditions.length;i++) {
+            conditions[i].toString("MSFT");
+        }
     }
 
 }

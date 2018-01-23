@@ -4,5 +4,5 @@
 public abstract class ReportCondition {
 
     public abstract void processDay(StockDayRow newDay);
-    public abstract String resultsToString(String StockID);
+    public abstract String toString(String StockID);
 }

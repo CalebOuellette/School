@@ -14,7 +14,7 @@ public class CrazyDay extends ReportCondition {
         }
     }
 
-    public String resultsToString(String StockID){
+    public String toString(String StockID){
         return "";
     }
 

@@ -13,6 +13,11 @@ import java.text.ParseException;
  * 8. adjusted closing price (19.46).
  */
 public class StockDayRow {
+
+    public StockDayRow() {
+        this.symbol = "";
+    }
+
     public StockDayRow(String row){
 
         String[] elements = row.split("\t");
@@ -21,10 +26,6 @@ public class StockDayRow {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy"); //3/30/2015
         try {
             this.date = formatter.parse(elements[1]);
-
-            System.out.println(date);
-            System.out.println(formatter.format(date));
-
         } catch (ParseException e) {
             e.printStackTrace();
         }

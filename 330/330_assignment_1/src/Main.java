@@ -12,8 +12,9 @@ public class Main {
         Set stockSymbols = new HashSet();
 
         CrazyDay crazyDays = new CrazyDay();
+        SplitDay splitDays = new SplitDay();
 
-        ReportCondition[] conditions = {crazyDays};
+        ReportCondition[] conditions = {crazyDays, splitDays};
 
         try {
             File file = new File("StockMarket-1990-2015.txt");
@@ -34,8 +35,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 }

@@ -29,15 +29,15 @@ public class SplitDay extends ReportCondition  {
         }
         if(day.symbol.equals(this.nextDay.symbol)){
 
-            if(abs((day.closingPrice / this.nextDay.openingPrice) - 2.0f) < SPLIT_DAY_ROUNDING_THRESHOLD ){
+            if(abs((day.closingPrice / this.nextDay.openingPrice) - 2.0f) <= SPLIT_DAY_ROUNDING_THRESHOLD ){
                 SplitPair split = new SplitPair(day, this.nextDay, SplitType.TWOONE);
                 results.add(split);
             }
-            else if(abs((day.closingPrice / this.nextDay.openingPrice ) - 3.0f) < SPLIT_DAY_ROUNDING_THRESHOLD ){
+            else if(abs((day.closingPrice / this.nextDay.openingPrice ) - 3.0f) <= SPLIT_DAY_ROUNDING_THRESHOLD ){
                 SplitPair split = new SplitPair(day, this.nextDay, SplitType.THREEONE);
                 results.add(split);
             }
-            else if(abs((day.closingPrice / this.nextDay.openingPrice) - 1.5f) < SPLIT_DAY_ROUNDING_THRESHOLD ){
+            else if(abs((day.closingPrice / this.nextDay.openingPrice) - 1.5f) <= SPLIT_DAY_ROUNDING_THRESHOLD ){
                 SplitPair split = new SplitPair(day, this.nextDay, SplitType.THREETWO);
                 results.add(split);
             }

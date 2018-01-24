@@ -9,7 +9,7 @@ import java.util.Set;
 public class Main {
 
     public static void main(String[] args) {
-        Set stockSymbols = new HashSet();
+        Set<String> stockSymbols = new HashSet();
 
         CrazyDay crazyDays = new CrazyDay();
         SplitDay splitDays = new SplitDay();
@@ -36,10 +36,14 @@ public class Main {
             e.printStackTrace();
         }
 
-
-        for(int i=0;i<conditions.length;i++) {
-            conditions[i].toString("MSFT");
+        String result = "";
+        String[] symbolArray = stockSymbols.toArray(new String[stockSymbols.size()]);
+        for (String symbol : symbolArray) {
+            for(int i=0;i<conditions.length;i++) {
+                System.out.print(conditions[i].toString(symbol));
+            }
         }
+
     }
 
 }

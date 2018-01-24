@@ -15,9 +15,7 @@ import static java.lang.Math.abs;
 
 public class SplitDay extends ReportCondition  {
 
-    public ArrayList<SplitPair> resultsTwo_One = new ArrayList<SplitPair>();
-    public ArrayList<SplitPair> resultsThree_One = new ArrayList<SplitPair>();
-    public ArrayList<SplitPair> resultsThree_two = new ArrayList<SplitPair>();
+    public ArrayList<SplitPair> results = new ArrayList<SplitPair>();
 
     public static final float SPLIT_DAY_ROUNDING_THRESHOLD= 0.05f;
 
@@ -25,20 +23,23 @@ public class SplitDay extends ReportCondition  {
     StockDayRow nextDay = new StockDayRow();
     public void processDay(StockDayRow day){
         //2/14/2003
-        Date myDate = new GregorianCalendar(2003, Calendar.FEBRUARY, 14).getTime();
+        Date myDate = new GregorianCalendar(1991, Calendar.JUNE, 26).getTime();
         if(day.symbol.equals("MSFT") && day.date.equals(myDate)){
             int i = 0;
         }
         if(day.symbol.equals(this.nextDay.symbol)){
-            SplitPair split = new SplitPair(day, this.nextDay);
+
             if(abs((day.closingPrice / this.nextDay.openingPrice) - 2.0f) < SPLIT_DAY_ROUNDING_THRESHOLD ){
-                resultsTwo_One.add(split);
+                SplitPair split = new SplitPair(day, this.nextDay, SplitType.TWOONE);
+                results.add(split);
             }
             else if(abs((day.closingPrice / this.nextDay.openingPrice ) - 3.0f) < SPLIT_DAY_ROUNDING_THRESHOLD ){
-                resultsThree_One.add(split);
+                SplitPair split = new SplitPair(day, this.nextDay, SplitType.THREEONE);
+                results.add(split);
             }
             else if(abs((day.closingPrice / this.nextDay.openingPrice) - 1.5f) < SPLIT_DAY_ROUNDING_THRESHOLD ){
-                resultsThree_two.add(split);
+                SplitPair split = new SplitPair(day, this.nextDay, SplitType.THREETWO);
+                results.add(split);
             }
         }
         this.nextDay = day;
@@ -46,22 +47,15 @@ public class SplitDay extends ReportCondition  {
 
     public String toString(String stockID){
         String outString = "";
-        for (SplitPair split: this.resultsTwo_One) {
+        int length = 0;
+        for (SplitPair split: this.results) {
             if(split.day.symbol.equals(stockID)){
-                System.out.println("2:1 split on " + split.toString());
+                outString = outString + split.toString() + '\n';
+                length++;
             }
         }
-        for (SplitPair split: this.resultsThree_One) {
-            if(split.day.symbol.equals(stockID)){
-                System.out.println("3:1 split on " + split.toString());
-            }
-        }
-        for (SplitPair split: this.resultsThree_two) {
-            if(split.day.symbol.equals(stockID)){
-                System.out.println("3:2 split on " + split.toString());
-            }
-        }
-        return "";
+        outString = outString + "Total number of splits: " + length + '\n';
+        return outString;
     }
 }
 
@@ -76,13 +70,26 @@ class SplitPair{
     StockDayRow day;
     StockDayRow nextDay;
     SplitType type;
-    public SplitPair(StockDayRow day, StockDayRow nextDay){
+    public SplitPair(StockDayRow day, StockDayRow nextDay, SplitType type){
         this.day = day;
         this.nextDay = nextDay;
+        this.type = type;
     }
 
     public String toString(){
         String outString = "";
+        switch(this.type){
+            case THREEONE:
+                outString = outString + "3:1 split on ";
+                break;
+            case THREETWO:
+                outString = outString + "3:2 split on ";
+                break;
+            case TWOONE:
+                outString = outString + "2:1 split on ";
+                break;
+        }
+
         SimpleDateFormat outDate = new SimpleDateFormat("MM/dd/yyyy"); //3/30/2015
         outString = outString + outDate.format(this.day.date) + "\t" + this.day.closingPrice.toString() + "  --> " + this.nextDay.openingPrice.toString();
         return outString;

@@ -32,3 +32,4 @@ Total crazy days = 0
 3:2 split on 6/26/1991	100.75 --> 67.75
 2:1 split on 4/12/1990	120.75 --> 61.00
 Total number of splits: 7
+

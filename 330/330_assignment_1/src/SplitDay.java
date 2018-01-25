@@ -12,10 +12,9 @@ import static java.lang.Math.abs;
  */
 
 
-
 public class SplitDay extends ReportCondition  {
 
-    public ArrayList<SplitPair> results = new ArrayList<SplitPair>();
+    public ArrayList<SplitPair> results = new ArrayList<>();
 
     public static final float SPLIT_DAY_ROUNDING_THRESHOLD= 0.05f;
 
@@ -91,7 +90,9 @@ class SplitPair{
         }
 
         SimpleDateFormat outDate = new SimpleDateFormat("MM/dd/yyyy"); //3/30/2015
-        outString = outString + outDate.format(this.day.date) + "\t" + this.day.closingPrice.toString() + "  --> " + this.nextDay.openingPrice.toString();
+        outString = outString + outDate.format(this.day.date) + "\t" +
+                String.format("%.2f", this.day.closingPrice)+ "  --> "
+                + String.format("%.2f", this.nextDay.openingPrice);
         return outString;
     }
 }

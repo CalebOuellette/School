@@ -39,10 +39,17 @@ public class Main {
         String result = "";
         String[] symbolArray = stockSymbols.toArray(new String[stockSymbols.size()]);
         for (String symbol : symbolArray) {
+            result = result + "\n" +
+                    "Processing " + symbol + "\n" +
+                    "======================\n";
             for(int i=0;i<conditions.length;i++) {
-                System.out.print(conditions[i].toString(symbol));
+
+                result = result + conditions[i].toString(symbol);
             }
+
         }
+
+        System.out.print(result);
 
     }
 

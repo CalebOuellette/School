@@ -1,8 +1,6 @@
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +14,7 @@ public class Main {
 
         ReportCondition[] conditions = {crazyDays, splitDays};
 
+        //Read in Data
         try {
             File file = new File("StockMarket-1990-2015.txt");
             FileReader fileReader = new FileReader(file);
@@ -36,21 +35,20 @@ public class Main {
             e.printStackTrace();
         }
 
+        //format results
         String result = "";
         String[] symbolArray = stockSymbols.toArray(new String[stockSymbols.size()]);
+        Arrays.sort(symbolArray);
         for (String symbol : symbolArray) {
-            result = result + "\n" +
+            result += "\n" +
                     "Processing " + symbol + "\n" +
                     "======================\n";
             for(int i=0;i<conditions.length;i++) {
 
-                result = result + conditions[i].toString(symbol);
+                result += conditions[i].toString(symbol);
             }
-
         }
-
         System.out.print(result);
-
     }
 
 }

@@ -26,7 +26,7 @@ public class Main {
             conn = DriverManager.getConnection(dburl, connectprops);
             System.out.printf("Database connection %s %s established.%n",
                     dburl, username);
-            showCompanies();
+            processCompany("INTC");
         }
         catch (Exception e){
             System.out.print(e.getMessage());
@@ -45,6 +45,24 @@ public class Main {
             System.out.printf("%5s %s%n", results.getString("Ticker"), results.getString("Name"));
         }
         stmt.close();
+    }
+
+    static void processCompany(String companyTicker)throws SQLException {
+
+        SplitDay splitDays = new SplitDay();
+
+        PreparedStatement pstmt = conn.prepareStatement("select * "
+                + " from PriceVolume "
+                + " where Ticker = ? order by TransDate desc");
+
+        pstmt.setString(1, companyTicker);
+        ResultSet results = pstmt.executeQuery();
+        while (results.next()) {
+            StockDayRow day = new StockDayRow(results);
+            splitDays.processDay(day);
+        }
+        pstmt.close();
+        System.out.print(splitDays.toString(companyTicker));
     }
 
     static void assigmentOne(){

@@ -56,6 +56,15 @@ public class StockDayRow {
             e.printStackTrace();
         }
     }
+
+    public void adjustData(float ratio){
+        this.openingPrice = this.openingPrice * ratio;
+        this.highPrice = this.highPrice * ratio;
+        this.lowPrice = this.lowPrice * ratio;
+        this.closingPrice = this.closingPrice * ratio;
+        this.adjClosingPrice = this.adjClosingPrice * ratio;
+    }
+
     String symbol;
     Date date;
     Float openingPrice;

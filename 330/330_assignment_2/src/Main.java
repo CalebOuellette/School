@@ -50,19 +50,24 @@ public class Main {
     static void processCompany(String companyTicker)throws SQLException {
 
         SplitDay splitDays = new SplitDay();
-
+        InvestmentSimulator invest = new InvestmentSimulator();
+        ReportCondition[] conditions = { splitDays, invest};
         PreparedStatement pstmt = conn.prepareStatement("select * "
                 + " from PriceVolume "
-                + " where Ticker = ? order by TransDate desc");
+                + " where Ticker = ? order by TransDate");
 
         pstmt.setString(1, companyTicker);
         ResultSet results = pstmt.executeQuery();
         while (results.next()) {
             StockDayRow day = new StockDayRow(results);
-            splitDays.processDay(day);
+            for(int i=0;i<conditions.length;i++) {
+                conditions[i].processDay(day);
+            }
         }
         pstmt.close();
-        System.out.print(splitDays.toString(companyTicker));
+        for(int i=0;i<conditions.length;i++) {
+            System.out.print(conditions[i].toString(companyTicker));
+        }
     }
 
     static void assigmentOne(){

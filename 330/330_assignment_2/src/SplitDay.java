@@ -15,25 +15,35 @@ public class SplitDay extends ReportCondition  {
     public static final float SPLIT_DAY_ROUNDING_THRESHOLD= 0.05f;
 
 
-    StockDayRow nextDay = new StockDayRow();
+    StockDayRow lastDay = new StockDayRow();
     public void processDay(StockDayRow day){
-        if(day.symbol.equals(this.nextDay.symbol)){
+        this.processDayWithResult(day);
+    }
 
-            if(abs((day.closingPrice / this.nextDay.openingPrice) - 2.0f) <= 0.20 ){
-                SplitPair split = new SplitPair(day, this.nextDay, SplitType.TWOONE);
+    public float processDayWithResult(StockDayRow newDay){
+        float splitRatio = 1;
+        if(this.lastDay.symbol.equals(newDay.symbol)){
+
+            if(abs((this.lastDay.closingPrice / newDay.openingPrice) - 2.0f) <= 0.20 ){
+                SplitPair split = new SplitPair(this.lastDay, newDay, SplitType.TWOONE);
                 results.add(split);
+                splitRatio = 2.0f;
             }
-            else if(abs((day.closingPrice / this.nextDay.openingPrice ) - 3.0f) <= 0.30 ){
-                SplitPair split = new SplitPair(day, this.nextDay, SplitType.THREEONE);
+            else if(abs((this.lastDay.closingPrice / newDay.openingPrice ) - 3.0f) <= 0.30 ){
+                SplitPair split = new SplitPair(this.lastDay, newDay, SplitType.THREEONE);
                 results.add(split);
+                splitRatio = 3.0f;
             }
-            else if(abs((day.closingPrice / this.nextDay.openingPrice) - 1.5f) <= 0.15 ){
-                SplitPair split = new SplitPair(day, this.nextDay, SplitType.THREETWO);
+            else if(abs((this.lastDay.closingPrice / newDay.openingPrice) - 1.5f) <= 0.15 ){
+                SplitPair split = new SplitPair(this.lastDay, newDay, SplitType.THREETWO);
                 results.add(split);
+                splitRatio = 1.5f;
             }
         }
-        this.nextDay = day;
+        this.lastDay = newDay;
+        return splitRatio;
     }
+
 
     public String toString(String stockID){
         String outString = "";
@@ -87,4 +97,5 @@ public class SplitDay extends ReportCondition  {
             return outString;
         }
     }
+
 }

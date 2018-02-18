@@ -38,14 +38,7 @@ public class Main {
     }
 
 
-    static void showCompanies() throws SQLException {
-        Statement stmt = conn.createStatement();
-        ResultSet results = stmt.executeQuery("select Ticker, Name from Company");
-        while (results.next()) {
-            System.out.printf("%5s %s%n", results.getString("Ticker"), results.getString("Name"));
-        }
-        stmt.close();
-    }
+
 
     static void processCompany(String companyTicker)throws SQLException {
 
@@ -54,7 +47,7 @@ public class Main {
         ReportCondition[] conditions = { splitDays, invest};
         PreparedStatement pstmt = conn.prepareStatement("select * "
                 + " from PriceVolume "
-                + " where Ticker = ? order by TransDate");
+                + " where Ticker = ?  order by TransDate");
 
         pstmt.setString(1, companyTicker);
         ResultSet results = pstmt.executeQuery();

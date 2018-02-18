@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public class CrazyDay extends ReportCondition {
 
-    public static final float CRAZY_DAY_THRESHOLD=.15f;
+    public static final double CRAZY_DAY_THRESHOLD=.15f;
     public ArrayList<StockDayRow> results = new ArrayList<StockDayRow>();
 
     public void processDay(StockDayRow day){
@@ -37,11 +37,11 @@ public class CrazyDay extends ReportCondition {
         return outString;
     }
 
-    private float dayFluctuation(StockDayRow day){
+    private double dayFluctuation(StockDayRow day){
         return ((day.highPrice - day.lowPrice) / day.highPrice);
     }
     private String dayFluctuationToString(StockDayRow day){
-        float value =  ((day.highPrice - day.lowPrice) / day.highPrice) * 100;
+        double value =  ((day.highPrice - day.lowPrice) / day.highPrice) * 100;
         return String.format("%.2f", value);
     }
 

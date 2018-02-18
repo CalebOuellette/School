@@ -32,21 +32,21 @@ public class StockDayRow {
             e.printStackTrace();
         }
 
-        this.openingPrice = Float.parseFloat(elements[2]);
-        this.highPrice = Float.parseFloat(elements[3]);
-        this.lowPrice = Float.parseFloat(elements[4]);
-        this.closingPrice = Float.parseFloat(elements[5]);
+        this.openingPrice = Double.parseDouble(elements[2]);
+        this.highPrice = Double.parseDouble(elements[3]);
+        this.lowPrice = Double.parseDouble(elements[4]);
+        this.closingPrice = Double.parseDouble(elements[5]);
         this.volume = Long.parseLong(elements[6]);
-        this.adjClosingPrice = Float.parseFloat(elements[7]);
+        this.adjClosingPrice = Double.parseDouble(elements[7]);
     }
 
     public StockDayRow(ResultSet r) throws SQLException {
-        this.openingPrice = Float.parseFloat(r.getString("OpenPrice"));
-        this.highPrice = Float.parseFloat(r.getString("HighPrice"));
-        this.lowPrice = Float.parseFloat(r.getString("LowPrice"));
-        this.closingPrice= r.getFloat("ClosePrice");
+        this.openingPrice = Double.parseDouble(r.getString("OpenPrice"));
+        this.highPrice = Double.parseDouble(r.getString("HighPrice"));
+        this.lowPrice = Double.parseDouble(r.getString("LowPrice"));
+        this.closingPrice= r.getDouble("ClosePrice");
         this.volume= r.getLong("Volume");
-        this.adjClosingPrice= Float.parseFloat(r.getString("AdjustedClose"));
+        this.adjClosingPrice= Double.parseDouble(r.getString("AdjustedClose"));
         this.symbol = r.getString("Ticker");
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
@@ -57,21 +57,21 @@ public class StockDayRow {
         }
     }
 
-    public void adjustData(float ratio){
-        this.openingPrice = this.openingPrice * ratio;
-        this.highPrice = this.highPrice * ratio;
-        this.lowPrice = this.lowPrice * ratio;
-        this.closingPrice = this.closingPrice * ratio;
-        this.adjClosingPrice = this.adjClosingPrice * ratio;
+    public void adjustData(double ratio){
+        this.openingPrice = this.openingPrice / ratio;
+        this.highPrice = this.highPrice / ratio;
+        this.lowPrice = this.lowPrice / ratio;
+        this.closingPrice = this.closingPrice / ratio;
+        this.adjClosingPrice = this.adjClosingPrice / ratio;
     }
 
     String symbol;
     Date date;
-    Float openingPrice;
-    Float highPrice;
-    Float lowPrice;
-    Float closingPrice;
+    Double openingPrice;
+    Double highPrice;
+    Double lowPrice;
+    Double closingPrice;
     Long volume;
-    Float adjClosingPrice;
+    Double adjClosingPrice;
 }
 

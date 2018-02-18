@@ -12,7 +12,7 @@ public class SplitDay extends ReportCondition  {
 
     public ArrayList<SplitPair> results = new ArrayList<>();
 
-    public static final float SPLIT_DAY_ROUNDING_THRESHOLD= 0.05f;
+    public static final double SPLIT_DAY_ROUNDING_THRESHOLD= 0.05f;
 
 
     StockDayRow lastDay = new StockDayRow();
@@ -20,8 +20,8 @@ public class SplitDay extends ReportCondition  {
         this.processDayWithResult(day);
     }
 
-    public float processDayWithResult(StockDayRow newDay){
-        float splitRatio = 1;
+    public double processDayWithResult(StockDayRow newDay){
+        double splitRatio = 1;
         if(this.lastDay.symbol.equals(newDay.symbol)){
 
             if(abs((this.lastDay.closingPrice / newDay.openingPrice) - 2.0f) <= 0.20 ){

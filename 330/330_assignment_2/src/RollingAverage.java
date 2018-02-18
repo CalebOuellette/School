@@ -30,7 +30,7 @@ public class RollingAverage extends ReportCondition{
         return outString;
     }
 
-    public float getAverage(String ticker){
+    public double getAverage(String ticker){
         CompanyData company = results.get(ticker);
         if(company == null){
             return 0;
@@ -38,15 +38,15 @@ public class RollingAverage extends ReportCondition{
         if(company.days.size() != ROLLINGAVERAGEINTERVAL){
             return 0;
         }
-        float avg = 0;
+        double avg = 0;
         for(int i = 0; i < company.days.size(); i++ ){
-            avg += company.days.get(i).openingPrice;
+            avg += company.days.get(i).closingPrice;
         }
         avg = avg / ROLLINGAVERAGEINTERVAL;
         return avg;
     }
 
-    public void adjustCompanyData(String ticker, float adjustment){
+    public void adjustCompanyData(String ticker, double adjustment){
         CompanyData company = results.get(ticker);
         for(int i = 0; i < company.days.size(); i++ ){
             company.days.get(i).adjustData(adjustment);

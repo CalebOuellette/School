@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 /**
@@ -5,21 +6,22 @@ import java.util.HashMap;
  */
 public class InvestmentSimulator extends ReportCondition{
 
-    final float TRADING_FEE = 8;
+    final double TRADING_FEE = 8;
 
     public HashMap<String, InvestCompanyData> results = new HashMap<>();
-
+    SimpleDateFormat outDate = new SimpleDateFormat("yyyy.MM.dd");
 
     RollingAverage averages = new RollingAverage();
     SplitDay splitDays = new SplitDay();
 
-    public  void processDay(StockDayRow newDay){
+    int errorCount = 0;
 
+    public  void processDay(StockDayRow newDay){
         results.putIfAbsent(newDay.symbol, new InvestCompanyData(newDay.symbol));
 
         InvestCompanyData company = results.get(newDay.symbol);
 
-        float adjustment = splitDays.processDayWithResult(newDay);
+        double adjustment = splitDays.processDayWithResult(newDay);
         if(adjustment != 1){
             averages.adjustCompanyData(newDay.symbol, adjustment);
             company.adjust(adjustment);
@@ -28,33 +30,47 @@ public class InvestmentSimulator extends ReportCondition{
         if(company.shouldBuy){
             company.shares += 100;
             company.cash -= (100 * newDay.openingPrice);
-            company.cash =- TRADING_FEE;
+          // company.cash = company.cash - TRADING_FEE;
             company.tradeCount++;
             company.shouldBuy = false;
+
+            System.out.print("Buy Day " + outDate.format(newDay.date)+ '\n');
+            System.out.print("Cost " + (100 * newDay.openingPrice) + '\n');
+            System.out.print("Cost " +  newDay.openingPrice + '\n');
+            System.out.print(company.getString());
+
         }
 
-        averages.processDay(newDay);
-        float rAvg = averages.getAverage(newDay.symbol);
+
+        double rAvg = averages.getAverage(newDay.symbol);
         if(rAvg != 0){
-            if(newDay.closingPrice < rAvg && (newDay.closingPrice / newDay.openingPrice <= 0.97)){
+            if(newDay.closingPrice < rAvg && ((newDay.closingPrice / newDay.openingPrice) <= 0.97000001)){
              //Set buy trigger
                 company.shouldBuy = true;
             }
-            else if(company.shares > 100 && newDay.openingPrice > rAvg && newDay.openingPrice / company.previousDay.closingPrice >= 1.01){
-                //sell 100 shares at price (open(d) + close(d))/2
-                company.shares -= 100;
+            else if(company.shares >= 100 && newDay.openingPrice > rAvg && newDay.openingPrice / company.previousDay.closingPrice >= 1.00999999){
+                company.shares = company.shares - 100;
                 company.cash += 100 * ((newDay.openingPrice + newDay.closingPrice) / 2);
-                company.cash =- TRADING_FEE;
+               // company.cash = company.cash - TRADING_FEE;
                 company.tradeCount++;
+                SimpleDateFormat outDate = new SimpleDateFormat("yyyy.MM.dd");
+                System.out.print("Sell Day " + outDate.format(newDay.date)+ '\n');
+                System.out.print(company.getString());
+
             }
         }
+        averages.processDay(newDay);
         company.previousDay = newDay;
+        company.dayCount++;
     }
     public String toString(String stockID){
         InvestCompanyData company = results.get(stockID);
-        Float outCash = company.cash + (company.shares * company.previousDay.openingPrice);
+        Double outCash = company.cash + (company.shares * company.previousDay.openingPrice) - (company.tradeCount * TRADING_FEE);
+        //Double outCash = company.cash + (company.shares * company.previousDay.openingPrice);
 
-        String out =  "Transactions executed:" + company.tradeCount;
+        String out =  "Transactions executed: " + company.tradeCount + '\n';
+        out +=  "Days processed executed: " + company.dayCount + '\n';
+        out +=  "Error Days: " + this.errorCount + '\n';
         out += "\nTicker: " + stockID + " \nCash: " + outCash.toString() + '\n';
         return out;
     }
@@ -64,14 +80,24 @@ public class InvestmentSimulator extends ReportCondition{
             this.ticker = ticker;
         }
         String ticker;
-        float shares = 0;
-        float cash = 0;
+        double shares = 0;
+        double cash = 0;
         int tradeCount = 0;
+        int dayCount = 0;
         boolean shouldBuy = false;
         StockDayRow previousDay;
 
-        public void adjust(Float adjustment){
-            this.shares = this.shares * adjustment;
+        public void adjust(Double adjustment){
+            //this.shares = this.shares * adjustment;
+            this.cash = cash / adjustment;
+        }
+
+        public String getString(){
+            String out = "";
+             out += "Cash: " + Double.toString(this.cash) + '\n';
+             out += "Shares: " + Double.toString(this.shares) + '\n';
+
+            return out;
         }
     }
 

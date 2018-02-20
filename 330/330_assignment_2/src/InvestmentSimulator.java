@@ -14,7 +14,6 @@ public class InvestmentSimulator extends ReportCondition{
     RollingAverage averages = new RollingAverage();
     SplitDay splitDays = new SplitDay();
 
-    int errorCount = 0;
 
     public  void processDay(StockDayRow newDay){
         results.putIfAbsent(newDay.symbol, new InvestCompanyData(newDay.symbol));
@@ -34,10 +33,6 @@ public class InvestmentSimulator extends ReportCondition{
             company.tradeCount++;
             company.shouldBuy = false;
 
-            System.out.print("Buy Day " + outDate.format(newDay.date)+ '\n');
-            System.out.print("Cost " + (100 * newDay.openingPrice) + '\n');
-            System.out.print("Cost " +  newDay.openingPrice + '\n');
-            System.out.print(company.getString());
 
         }
 
@@ -53,10 +48,6 @@ public class InvestmentSimulator extends ReportCondition{
                 company.cash += 100 * ((newDay.openingPrice + newDay.closingPrice) / 2);
                // company.cash = company.cash - TRADING_FEE;
                 company.tradeCount++;
-                SimpleDateFormat outDate = new SimpleDateFormat("yyyy.MM.dd");
-                System.out.print("Sell Day " + outDate.format(newDay.date)+ '\n');
-                System.out.print(company.getString());
-
             }
         }
         averages.processDay(newDay);
@@ -67,11 +58,10 @@ public class InvestmentSimulator extends ReportCondition{
         InvestCompanyData company = results.get(stockID);
         Double outCash = company.cash + (company.shares * company.previousDay.openingPrice) - (company.tradeCount * TRADING_FEE);
         //Double outCash = company.cash + (company.shares * company.previousDay.openingPrice);
-
+        Double rounded = Math.round(outCash * 100.0) / 100.0;
         String out =  "Transactions executed: " + company.tradeCount + '\n';
         out +=  "Days processed executed: " + company.dayCount + '\n';
-        out +=  "Error Days: " + this.errorCount + '\n';
-        out += "\nTicker: " + stockID + " \nCash: " + outCash.toString() + '\n';
+        out += "\nTicker: " + stockID + " \nCash: " + rounded.toString() + '\n';
         return out;
     }
 

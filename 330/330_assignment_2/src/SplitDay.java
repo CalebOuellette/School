@@ -54,7 +54,7 @@ public class SplitDay extends ReportCondition  {
                 length++;
             }
         }
-        outString = outString + "Total number of splits: " + length + '\n';
+        outString = outString + "Enter ticker symbol [start/end dates]: " + length + '\n';
         return outString;
     }
 

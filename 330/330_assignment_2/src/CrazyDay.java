@@ -46,8 +46,3 @@ public class CrazyDay extends ReportCondition {
     }
 
 }
-//
-//          Crazy day: 1/2/1998	16.92
-//        Total crazy days = 7
-//        The craziest day: 1/6/1998	26.25
-

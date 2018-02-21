@@ -26,7 +26,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a stock ticker start end: \n");
-        String inputString = scanner.nextLine();
+        String inputString = scanner.next();
 
         String[] userInputs = inputString.split("\\s+");
         if(inputString.trim().isEmpty() || userInputs[0].equals("quit")){

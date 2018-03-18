@@ -1,0 +1,6 @@
+*.mtx
+jacobi
+results
+.vscode
+*.o
+MatrixOutput

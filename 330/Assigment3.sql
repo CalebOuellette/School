@@ -1,4 +1,18 @@
-use ouellec;
+
+
+/* IMPORTANT NOTES
+My DB seems to be locked up. I can't drop table/ create table / or select from tables without a timeout.
+I have placed my resutls in ouellec_chinook.
+
+I did not use java for this assigment because I wanted to improve my SQL skills. I understand that I deviated from the assigment, and understand if you take off points.
+I did plan to write a java wrapper for this but ran into a lot of issues and so I am just going to hand in this.
+
+Thanks,
+
+Caleb Ouellette
+
+*/
+use ouellec_chinook;
 
 
 # 1 find all companies for given industry that have at least 150 days of trading. 
@@ -66,11 +80,7 @@ order by industry, TradeInterval
 #5 Now to find the splits. This was tricker then expected but i think this is a pretty cool method. 
 # First thing is to select relevant data. I used my intervals to only select the records I needed.
 # Then Order then by ticker, and transdate
-# I am using a real table here because the temp table timeout is set to 30s. Mine were normally finsihing in about 20s but i just wanted to be safe.
-drop table if exists PriceTemp;
-create table PriceTemp (Ticker char(6), openPrice char(12), closePrice char(12),  transdate char(10), rowNumber bigint);
-
-insert into PriceTemp  
+CREATE TEMPORARY TABLE IF NOT EXISTS pricetable1 AS  (
 select p.ticker, p.openPrice, p.closeprice, transdate, @_sequence:=@_sequence+1 as rowNumber   from johnson330.PriceVolume p
 join  johnson330.Company c on p.ticker = c.ticker
 join(
@@ -78,23 +88,23 @@ join(
  group by industry) t on c.industry = t.industry,
  (SELECT @_sequence:=1) s
  where transdate between t.startdate and t.enddate
- order by p.ticker, p.transdate;
-
+ order by p.ticker, p.transdate
+);
 # 5.1 Ran into some perforance issues, but adding these indexes really helped
-create index aRow on PriceTemp (rowNumber);
+create index aRow on pricetable1 (rowNumber);
+
+#5.2 Temp table don't let you join to them self, so i copy my first table here.
+CREATE TEMPORARY TABLE IF NOT EXISTS pricetable2 AS  (select * from pricetable1);
+
+# 5.3 same as 5.1
+create index aRow on pricetable2 (rowNumber);
 
 # 5.4 Next I calculate the pricediff ration between the two days.
-drop table if exists priceDiff;
-create table priceDiff(priceDiffRatio char(12), transdate char(10), Ticker char(6));
-
-insert into priceDiff
+CREATE TEMPORARY TABLE IF NOT EXISTS priceRatio AS  (
 select ABS(p1.closeprice / p2.openprice) as priceDiffRatio, p1.transdate, p1.ticker 
-from PriceTemp p1
-join PriceTemp p2 on (p1.rowNumber + 1) = (p2.rowNumber) and p1.ticker = p2.ticker;
-
-drop table if exists PriceTemp;
-
-
+from pricetable1 p1
+join pricetable2 p2 on (p1.rowNumber + 1) = (p2.rowNumber) and p1.ticker = p2.ticker
+);
 
 #5.5 based off the ratio we can derive if there is a split.
 CREATE TEMPORARY TABLE IF NOT EXISTS priceSplits AS(
@@ -105,13 +115,12 @@ CREATE TEMPORARY TABLE IF NOT EXISTS priceSplits AS(
     when ABS(priceDiffRatio - 1.5) < .15 then 1.5 
     else 1 end as split,
     ticker
- from priceDiff
+ from priceRatio
 where 
 ABS(priceDiffRatio - 2) < .20 or 
 ABS(priceDiffRatio - 3) < .30 or 
 ABS(priceDiffRatio - 1.5) < .15);
  
- drop table if exists priceDiff;
 # 6
  # now that we have splits and time intervals we can start building out the results table. 
  # one limitaion i found was a lack of multiplcation, which I need in order to combine splits if 2 occur on the same intervale. Apperantly 
@@ -142,11 +151,4 @@ create table Performance (Industry char(30), Ticker char(6), StartDate char(10),
 #9 insert our findings
 insert into Performance (Industry , Ticker , StartDate , EndDate ,TickerReturn , IndustryReturn)
 select * from PerformanceT;
-
-
-
-
-
-
-
 

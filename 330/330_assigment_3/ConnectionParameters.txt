@@ -1,3 +1,0 @@
-dburl=jdbc:mysql://127.0.0.1:4321/johnson330
-user=ouellec
-password=1KHS0-o.yj_

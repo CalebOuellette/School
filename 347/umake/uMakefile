@@ -1,0 +1,25 @@
+TESTUSER = CalebO
+# Test this out
+all : umake
+move:
+	cp umake.c arg_parse.c target.c expand.c ./build
+umake.o: umake.c arg_parse.c target.c expand.c
+	gcc -c -Wall umake.c arg_parse.c target.c expand.c # Test this out
+umake: umake.o arg_parse.o target.o expand.o
+	gcc -o umake-new umake.o arg_parse.o target.o expand.o
+	mv -i umake-new umake
+install:
+	cp -p umake ${HOME}/bin/umake
+test:
+	wc < testFile >> count_file
+hello: hello.c
+	gcc -o hello hello.c
+	echo done hello
+helloa: helloa.c
+	gcc -o helloa helloa.c
+	echo done helloa
+hellob: hellob.c
+	gcc -o hellob hellob.c
+	echo done hellob
+clean:
+	rm hello

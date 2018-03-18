@@ -1,0 +1,10 @@
+{
+	"editor.formatOnSave": false,
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.wordWrap": "wordWrapColumn",
+	"editor.tabSize": 2,
+	"files.associations": {
+		"algorithm": "c"
+	},
+}

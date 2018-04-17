@@ -21,6 +21,12 @@ int main()
 
   assert(mystrcmp("I love coding", "I love coding") == 0);
 
+  char *a = "aaaaaaaa";
+  char *z = "zzzzzzzz";
+  assert(mystrcmp(a, z) == strcmp(a, z));
+  assert(mystrcmp(z, a) == strcmp(z, a));
+  //TODO test length.
+
   char *dupStr = mystrdup(buffer);
   assert(!strcmp(buffer, dupStr));
   assert(buffer != dupStr);

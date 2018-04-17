@@ -15,6 +15,7 @@ int main()
   char buffer[SIZE];
 
   assert(mystrlen("cmpt 300") == 8);
+  assert(mystrlen("cmpt asdfasdfsdf 300") == strlen("cmpt asdfasdfsdf 300"));
 
   mystrcpy(buffer, "I am testing my string functions!");
   assert(strcmp(buffer, "I am testing my string functions!") == 0);
@@ -22,9 +23,13 @@ int main()
   assert(mystrcmp("I love coding", "I love coding") == 0);
 
   char *a = "aaaaaaaa";
+  char *a2 = "a";
   char *z = "zzzzzzzz";
-  assert(mystrcmp(a, z) == strcmp(a, z));
-  assert(mystrcmp(z, a) == strcmp(z, a));
+
+  assert(mystrcmp(a, z) == -1);
+  assert(mystrcmp(z, a) == 1);
+  assert(mystrcmp(a, a2) == 1);
+  assert(mystrcmp(a2, a) == -1);
   //TODO test length.
 
   char *dupStr = mystrdup(buffer);

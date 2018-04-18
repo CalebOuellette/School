@@ -11,10 +11,15 @@ struct nodeStruct *List_createNode(int item)
 {
   struct nodeStruct *o = malloc(sizeof(struct nodeStruct));
   o->item = item;
+  o->next = NULL;
   return o;
 }
 /** Insert node at the head of the list.*/
-void List_insertHead(struct nodeStruct **headRef, struct nodeStruct *node);
+void List_insertHead(struct nodeStruct **headRef, struct nodeStruct *node)
+{
+  node->next = *headRef;
+  headRef = &node;
+}
 /** Insert node after the tail of the list.*/
 void List_insertTail(struct nodeStruct **headRef, struct nodeStruct *node);
 /** Count number of nodes in the list.* Return 0 if the list is empty, i.e., head == NULL*/
@@ -25,3 +30,16 @@ struct nodeStruct *List_findNode(struct nodeStruct *head, int item);
 void List_deleteNode(struct nodeStruct **headRef, struct nodeStruct *node);
 /** Sort the list in ascending order based on the item field.* Any sorting algorithm is fine.*/
 void List_sort(struct nodeStruct **headRef);
+/** Print the list. **/
+void List_print(struct nodeStruct **headRef)
+{
+  struct nodeStruct **list = headRef;
+  int i = 0;
+  while ((*list)->next != NULL)
+  {
+    printf("List item #%d value is %d \n", i, (*headRef)->item);
+    i++;
+    list = &((*list)->next);
+  }
+  printf("List item #%d value is %d \n", i, (*headRef)->item);
+}

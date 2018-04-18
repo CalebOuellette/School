@@ -7,7 +7,10 @@ struct nodeStruct
   int item;
   struct nodeStruct *next;
 };
-/** Allocate memory for a node of type struct nodeStruct and initialize* it with the value item. Return a pointer to the new node.*/
+/** 
+ * Allocate memory for a node of type struct nodeStruct and initialize
+ *  it with the value item. Return a pointer to the new node.
+ **/
 struct nodeStruct *List_createNode(int item)
 {
   struct nodeStruct *o = malloc(sizeof(struct nodeStruct));
@@ -15,10 +18,14 @@ struct nodeStruct *List_createNode(int item)
   o->next = NULL;
   return o;
 }
-/** Insert node at the head of the list.*/
+/** 
+ * Insert node at the head of the list.
+ **/
 void List_insertHead(struct nodeStruct **headRef, struct nodeStruct *node)
 {
   assert(headRef != NULL && "headRef can not be null");
+  assert(node != NULL && "node can not be null");
+
   node->next = *headRef;
   *headRef = node;
 }
@@ -26,6 +33,8 @@ void List_insertHead(struct nodeStruct **headRef, struct nodeStruct *node)
 void List_insertTail(struct nodeStruct **headRef, struct nodeStruct *node)
 {
   assert(headRef != NULL && "headRef can not be null");
+  assert(node != NULL && "node can not be null");
+
   struct nodeStruct **list = headRef;
   while ((*list)->next != NULL)
   {
@@ -33,7 +42,9 @@ void List_insertTail(struct nodeStruct **headRef, struct nodeStruct *node)
   }
   (*list)->next = node;
 }
-/** Count number of nodes in the list.* Return 0 if the list is empty, i.e., head == NULL*/
+/** Count number of nodes in the list.
+ *  Return 0 if the list is empty, i.e., head == NULL
+ **/
 int List_countNodes(struct nodeStruct *head)
 {
   assert(head != NULL && "head can not be null");
@@ -62,11 +73,91 @@ struct nodeStruct *List_findNode(struct nodeStruct *head, int item)
   }
   return val;
 }
-/** Delete node from the list and free memory allocated to it.* This function assumes that node has been properly set to a valid node * in the list. For example, the client code may have found it by calling * List_findNode(). If the list containsonly one node, the head of the list * should be set to NULL.*/
-void List_deleteNode(struct nodeStruct **headRef, struct nodeStruct *node);
-/** Sort the list in ascending order based on the item field.* Any sorting algorithm is fine.*/
-void List_sort(struct nodeStruct **headRef);
-/** Print the list. **/
+
+void List_remove_node(struct nodeStruct **headRef, struct nodeStruct *node)
+{
+  assert(headRef != NULL && "headRef can not be null");
+  assert(node != NULL && "node can not be null");
+
+  struct nodeStruct **list = headRef;
+  struct nodeStruct *lastNode = NULL;
+  while ((*list)->next != NULL && *list != node)
+  {
+    lastNode = *list;
+    list = &((*list)->next);
+  }
+  if (lastNode != NULL)
+  {
+    lastNode->next = (*list)->next;
+  }
+  else
+  {
+    *headRef = (*list)->next;
+  }
+}
+/** 
+ * Delete node from the list and free memory allocated to it.
+ * This function assumes that node has been properly set to a valid node 
+ * in the list. 
+ * For example, the client code may have found it by calling 
+ * List_findNode(). 
+ * If the list containsonly one node, the head of the list  
+ * should be set to NULL.
+ **/
+void List_deleteNode(struct nodeStruct **headRef, struct nodeStruct *node)
+{
+  List_remove_node(headRef, node);
+  free(node);
+}
+
+/** Sort the list in ascending order based on the item field.
+ * Any sorting algorithm is fine.*/
+void List_sort(struct nodeStruct **headRef)
+{
+  assert(headRef != NULL && "headRef can not be null");
+  struct nodeStruct **list = headRef;
+  struct nodeStruct **sorted = NULL;
+  struct nodeStruct *lastNode = NULL;
+  while ((*list) != NULL)
+  {
+    lastNode = *list;
+    List_remove_node(headRef, lastNode);
+    List_insert_in_order(sorted, lastNode);
+    list = &((*list)->next);
+  }
+  *headRef = *sorted;
+}
+
+void List_insert_in_order(struct nodeStruct **headRef, struct nodeStruct *node)
+{
+  if (headRef == NULL)
+  {
+    headRef = &node;
+    return;
+  }
+  assert(node != NULL && "node can not be null");
+  struct nodeStruct **list = headRef;
+  struct nodeStruct *lastNode = NULL;
+  while ((*list) != NULL && (*list)->item < node->item)
+  {
+    lastNode = *list;
+    list = &((*list)->next);
+  }
+  if (lastNode != NULL)
+  {
+    node->next = lastNode->next;
+    lastNode->next = node;
+  }
+  else
+  {
+
+    node->next = *list;
+    *headRef = node;
+  }
+}
+/** 
+ * Print the list. 
+**/
 void List_print(struct nodeStruct **headRef)
 {
   assert(headRef != NULL && "headRef can not be null");

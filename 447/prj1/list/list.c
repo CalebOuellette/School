@@ -23,16 +23,16 @@ struct nodeStruct *List_createNode(int item)
  **/
 void List_insertHead(struct nodeStruct **headRef, struct nodeStruct *node)
 {
-  assert(headRef != NULL && "headRef can not be null");
   assert(node != NULL && "node can not be null");
-
-  node->next = *headRef;
+  if (*headRef != NULL)
+  {
+    node->next = *headRef;
+  }
   *headRef = node;
 }
 /** Insert node after the tail of the list.*/
 void List_insertTail(struct nodeStruct **headRef, struct nodeStruct *node)
 {
-  assert(headRef != NULL && "headRef can not be null");
   assert(node != NULL && "node can not be null");
 
   struct nodeStruct **list = headRef;
@@ -116,26 +116,28 @@ void List_sort(struct nodeStruct **headRef)
 {
   assert(headRef != NULL && "headRef can not be null");
   struct nodeStruct **list = headRef;
-  struct nodeStruct **sorted = NULL;
+  struct nodeStruct *sorted = NULL;
   struct nodeStruct *lastNode = NULL;
   while ((*list) != NULL)
   {
     lastNode = *list;
-    List_remove_node(headRef, lastNode);
-    List_insert_in_order(sorted, lastNode);
-    list = &((*list)->next);
+    List_remove_node(list, lastNode);
+    lastNode->next = NULL;
+    List_insert_in_order(&sorted, lastNode);
   }
-  *headRef = *sorted;
+
+  *headRef = sorted;
 }
 
 void List_insert_in_order(struct nodeStruct **headRef, struct nodeStruct *node)
 {
+  assert(node != NULL && "node can not be null");
   if (headRef == NULL)
   {
     headRef = &node;
     return;
   }
-  assert(node != NULL && "node can not be null");
+
   struct nodeStruct **list = headRef;
   struct nodeStruct *lastNode = NULL;
   while ((*list) != NULL && (*list)->item < node->item)

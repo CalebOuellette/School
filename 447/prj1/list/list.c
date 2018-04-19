@@ -73,8 +73,10 @@ struct nodeStruct *List_findNode(struct nodeStruct *head, int item)
   }
   return val;
 }
-
-void List_remove_node(struct nodeStruct **headRef, struct nodeStruct *node)
+/*
+* Removes a node from the list, but does not free it.
+*/
+static void List_remove_node(struct nodeStruct **headRef, struct nodeStruct *node)
 {
   assert(headRef != NULL && "headRef can not be null");
   assert(node != NULL && "node can not be null");
@@ -94,6 +96,7 @@ void List_remove_node(struct nodeStruct **headRef, struct nodeStruct *node)
   {
     *headRef = (*list)->next;
   }
+  node->next = NULL;
 }
 /** 
  * Delete node from the list and free memory allocated to it.
@@ -110,26 +113,11 @@ void List_deleteNode(struct nodeStruct **headRef, struct nodeStruct *node)
   free(node);
 }
 
-/** Sort the list in ascending order based on the item field.
- * Any sorting algorithm is fine.*/
-void List_sort(struct nodeStruct **headRef)
-{
-  assert(headRef != NULL && "headRef can not be null");
-  struct nodeStruct **list = headRef;
-  struct nodeStruct *sorted = NULL;
-  struct nodeStruct *lastNode = NULL;
-  while ((*list) != NULL)
-  {
-    lastNode = *list;
-    List_remove_node(list, lastNode);
-    lastNode->next = NULL;
-    List_insert_in_order(&sorted, lastNode);
-  }
-
-  *headRef = sorted;
-}
-
-void List_insert_in_order(struct nodeStruct **headRef, struct nodeStruct *node)
+/**
+ * Helper function to List_sort. 
+ * This function acts as the second part to insertion sort.
+ */
+static void List_insert_in_order(struct nodeStruct **headRef, struct nodeStruct *node)
 {
   assert(node != NULL && "node can not be null");
   if (headRef == NULL)
@@ -158,6 +146,26 @@ void List_insert_in_order(struct nodeStruct **headRef, struct nodeStruct *node)
   }
 }
 /** 
+ * Sort the list in ascending order based on the item field.
+ * Insertion Sort! For each node, insert that node into a new sorted linked list.
+ */
+void List_sort(struct nodeStruct **headRef)
+{
+  assert(headRef != NULL && "headRef can not be null");
+  struct nodeStruct **list = headRef;
+  struct nodeStruct *sorted = NULL;
+  struct nodeStruct *lastNode = NULL;
+  while ((*list) != NULL)
+  {
+    lastNode = *list;
+    List_remove_node(list, lastNode);
+    List_insert_in_order(&sorted, lastNode);
+  }
+
+  *headRef = sorted;
+}
+
+/** 
  * Print the list. 
 **/
 void List_print(struct nodeStruct **headRef)
@@ -176,7 +184,9 @@ void List_print(struct nodeStruct **headRef)
   printf("Tail \n");
   printf("length: %d \n", List_countNodes(*headRef));
 }
-
+/**
+ * Print a node
+*/
 void List_node_print(struct nodeStruct *node)
 {
   assert(node != NULL && "node can not be null");

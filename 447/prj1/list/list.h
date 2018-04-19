@@ -8,4 +8,3 @@ void List_deleteNode(struct nodeStruct **headRef, struct nodeStruct *node);
 void List_sort(struct nodeStruct **headRef);
 void List_print(struct nodeStruct **headRef);
 void List_node_print(struct nodeStruct *node);
-void List_insert_in_order(struct nodeStruct **headRef, struct nodeStruct *node);

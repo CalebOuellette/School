@@ -36,15 +36,22 @@ the recurrence in general.
   \end{align*}
     Consider n = k being the last case
   \begin{align*}
-    f(n)
-    &= 5^{n}f(0)
+    f(n) &= 5^{n}f(0)
   \end{align*}
   Using the fact that $f(0)=3$ gives 
   \begin{align*}
-    f(n)
-    &= 5^{n}3
+    f(n) &= 5^{n}3
   \end{align*}
-
+  Prove
+  \begin{align*}
+    f(n + 1) &= 5^{n + 1}3 \\
+  \end{align*}    
+  Proof
+  \begin{align*}
+    f(n + 1) &= 5f(n) \\    
+    &= 5(5^n3) \\
+    &= 5^{n + 1}3 \\
+  \end{align*}
 
 
 \item
@@ -64,7 +71,17 @@ the recurrence in general.
   Consider n = k being the last case
   \begin{align*}
     f(n) &= f(0)+ \sum_{i=1}^{n}4 \\
-    f(n) = 5 + 4n \\
+    f(n) &= 5 + 4n \\
+  \end{align*}
+  Prove
+  \begin{align*}
+    f(n+1) &= 5 + 4(n + 1)
+  \end{align*}
+  Proof
+  \begin{align*}
+    f(n+1) &= f(n) + 4 \\
+    &=  5 + 4n + 4 \\
+    &=  5 + 4(n + 1)\\
   \end{align*}
 
 \item
@@ -86,7 +103,15 @@ the recurrence in general.
     f(n) &= 4^nf(0)+ \sum_{i=0}^{n-1}4^i6 \\
     f(n) &= 4^n(2)+ 6\sum_{i=0}^{n}4^i - 4^n(6) \\
     f(n) &= 4^n(2)+ 6\frac{4^{n+1} - 1}{4-1} - 4^n(6) \\
+    f(n) &= 4^n(2) - 4^n(6) + 6\frac{4^{n+1} - 1}{3}  \\
+    f(n) &= -4^{n + 1} + 2(4^{n+1} - 1)  \\
+    f(n) &= -4^{n + 1} + (2)4^{n+1} - 2  \\
+    f(n) &= 4^{n+1} - 2  \\
   \end{align*}
+  Prove
+  \begin{align*}
+  \end{align*}
+
 
 \item
   \begin{align*}
@@ -105,6 +130,10 @@ the recurrence in general.
   Consider n = k being the last case
   \begin{align*}
     f(n) &= {5^nf(0)} + \sum_{i=0}^{n-1}5^i(n-i) \\
+    f(n) &= {5^n3} + \sum_{i=0}^{n-1}n5^i - \sum_{i=0}^{n-1}i5^i \\
+    f(n) &= {5^n3} + n\sum_{i=0}^{n-1}5^i - (\sum_{i=0}^{n}i5^i -n5^n) \\
+    f(n) &= {5^n3} + n(\frac{1-5^n}{ 1 - 5}) - (\frac{5 - (n +1)5^{n+1} +n5^{n+2}}{ (5 - 1)^2})  + n5^n \\
+    f(n) &= {5^n3} + n(\frac{1-5^n}{ 4}) - (\frac{5 - (n +1)5^{n+1} +n5^{n+2}}{ 16})  + n5^n \\
   \end{align*}
 
 \end{enumerate}

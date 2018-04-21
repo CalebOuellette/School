@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1524340887 "c:/Users/Caleb/Code/School/305/hw1/hw1.tex" "hw1.pdf" "hw1" 1524340887
+["pdflatex"] 1524343398 "c:/Users/Caleb/Code/School/305/hw1/hw1.tex" "hw1.pdf" "hw1" 1524343398
   "C:/Users/Caleb/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1523933002 4080155 74083a1961d1470d4e01a72f56084aa9 ""
   "C:/Users/Caleb/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1523933233 80423 3cfba73105275d3ad410701d89fbdf7a ""
   "C:/Users/Caleb/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
@@ -56,10 +56,10 @@
   "C:/Users/Caleb/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty" 1516841693 12095 5337833c991d80788a43d3ce26bd1c46 ""
   "C:/Users/Caleb/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty" 1516841693 7075 2fe3d848bba95f139de11ded085e74aa ""
   "C:/Users/Caleb/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty" 1516841695 22417 1d9df1eb66848aa31b18a593099cf45c ""
-  "c:/Users/Caleb/Code/School/305/hw1/hw1.tex" 1524340887 3799 d65963410e751428afabfc8d0dc700be ""
-  "hw1.aux" 1524340887 9 a94a2480d3289e625eea47cd1b285758 ""
-  "hw1.tex" 1524340887 3799 d65963410e751428afabfc8d0dc700be ""
+  "c:/Users/Caleb/Code/School/305/hw1/hw1.tex" 1524343398 4847 91fe2eec80229d9c4faa70f899e880cc ""
+  "hw1.aux" 1524343398 9 a94a2480d3289e625eea47cd1b285758 ""
+  "hw1.tex" 1524343398 4847 91fe2eec80229d9c4faa70f899e880cc ""
   (generated)
-  "hw1.log"
   "hw1.pdf"
   "hw1.aux"
+  "hw1.log"

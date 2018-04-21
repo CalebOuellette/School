@@ -110,6 +110,14 @@ the recurrence in general.
   \end{align*}
   Prove
   \begin{align*}
+    f(n+1) &= 4^{n+2} - 2 \\
+  \end{align*}
+  Proof
+  \begin{align*}
+    f(n+1) &= 4f(n) + 6 \\
+    f(n+1) &= 4(4^{n+1} - 2) + 6 \\
+    f(n+1) &= 4^{n+2} - 8 + 6\\
+    f(n+1) &= 4^{n+2} - 2\\
   \end{align*}
 
 
@@ -130,10 +138,28 @@ the recurrence in general.
   Consider n = k being the last case
   \begin{align*}
     f(n) &= {5^nf(0)} + \sum_{i=0}^{n-1}5^i(n-i) \\
-    f(n) &= {5^n3} + \sum_{i=0}^{n-1}n5^i - \sum_{i=0}^{n-1}i5^i \\
-    f(n) &= {5^n3} + n\sum_{i=0}^{n-1}5^i - (\sum_{i=0}^{n}i5^i -n5^n) \\
-    f(n) &= {5^n3} + n(\frac{1-5^n}{ 1 - 5}) - (\frac{5 - (n +1)5^{n+1} +n5^{n+2}}{ (5 - 1)^2})  + n5^n \\
-    f(n) &= {5^n3} + n(\frac{1-5^n}{ 4}) - (\frac{5 - (n +1)5^{n+1} +n5^{n+2}}{ 16})  + n5^n \\
+    f(n) &= 5^n3 + \sum_{i=0}^{n-1}n5^i - \sum_{i=0}^{n-1}i5^i \\
+    f(n) &= 5^n3 + n\sum_{i=0}^{n-1}5^i - (\sum_{i=0}^{n}i5^i -n5^n) \\
+    f(n) &= 5^n3 + n(\frac{1-5^n}{ 1 - 5}) - (\frac{5 - (n +1)5^{n+1} +n5^{n+2}}{ (5 - 1)^2})  + n5^n \\
+    f(n) &= 5^n3  + n5^n + \frac{-4n+4n5^n}{ 16} - (\frac{5 - (n +1)5^{n+1} +n5^{n+2}}{ 16})  \\
+    f(n) &= 5^n (3  + n) +  (\frac{ -4n+4n5^n - 5 + (n +1)5^{n+1} -n5^{n+2}}{ 16})  \\
+    f(n) &=   (\frac{ 16n5^n + (48)5^n   - 4n+4n5^n - 5 + (n +1)5^{n+1} -n5^{n+2}}{ 16})  \\
+    f(n) &=   (\frac{ 25n5^n + (53)5^n   - 4n - 5 -25n5^{n}}{ 16})  \\
+    f(n) &=   (\frac{ (53)5^n   - 4n - 5 }{ 16})  \\
+  \end{align*}
+  Prove
+  \begin{align*}
+    f(n+1) =  (\frac{ (53)5^(n + 1)   - 4(n+1) - 5 }{ 16})  \\
+  \end{align*}
+  Proof
+  \begin{align*}
+    f(n+1) &=  5f(n) + (n + 1)  \\
+    &=  5 (\frac{ (53)5^n   - 4n - 5 }{ 16}) + (n + 1)  \\
+    &=   (\frac{ (5)(53)5^n   - 20n - 25 }{ 16}) + \frac{16n + 16}{16} \\
+    &=   \frac{ (5)(53)5^n   - 20n - 25 + 16n + 16 }{ 16} \\
+    &=   \frac{ (53)5^{n+1}   - 4n - 9 }{ 16} \\
+    &=   \frac{ (53)5^{n+1}   - 4n - 4 - 5  }{ 16} \\
+    &=   \frac{ (53)5^{n+1}   - 4(n + 1) - 5  }{ 16} \\
   \end{align*}
 
 \end{enumerate}

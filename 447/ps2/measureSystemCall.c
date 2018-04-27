@@ -16,6 +16,12 @@
 * 3. 
 *    a. 285.4 ms
 *    b. 285.4 ns
+* 4. 
+*   a. 56.7 ms
+*   b. 56700 ns
+*   c. The parent is cloned completelty including address space and program. 
+*   This new clone is now the child and will simply return. The parent hits 
+*   the wait block and waits for the child to return before starting the loop again.
 */
 
 void one()

@@ -5,13 +5,23 @@
 
 /*
 * 1. 
-*    a. 
+*    a. WWU work machine 
+*    b. 4.5 ms
+*    c. 4.5 ns
 */
 
 void one()
 {
   for (int i = 0; i < 1000000; i++)
   {
+  }
+}
+
+void two()
+{
+  for (int i = 0; i < 1000000; i++)
+  {
+    getpid();
   }
 }
 
@@ -24,7 +34,7 @@ int main()
   struct timespec start_time, end_time;
   clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start_time);
   /* begin timing */
-  one();
+  two();
   /* end timing */
   clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end_time);
   printf("%f ms\n", timespec_to_ms(&end_time) - timespec_to_ms(&start_time));

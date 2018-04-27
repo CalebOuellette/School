@@ -10,9 +10,10 @@
 *    c. 4.5 ns
 * 2. 
 *    a. 6.3 ms
-*    c. 6.3 ns
+*    b. 6.3 ns
 * 3. 
-*    a.
+*    a. 285.4 ms
+*    b. 285.4 ns
 */
 
 void one()
@@ -38,6 +39,25 @@ void three()
   }
 }
 
+void four()
+{
+  int errorCount = 0;
+  for (int i = 0; i < 1000; i++)
+  {
+    int pid = fork();
+    if (pid == 0)
+    {
+      return 0;
+    }
+    if (pid < 0)
+    {
+      printf("ERROR: Fork failed.\n");
+      errorCount++;
+    }
+    wait(0);
+  }
+}
+
 double timespec_to_ms(struct timespec *ts)
 {
   return ts->tv_sec * 1000.0 + ts->tv_nsec / 1000000.0;
@@ -49,7 +69,7 @@ int main()
   /* begin timing */
   //one();
   //two();
-  three();
+  four();
   /* end timing */
   clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end_time);
   printf("%f ms\n", timespec_to_ms(&end_time) - timespec_to_ms(&start_time));

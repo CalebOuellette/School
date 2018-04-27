@@ -55,7 +55,8 @@ void four()
       printf("ERROR: Fork failed.\n");
       errorCount++;
     }
-    wait(0);
+    int status;
+    wait(&status);
   }
 }
 

@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <sys/syscall.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
 * 1. 
@@ -47,7 +48,7 @@ void four()
     int pid = fork();
     if (pid == 0)
     {
-      return 0;
+      return;
     }
     if (pid < 0)
     {

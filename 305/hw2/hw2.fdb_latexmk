@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1525233878 "/Users/Caleb/Code/School/305/hw2/hw2.tex" "hw2.pdf" "hw2" 1525233878
-  "/Users/Caleb/Code/School/305/hw2/hw2.tex" 1525233877 1019 7ffd0098e63ac1e4ccfbf720daa35c4d ""
+["pdflatex"] 1525241361 "/Users/Caleb/Code/School/305/hw2/hw2.tex" "hw2.pdf" "hw2" 1525241362
+  "/Users/Caleb/Code/School/305/hw2/hw2.tex" 1525241361 1751 d1c62df7d1f8f40d97b5a31784afc1c3 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1525139557 749895 e8dbf60817f491a044b7c66d79292ccc ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/pdftex/config/pdftex.map" 1525146966 25648 05532b267bee6ddc7a89371aadda7555 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -18,6 +18,7 @@
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmti10.tfm" 1136765053 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247596667 36281 c355509802a035cadc5f15869451dcee ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 179c33bbf43f19adbb3825bb4e36e57a ""
@@ -38,8 +39,8 @@
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.cfg" 1522081302 1099 14b67ae774a2414bbbaabfae4fd87d91 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.sty" 1522081302 42522 0a5938a28a6f97cb0fb0566f359d9ad6 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/keyval.sty" 1523175985 2678 f35312d5e20bce88169b5fe5596f577c ""
-  "hw2.aux" 1525233878 8 a94a2480d3289e625eea47cd1b285758 ""
-  "hw2.tex" 1525233877 1019 7ffd0098e63ac1e4ccfbf720daa35c4d ""
+  "hw2.aux" 1525241362 8 a94a2480d3289e625eea47cd1b285758 ""
+  "hw2.tex" 1525241361 1751 d1c62df7d1f8f40d97b5a31784afc1c3 ""
   (generated)
   "hw2.aux"
   "hw2.pdf"

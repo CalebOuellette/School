@@ -4,7 +4,7 @@
   \usepackage{alltt}
 
   \title{CSCI 305, Homework \# 2}
-  \author{YOUR NAME HERE}
+  \author{Caleb Ouellette}
   \date{Due date:  Tue, May 1, midnight}
   
   \begin{document}
@@ -20,18 +20,33 @@
   
   \begin{enumerate}
   \item
-    $f(n) = O((f(n))^2)$
-    \begin{align*}
-    f(n) &< c(f(n))^2) \\
-    c &= 1 \\
-    f(n) &=< f(n) * f(n) \\
-    \end{align*}
+    $f(n) = O((f(n))^2)$\\
+    $f(n) \leq c(f(n))^2) $\\
+    let c = 1 \\
+    $f(n) \leq f(n) * f(n)$\\
+    
   Provided the result of f(n) is equal to or greater then 1 this is always true
   \item
-    $f(n) = \Theta(f(n/2))$
+    $f(n) = \Theta(f(n/2))$ \\
+    take $f(n) = 2^n$ \\
+    $2^n = \Theta(2^{n/2})$ \\
+    for n = 2 f(n) = 4 and f(n/2) = 2 difference = 2\\
+    for n= 4 f(n) = 16 and f(n/2) = 4 difference = 12\\
+    for n= 6 f(n) = 64 and f(n/2) = 8 difference = 46\\
+    the difference between the two functions is increasing meaning as n -> infinity the difference between goes to infinity and f(n) is o(n/2) for this equation.
   \item
-    $f(n) + o(f(n)) = \Theta(f(n))$
-  
+    $f(n) + o(f(n)) = \Theta(f(n))$ \\
+    $cg(n) \leq f(n) \leq dg(n)$ for all $n \geq n_0$ \\
+    $f(n) + o(f(n)) \leq df(n)$  \\
+    o(f(n)) is always smaller then f(n), so we can subsitute that in. \\
+    $f(n) + f(n) \leq df(n)$  \\
+    d can be 2 \\
+    \\
+    $cf(n) \leq f(n) + o(f(n))$ \\
+    let c = 1 \\
+    $f(n) \leq f(n) + o(f(n))$ \\
+    f(n) will always be less then f(n) + something.
+
   \item
     If $f(n) = O(g(n))$ then $f(n) + g(n) = O(f(n))$.\\
     Suppose $f(n) = O(n)$ and $g(n) =O(n^2)$\\

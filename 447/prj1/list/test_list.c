@@ -10,7 +10,7 @@ int main()
   struct nodeStruct *node3 = List_createNode(3);
   struct nodeStruct *node4 = List_createNode(1);
   List_insertHead(&list, node0);
-  List_insertHead(&list, node2);
+  List_insertTail(&list, node2);
   List_insertHead(&list, node4);
   List_insertHead(&list, node1);
   List_insertHead(&list, node3);

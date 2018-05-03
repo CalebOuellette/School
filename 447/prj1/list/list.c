@@ -23,7 +23,7 @@ struct nodeStruct *List_createNode(int item)
  **/
 void List_insertHead(struct nodeStruct **headRef, struct nodeStruct *node)
 {
-  assert(node != NULL && "node can not be null");
+  //assert(node != NULL && "node can not be null");
   if (*headRef != NULL)
   {
     node->next = *headRef;
@@ -33,23 +33,34 @@ void List_insertHead(struct nodeStruct **headRef, struct nodeStruct *node)
 /** Insert node after the tail of the list.*/
 void List_insertTail(struct nodeStruct **headRef, struct nodeStruct *node)
 {
-  assert(node != NULL && "node can not be null");
-
-  struct nodeStruct **list = headRef;
-  while ((*list)->next != NULL)
+  //assert(node != NULL && "node can not be null");
+  if (*headRef != NULL)
   {
-    list = &((*list)->next);
+    struct nodeStruct **list = headRef;
+    while ((*list)->next != NULL)
+    {
+      list = &((*list)->next);
+    }
+    (*list)->next = node;
   }
-  (*list)->next = node;
+  else
+  {
+    *headRef = node;
+  }
 }
 /** Count number of nodes in the list.
  *  Return 0 if the list is empty, i.e., head == NULL
  **/
 int List_countNodes(struct nodeStruct *head)
 {
-  assert(head != NULL && "head can not be null");
-  int i = 1;
+  //assert(head != NULL && "head can not be null");
+
   struct nodeStruct **list = &head;
+  if (head == NULL)
+  {
+    return 0;
+  }
+  int i = 1;
   while ((*list)->next != NULL)
   {
     i++;
@@ -60,17 +71,22 @@ int List_countNodes(struct nodeStruct *head)
 /** Return the first node holding the value item, return NULL if none found*/
 struct nodeStruct *List_findNode(struct nodeStruct *head, int item)
 {
-  assert(head != NULL && "head can not be null");
+  //assert(head != NULL && "head can not be null");
+  if (head == NULL)
+  {
+    return NULL;
+  }
   struct nodeStruct *val = NULL;
   struct nodeStruct *list = head;
   while (list->next != NULL && (list->item != item))
   {
     list = list->next;
   }
-  if (list->item == item)
+  if (list != NULL && list->item == item)
   {
     val = list;
   }
+
   return val;
 }
 /*

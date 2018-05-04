@@ -1,5 +1,5 @@
-#ifndef LIST_H
-#define LIST_H
+#ifndef MYLIST_H
+#define MYLIST_H
 
 struct nodeStruct;
 struct nodeStruct *List_createNode(int item);

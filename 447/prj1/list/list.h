@@ -1,3 +1,6 @@
+#ifndef LIST_H
+#define LIST_H
+
 struct nodeStruct;
 struct nodeStruct *List_createNode(int item);
 void List_insertHead(struct nodeStruct **headRef, struct nodeStruct *node);
@@ -8,3 +11,5 @@ void List_deleteNode(struct nodeStruct **headRef, struct nodeStruct *node);
 void List_sort(struct nodeStruct **headRef);
 void List_print(struct nodeStruct **headRef);
 void List_node_print(struct nodeStruct *node);
+
+#endif

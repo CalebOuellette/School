@@ -230,12 +230,19 @@ void interpret_tokens(char **tokens, _Bool in_background)
     print_history();
     if (tokens[0][1] == '!')
     {
-      char *command = get_command_by_history(historyCount - 1);
-      add_to_history(command);
-      char *tokens[NUM_TOKENS];
-      _Bool in_background = false;
-      tokenize_command(command, tokens, &in_background);
-      exec_child(tokens, in_background);
+      if (historyCount == 1)
+      {
+        write(STDERR_FILENO, "Not a valid history number \n", strlen("Not a valid history number \n"));
+      }
+      else
+      {
+        char *command = get_command_by_history(historyCount - 1);
+        add_to_history(command);
+        char *tokens[NUM_TOKENS];
+        _Bool in_background = false;
+        tokenize_command(command, tokens, &in_background);
+        exec_child(tokens, in_background);
+      }
     }
     else
     {

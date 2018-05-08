@@ -35,10 +35,10 @@ void print_history()
       int x = (i + historyStart) % 10;
       char str[10];
       sprintf(str, "%d", (historyCount - (10 - i)));
-      write(STDERR_FILENO, str, strlen(str));
-      write(STDERR_FILENO, "\t", strlen("\t"));
-      write(STDERR_FILENO, history[x], strlen(history[x]));
-      write(STDERR_FILENO, "\n", strlen("\n"));
+      write(STDOUT_FILENO, str, strlen(str));
+      write(STDOUT_FILENO, "\t", strlen("\t"));
+      write(STDOUT_FILENO, history[x], strlen(history[x]));
+      write(STDOUT_FILENO, "\n", strlen("\n"));
     }
   }
 }
@@ -46,6 +46,8 @@ void print_history()
 char *get_command_by_history(int i)
 {
   int x = historyStart - (historyCount - i);
+  write(STDOUT_FILENO, history[x], strlen(history[x]));
+  write(STDOUT_FILENO, "\n", strlen("\n"));
   return history[x];
 }
 
@@ -227,7 +229,6 @@ void interpret_tokens(char **tokens, _Bool in_background)
   }
   else if (tokens[0][0] == '!')
   {
-    print_history();
     if (tokens[0][1] == '!')
     {
       if (historyCount == 1)
@@ -301,15 +302,9 @@ int main(int argc, char *argv[])
 
     read_command(input_buffer, tokens, &in_background);
     // DEBUG: Dump out arguments:
-    for (int i = 0; tokens[i] != NULL; i++)
-    {
-      write(STDOUT_FILENO, "   Token: ", strlen("   Token: "));
-      write(STDOUT_FILENO, tokens[i], strlen(tokens[i]));
-      write(STDOUT_FILENO, "\n", strlen("\n"));
-    }
     if (in_background)
     {
-      write(STDOUT_FILENO, "Run in background.", strlen("Run in background."));
+      write(STDOUT_FILENO, "Run in background. \n", strlen("Run in background. \n"));
     }
 
     /**

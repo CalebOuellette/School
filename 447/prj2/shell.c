@@ -10,6 +10,7 @@
 #include <sys/param.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 #define COMMAND_LENGTH 1024
 #define NUM_TOKENS (COMMAND_LENGTH / 2 + 1)
@@ -282,12 +283,16 @@ void sig_handler(int i)
   print_cwd();
   write(STDOUT_FILENO, "> ", strlen("> "));
 }
+
 /**
  * Main and Execute Commands
  */
 int main(int argc, char *argv[])
 {
-  signal(SIGINT, sig_handler);
+  struct sigaction handler;
+  handler.sa_handler = sig_handler;
+  handler.sa_flags = SA_RESTART;
+  sigaction(SIGINT, &handler, NULL);
 
   char input_buffer[COMMAND_LENGTH];
   char *tokens[NUM_TOKENS];

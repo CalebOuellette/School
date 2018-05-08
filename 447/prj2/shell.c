@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <errno.h>
 #include <sys/param.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #define COMMAND_LENGTH 1024
 #define NUM_TOKENS (COMMAND_LENGTH / 2 + 1)

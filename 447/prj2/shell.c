@@ -139,7 +139,7 @@ void read_command(char *buff, char *tokens[], _Bool *in_background)
     buff[strlen(buff) - 1] = '\0';
   }
 
-  if (buff[0] != '!')
+  if (buff[0] != '!' && strcmp(buff, "") != 0)
   {
     add_to_history(buff);
   }
@@ -202,6 +202,10 @@ void print_cwd()
 
 void interpret_tokens(char **tokens, _Bool in_background)
 {
+  if (tokens[0] == NULL)
+  {
+    return;
+  }
   if (strcmp(tokens[0], "exit") == 0)
   {
     exit(EXIT_SUCCESS);
@@ -224,9 +228,6 @@ void interpret_tokens(char **tokens, _Bool in_background)
   {
     print_history();
   }
-  else if (strcmp(tokens[0], "") == 0)
-  {
-  }
   else if (tokens[0][0] == '!')
   {
     if (tokens[0][1] == '!')
@@ -242,7 +243,7 @@ void interpret_tokens(char **tokens, _Bool in_background)
         char *tokens[NUM_TOKENS];
         _Bool in_background = false;
         tokenize_command(command, tokens, &in_background);
-        exec_child(tokens, in_background);
+        interpret_tokens(tokens, in_background);
       }
     }
     else
@@ -264,7 +265,7 @@ void interpret_tokens(char **tokens, _Bool in_background)
         char *tokens[NUM_TOKENS];
         _Bool in_background = false;
         tokenize_command(command, tokens, &in_background);
-        exec_child(tokens, in_background);
+        interpret_tokens(tokens, in_background);
       }
     }
   }

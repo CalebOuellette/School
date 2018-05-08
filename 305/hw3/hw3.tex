@@ -1,0 +1,92 @@
+\documentclass{article}
+    \usepackage[margin=1in]{geometry}
+    \usepackage{amsmath,cancel}
+    
+    \title{CSCI 305, Homework \# 3}
+    \author{Caleb Ouellette}
+    \date{Due date:  Tuesday, May 8, midnight.}
+    
+    
+    \begin{document}
+    
+    \maketitle
+    
+    \begin{itemize}
+      \item
+    Find $\Theta(T(n))$ for each case.
+    \item
+    For problem 1, find the solution three ways:
+    \begin{itemize}
+    \item The master theorem
+    \item The substitution method
+    \item Iterate, cancel, and solve the summation
+      to find an exact solution.
+    \end{itemize}
+    \item
+    For all other problems, use just the master theorem.
+    \item
+    When using the master theorem, be explicit about $n^{\log_b a}$,
+    and about which case of the master theorem applies,
+    about making sure the special condition applies in case 3
+    of the master theorem, and
+    about proving $f$'s correct
+    asymptotic relationship to $n^{\log_b a}$.
+    \end{itemize}
+    
+    \begin{enumerate}
+    \item
+    
+      Solve this one three different ways:  master theorem,
+      substitution method, and the iterate/cancel/summation method.
+    
+      \[T(n) = 2T(n/2) + n^4\]
+      Master theorem \\
+      \begin{eqnarray*}
+      f(n) &vs.& n^{log_b a} \\
+      n^4 &vs.& n^{log_2 2} \\
+      n^4 &vs.& n^1 \\
+      f(n) &=& \Omega(n^{log_b a+\epsilon}) \\
+      T(n) &=& \Theta(n^4) \\
+      \end{eqnarray*}
+      \\
+      \\
+      Substitution method \\
+      Guess $T(n) \leq c(n^4)$ \\
+      \begin{eqnarray*}
+      T(n) &=& 2T(n/2) + n^4 \\
+      T(n) &\leq& 2(cn/2)^4 + n^4 \\      
+      T(n) &\leq& c(n^4) + n^4 \\
+      T(n) &\leq& c(n^4) \\
+      \end{eqnarray*}
+      We can use this same proof for $T(n) = \Omega(n^4)$ by flipping the signs, So $T(n) = \Theta(n^4)$.
+\\
+\\
+      Iterate/cancel/summation method \\
+
+      \begin{align*}
+      T(n) &=  \cancel{2T(n/2)} + n^4 \\
+      \cancel{2T(n/2)} &=  \cancel{2^2T(n/2^2)} + 2((n/2)^4) \\
+      \cancel{2^2T(n/2^2)} &=  \cancel{2^3T(n/2^3)} + 2^2((n/2^2)^4) \\
+      \cancel{2^{k-1}T(n/2^{k-1})} &=  \cancel{2^kT(n/2^k)} + 2^{k-1}((n/2^{k-1})^4) \\
+      T(n) &= 2^{log_2 n} T(n/2^{log_2 n}) + 2^{(log_2 n) -1}((n/2^{{(log_2 n) -1}})^4) \\
+      T(n) &= n T(n/n) + \sum_{i=0}^{(log_2 n)-1}  2^i(n/2^i)^4 \\
+      T(n) &= n T(1) + n^4 \sum_{i=0}^{(log_2 n)-1}  2^i/16^i \\
+      \end{align*}
+
+
+    \item Solve this one using the master theorem.
+      \[T(n) = 16T(n/4) + n^2\]
+    
+      
+    \item Solve this one using the master theorem.
+      \[T(n) = 2T(n/4) + \sqrt{n}\]
+    
+    \item Solve this one using the master theorem.
+      \[T(n) = 4T(n/3) + n\lg n\]
+    
+    \item Solve this one using the master theorem.
+      \[T(n) = 4T(n/2) + n^2\sqrt{n}\]
+    
+    \end{enumerate}
+    
+    \end{document}

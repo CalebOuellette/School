@@ -48,16 +48,20 @@
       f(n) &=& \Omega(n^{log_b a+\epsilon}) \\
       T(n) &=& \Theta(n^4) \\
       \end{eqnarray*}
+      note:
+      $af(n/b) = 2f(n/2) = 4/2^4f(n) \leq cf(n)$
       \\
       \\
       Substitution method \\
       Guess $T(n) \leq c(n^4)$ \\
       \begin{eqnarray*}
       T(n) &=& 2T(n/2) + n^4 \\
-      T(n) &\leq& 2(cn/2)^4 + n^4 \\      
-      T(n) &\leq& c(n^4) + n^4 \\
+      T(n) &\leq& 2c(n/2)^4 + n^4 \\      
+      T(n) &\leq& c/8(n^4) + n^4 \\
+      T(n) &\leq& (c/8 + 1)n^4 \\
       T(n) &\leq& c(n^4) \\
       \end{eqnarray*}
+      for $c \leq 8/7$ \\
       We can use this same proof for $T(n) = \Omega(n^4)$ by flipping the signs, So $T(n) = \Theta(n^4)$.
 \\
 \\
@@ -76,16 +80,46 @@
       
     \item Solve this one using the master theorem.
       \[T(n) = 16T(n/4) + n^2\]
-    
+      \\
+      \begin{eqnarray*}
+        f(n) &vs.& n^{log_b a} \\
+        n^2  &vs.& n^{log_{4} 16} \\
+        n^2  &vs.& n^2 \\
+        f(n) &=& \Theta(n^{\log_b a})\\
+        T(n) &=& \Theta(n^2\lg n) \\
+      \end{eqnarray*}
       
     \item Solve this one using the master theorem.
       \[T(n) = 2T(n/4) + \sqrt{n}\]
+      \begin{eqnarray*}
+        f(n) &vs.& n^{log_b a} \\
+        \sqrt{n}\  &vs.& n^{log_{4} 2} \\
+        \sqrt{n}\  &vs.& \sqrt{n}\ \\
+        f(n) &=& \Theta(n^{\log_b a})\\
+        T(n) &=& \Theta(\sqrt{n}\lg n) \\
+      \end{eqnarray*}
     
     \item Solve this one using the master theorem.
       \[T(n) = 4T(n/3) + n\lg n\]
+      \begin{eqnarray*}
+        f(n) &vs.& n^{log_b a} \\
+        n\lg n\  &vs.& n^{log_{3} 4} \\
+        f(n) &=& O(n^{\log_b a-\epsilon})\\
+        T(n) &=& \Theta(n^{\log_3 4})
+      \end{eqnarray*}
     
     \item Solve this one using the master theorem.
       \[T(n) = 4T(n/2) + n^2\sqrt{n}\]
+      \begin{eqnarray*}
+        f(n) &vs.& n^{log_b a} \\
+        n^2\sqrt{n} &vs.& n^{log_2 4} \\
+        n^2n^{1/2} &vs.& n^2 \\
+        n^{2.5} &vs.& n^2 \\
+        f(n) &=& \Omega(n^{log_b a+\epsilon}) \\
+        T(n) &=& \Theta(n^{2.5}) \\       
+      \end{eqnarray*}
+      note:
+      $af(n/b) = 4f(n/2) = 4/2^{2.5}f(n) \leq cf(n)$
     
     \end{enumerate}
     

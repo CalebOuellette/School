@@ -71,9 +71,9 @@
       T(n) &= 2^{log_2 n} T(n/2^{log_2 n}) + 2^{(log_2 n) -1}((n/2^{{(log_2 n) -1}})^4) \\
       T(n) &= n T(n/n) + \sum_{i=0}^{(log_2 n)-1}  2^i(n/2^i)^4 \\
       T(n) &= n T(1) + n^4 \sum_{i=0}^{(log_2 n)-1}  2^i/16^i \\
+      T(n) &= \Theta( n^4) \\
       \end{align*}
-
-
+      
     \item Solve this one using the master theorem.
       \[T(n) = 16T(n/4) + n^2\]
     

@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1525999472 "/Users/Caleb/Code/School/305/hw4/hw4.tex" "hw4.pdf" "hw4" 1525999473
-  "/Users/Caleb/Code/School/305/hw4/hw4.tex" 1525999472 1639 97b4dddd84dab8936b55cd7e5cfcc011 ""
+["pdflatex"] 1525999588 "/Users/Caleb/Code/School/305/hw4/hw4.tex" "hw4.pdf" "hw4" 1525999589
+  "/Users/Caleb/Code/School/305/hw4/hw4.tex" 1525999588 1626 aa9f6fde947274c123c6a70e28b7ad46 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1525139557 749895 e8dbf60817f491a044b7c66d79292ccc ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/pdftex/config/pdftex.map" 1525998928 25648 05532b267bee6ddc7a89371aadda7555 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -60,11 +60,11 @@
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/kvoptions.sty" 1522794647 22417 1d9df1eb66848aa31b18a593099cf45c ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/rerunfilecheck.sty" 1522794649 9581 023642318cef9f4677efe364de1e2a27 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "hw4.aux" 1525999473 662 b2b94621371df8d9296b8bf5bec1b851 ""
-  "hw4.out" 1525999473 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "hw4.tex" 1525999472 1639 97b4dddd84dab8936b55cd7e5cfcc011 ""
+  "hw4.aux" 1525999589 662 b2b94621371df8d9296b8bf5bec1b851 ""
+  "hw4.out" 1525999589 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "hw4.tex" 1525999588 1626 aa9f6fde947274c123c6a70e28b7ad46 ""
   (generated)
+  "hw4.out"
+  "hw4.aux"
   "hw4.pdf"
   "hw4.log"
-  "hw4.aux"
-  "hw4.out"

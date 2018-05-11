@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6650) (preloaded format=pdflatex 2018.4.30)  10 MAY 2018 12:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6650) (preloaded format=pdflatex 2018.4.30)  10 MAY 2018 13:08
 entering extended mode
-**/Users/Caleb/Code/School/305/hw3/hw3.tex
-(/Users/Caleb/Code/School/305/hw3/hw3.tex
+**/Users/Caleb/Code/School/305/hw6/hw6.tex
+(/Users/Caleb/Code/School/305/hw6/hw6.tex
 LaTeX2e <2018-04-01> patch level 3
 Babel <3.19> and hyphenation patterns for 0 language(s) loaded.
 
@@ -125,12 +125,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
-)
-("/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/canc
-el/cancel.sty"
-Package: cancel 2013/04/12 v2.2 Cancel math terms
-) (hw3.aux)
-\openout1 = `hw3.aux'.
+) (hw6.aux)
+\openout1 = `hw6.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
@@ -179,83 +175,35 @@ LaTeX Font Info:    ... okay on input line 10.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 16.
-
-("/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/base
-/omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 16.
-
-Overfull \hbox (19.49588pt too wide) in paragraph at lines 39--41
-[]\OT1/cmr/m/n/10 Solve this one three different ways: master theorem, substitu
-tion method, and the iterate/cancel/summation
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 42--44
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 50--57
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 50--57
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--69
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--69
-
- []
-
 [1
 
 {/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/pdftex/config/pdft
-ex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 82--84
-
- []
-
-[2] [3] (hw3.aux) ) 
+ex.map}] (hw6.aux) ) 
 Here is how much of TeX's memory you used:
- 1414 strings out of 494894
- 19243 string characters out of 3177044
- 90748 words of memory out of 3000000
- 5065 multiletter control sequences out of 15000+200000
- 8111 words of font info for 30 fonts, out of 3000000 for 9000
+ 1371 strings out of 494894
+ 18379 string characters out of 3177044
+ 84947 words of memory out of 3000000
+ 5029 multiletter control sequences out of 15000+200000
+ 8104 words of font info for 30 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
- 27i,18n,32p,232b,259s stack positions out of 5000i,500n,10000p,200000b,50000s
-</Users/Caleb/Library/Application Support/MiKTeX/texmfs/inst
-all/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/Caleb/Library/Application
- Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></User
+ 27i,9n,32p,232b,251s stack positions out of 5000i,500n,10000p,200000b,50000s
+</Users/Caleb/Library/Application Support/MiKTeX/texmfs/ins
+tall/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></Users/Caleb/Library/Applicati
+on Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></Us
+ers/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb></Users/Caleb/Library/Application Support/MiKTeX/texmfs/
+install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/Caleb/Library/Applicat
+ion Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></Us
+ers/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/
+amsfonts/cm/cmr12.pfb></Users/Caleb/Library/Application Support/MiKTeX/texmfs/i
+nstall/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/Caleb/Library/Applicati
+on Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></User
 s/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></Users/Caleb/Library/Application Support/MiKTeX/texmfs/in
-stall/fonts/type1/public/amsfonts/cm/cmmi5.pfb></Users/Caleb/Library/Applicatio
-n Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></User
-s/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></Users/Caleb/Library/Application Support/MiKTeX/texmfs/ins
-tall/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/Caleb/Library/Application
- Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users
-/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/ams
-fonts/cm/cmr5.pfb></Users/Caleb/Library/Application Support/MiKTeX/texmfs/insta
-ll/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/Caleb/Library/Application Su
-pport/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/C
-aleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfo
-nts/cm/cmsy7.pfb></Users/Caleb/Library/Application Support/MiKTeX/texmfs/instal
-l/fonts/type1/public/amsfonts/latxfont/line10.pfb>
-Output written on hw3.pdf (3 pages, 127985 bytes).
+sfonts/cm/cmsy10.pfb></Users/Caleb/Library/Application Support/MiKTeX/texmfs/in
+stall/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on hw6.pdf (1 page, 109369 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
+ 46 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

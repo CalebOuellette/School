@@ -1,7 +1,7 @@
-PWD /Users/Caleb/Code/School/305/hw4
+PWD /Users/Caleb/Code/School/305/hw6
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt
-INPUT /Users/Caleb/Code/School/305/hw4/hw4.tex
-OUTPUT hw4.log
+INPUT /Users/Caleb/Code/School/305/hw6/hw6.tex
+OUTPUT hw6.log
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/article.cls
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/article.cls
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/size10.clo
@@ -28,58 +28,9 @@ INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/a
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsbsy.sty
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsopn.sty
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsopn.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hyperref.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hyperref.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/generic/oberdiek/hobsub-hyperref.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/generic/oberdiek/hobsub-hyperref.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/generic/oberdiek/hobsub-hyperref.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/generic/oberdiek/hobsub-generic.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/generic/oberdiek/hobsub-generic.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/auxhook.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/auxhook.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/kvoptions.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/kvoptions.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/pd1enc.def
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/pd1enc.def
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/00miktex/hyperref.cfg
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/00miktex/hyperref.cfg
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hpdftex.def
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hpdftex.def
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/rerunfilecheck.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/rerunfilecheck.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/graphicx.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/graphicx.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/graphics.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/graphics.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/trig.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/trig.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-def/pdftex.def
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-def/pdftex.def
-INPUT hw4.aux
-INPUT hw4.aux
-OUTPUT hw4.aux
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/nameref.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/nameref.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/generic/oberdiek/gettitlestring.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/generic/oberdiek/gettitlestring.sty
-INPUT hw4.out
-INPUT hw4.out
-INPUT hw4.out
-INPUT hw4.out
-INPUT ./hw4.out
-INPUT ./hw4.out
-OUTPUT hw4.out
-OUTPUT hw4.pdf
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/context/base/supp-pdf.mkii
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/context/base/supp-pdf.mkii
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/epstopdf-base.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/epstopdf-base.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/grfext.sty
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/grfext.sty
+INPUT hw6.aux
+INPUT hw6.aux
+OUTPUT hw6.aux
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmr17.tfm
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmr12.tfm
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmr8.tfm
@@ -93,17 +44,14 @@ INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/p
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmex10.tfm
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmbx10.tfm
+INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/omscmr.fd
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/omscmr.fd
+OUTPUT hw6.pdf
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/pdftex/config/pdftex.map
-INPUT hw4.aux
-INPUT ./hw4.out
-INPUT ./hw4.out
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT hw6.aux
+INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb
@@ -120,3 +68,5 @@ INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT /Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb

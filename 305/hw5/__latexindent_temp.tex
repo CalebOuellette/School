@@ -1,9 +1,12 @@
 \documentclass{article}
   \usepackage[margin=1in]{geometry}
   \usepackage{amsmath}
-  
+  \usepackage{clrscode3e}
+  \usepackage{mathtools}
+  \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+  \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
   \title{CSCI 305, Homework \# 5}
-  \author{YOUR NAME HERE}
+  \author{Caleb Ouellette}
   \date{Due date:  Midnight, May 14}
   
   
@@ -14,24 +17,69 @@
   \begin{enumerate}
   \item Analysis of d-ary heaps (problem 6-2 in the text).
   
-   A \textbf{d-ary heap} is like a binary heap, but (with one possible
-   exception) non-leaf nodes have $d$ children instead of 2 children.
-   \begin{enumerate}
-   \item How would you represent a $d$-ary heap in an array?
-     \item What is the height of a $d$-ary heap of $n$ elements in terms
-       of $n$ and $d$?
-     \item Give an efficient implementation of \textsc{Extract-Max} in
-         a $d$-ary max-heap.  Analyze its running time in terms of $d$
-         and $n$.
-       \item Give an efficient implementation of \textsc{Insert} in
-         a $d$-ary max-heap.  Analyze its running time in terms of $d$
-         and $n$.
-       \item Give an efficient implementation of
-         \textsc{Increase-Key}$(A,i,k)$,
-         which flags an error if $k < A[i]$, but otherwise sets $A[i] =
-         k$ and then updates the $d$-ary max-heap structure
-         appropriately.    Analyze its running time in terms of $d$
-         and $n$.
+  A \textbf{d-ary heap} is like a binary heap, but (with one possible
+  exception) non-leaf nodes have $d$ children instead of 2 children.
+  \begin{enumerate}
+  \item How would you represent a $d$-ary heap in an array? \\
+    Use the same strucutre as a binary tree, exect use h instead of 2. So the root is still at one, 
+    then its h children. After that is the h children on the left child of the first node and so on.
+    
+  \item What is the height of a $d$-ary heap of $n$ elements in terms
+    of $n$ and $d$? \\
+    \begin{equation*}
+    \floor*{log_h n}
+    \end{equation*}
+
+  \item Give an efficient implementation of \textsc{Extract-Max} in
+      a $d$-ary max-heap.  Analyze its running time in terms of $d$
+    and $n$.
+        \begin{codebox}
+          \Procname{$\proc{Extract-Max}(A)$}
+          \li \If $n < 1$ \Do
+          \li \Error ``heap underflow''
+        \End
+        \li $max \gets A[1]$
+        \li $A[1] = A[n]$
+        \li $n = n-1$
+        \li $\proc{Max-Heapify}(A,1,n)$
+        \li \Return $max$
+        \end{codebox}
+        \ The Extract-Max function will be dominated by Max-Heapify. 
+        Max-Heapify will do $\floor*{log_h n}$ swaps to move the top 
+        element to the bottom of the tree and take $O(log_h n)$ time.
+        
+      \item Give an efficient implementation of \textsc{Insert} in
+        a $d$-ary max-heap.  Analyze its running time in terms of $d$
+        and $n$.
+
+        \begin{codebox}
+          \Procname{$\proc{Insert}(A,key,n)$}
+          \li $n \gets n+1$
+          \li $A[n] \gets -\infty$
+          \li $\proc{Increase-Key}(A,n,key)$
+        \end{codebox}
+
+        Heap-Increase-Key will move a bottom element to at most the top of the 
+        tree, so it will take $O(log_h n)$ time.
+
+      \item Give an efficient implementation of
+        \textsc{Increase-Key}$(A,i,k)$,
+        which flags an error if $k < A[i]$, but otherwise sets $A[i] =
+        k$ and then updates the $d$-ary max-heap structure
+        appropriately.    Analyze its running time in terms of $d$
+        and $n$.
+        \begin{codebox}
+          \Procname{$\proc{Increase-Key}(A,i,key)$}
+          \li \If $key < A[i]$ \Do
+          \li \Error ``new key is smaller than current key''
+        \End
+        \li $A[i] = key$
+        \li \While $i > 1$ and $A[\proc{Parent}(i)] < A[i]$ \Do
+        \li exchange $A[i]$ with $A[\proc{Parent}(i)]$
+        \li $i = \proc{Parent}(i)$
+        \End
+        \end{codebox}
+
    \end{enumerate}
   \end{enumerate}
   

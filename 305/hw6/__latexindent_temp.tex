@@ -27,7 +27,9 @@
         X_i = I\{\mbox{$i$th smallest element is chosen as the pivot}\}
         \]
         What is $E[X_i]$?
-  
+        $E[X_i]$ is the expected value of an element being chosen.
+        The probability of choosing any element is $1/n$ so, $E[x_i]$ is $1/n$.
+
       \item
         Let $T(n)$ be a random variable denoting the running time of
         quicksort on an array of size $n$.  Argue that
@@ -42,7 +44,34 @@
         Show that we can rewrite equation \ref{eqn1} as
         \begin{align}
           E[T(n)] &= \frac{2}{n}\sum_{q=2}^{n-1}E[T(q)] + \Theta(n)
-            \label{eqn2}
+            \label{eqn2} \\
+            E[T(n)] &= E\left[
+          \sum_{q=1}^n X_q(T(q-1) + T(n-q) + \Theta(n))
+          \right]
+        \end{align}
+        \begin{align}
+        \label{eqn1} \\
+        E[T(n)] &= 
+          \sum_{q=1}^n E\left[ X_q(T(q-1) + T(n-q) + \Theta(n))
+          \right] \\
+        E[T(n)] &= 
+          \sum_{q=1}^n 1/nE\left[ T(q-1) + T(n-q) + \Theta(n))
+          \right]\\
+        E[T(n)] &= 
+        \frac{1}{n}\sum_{q=1}^n E\left[ T(q-1) + T(n-q) + \Theta(n))
+        \right]\\
+        E[T(n)] &= 
+        \frac{1}{n}\sum_{q=2}^{n - 1} E\left[ T(q + 1 -1) + T(n - 1 -(q + 1)) + \Theta(n)) 
+        \right]\\
+        E[T(n)] &= 
+        \frac{1}{n}\sum_{q=2}^{n - 1} E\left[ T(q) + T(n-q) + \Theta(n)) 
+        \right]\\
+        E[T(n)] &= 
+        \frac{1}{n}\sum_{q=2}^{n - 1} E\left[ 2T(q) + \Theta(n)) 
+        \right]\\
+        E[T(n)] &= 
+        \frac{2}{n}\sum_{q=2}^{n - 1} E\left[ T(q)\right] + \Theta(n)) 
+        \\
         \end{align}
   
       \item

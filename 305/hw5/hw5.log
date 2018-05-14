@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6650) (preloaded format=pdflatex 2018.4.30)  14 MAY 2018 14:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6650) (preloaded format=pdflatex 2018.4.30)  14 MAY 2018 16:13
 entering extended mode
 **/Users/Caleb/Code/School/305/hw5/hw5.tex
 (/Users/Caleb/Code/School/305/hw5/hw5.tex
@@ -320,7 +320,7 @@ Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 \Gin@req@height=\dimen131
 \Gin@req@width=\dimen132
 )
-Underfull \hbox (badness 10000) in paragraph at lines 27--29
+Underfull \hbox (badness 10000) in paragraph at lines 28--30
 
  []
 
@@ -331,7 +331,7 @@ ex.map}] [2] (hw5.aux) )
 Here is how much of TeX's memory you used:
  3193 strings out of 494894
  48295 string characters out of 3177044
- 120829 words of memory out of 3000000
+ 121829 words of memory out of 3000000
  6781 multiletter control sequences out of 15000+200000
  9014 words of font info for 33 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
@@ -348,7 +348,7 @@ lic/amsfonts/cm/cmr12.pfb></Users/Caleb/Library/Application Support/MiKTeX/texm
 fs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/Caleb/Library/Appli
 cation Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 
-Output written on hw5.pdf (2 pages, 99432 bytes).
+Output written on hw5.pdf (2 pages, 100007 bytes).
 PDF statistics:
  41 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

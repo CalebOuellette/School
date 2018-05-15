@@ -3,7 +3,7 @@
   \usepackage{amsmath}
   
   \title{CSCI 305, Homework \# 6}
-  \author{YOUR NAME HERE}
+  \author{Caleb Ouellette}
   \date{Due date:  Midnight, May 14}
   
   
@@ -39,23 +39,28 @@
           \right]
         \label{eqn1}
         \end{align}
-  
+        The equation come from the code for quicksort. 
+        The $\Theta(n)$ is the partition.
+        The $T(q-1)$ is the recursive call for the left side of matrix being quicksorted. 
+        The $T(n-q)$ is the rest of the matrix. 
+        The indicator variable $X_q$ is the pivot, and has a $\frac{1}{n}$ chance of occuring.
+        Each pivot is equally likely and this equation weights each accordingly.
+        \newpage
       \item
         Show that we can rewrite equation \ref{eqn1} as
         \begin{align}
           E[T(n)] &= \frac{2}{n}\sum_{q=2}^{n-1}E[T(q)] + \Theta(n)
-            \label{eqn2} \\
-            E[T(n)] &= E\left[
-          \sum_{q=1}^n X_q(T(q-1) + T(n-q) + \Theta(n))
-          \right]
+            \label{eqn2}            
         \end{align}
-        \begin{align}
-        \label{eqn1} \\
+        \begin{align*}
+          E[T(n)] &= E\left[
+          \sum_{q=1}^n X_q(T(q-1) + T(n-q) + \Theta(n))
+          \right] \\
         E[T(n)] &= 
           \sum_{q=1}^n E\left[ X_q(T(q-1) + T(n-q) + \Theta(n))
           \right] \\
         E[T(n)] &= 
-          \sum_{q=1}^n 1/nE\left[ T(q-1) + T(n-q) + \Theta(n))
+          \sum_{q=1}^n \frac{1}{n}E\left[ T(q-1) + T(n-q) + \Theta(n))
           \right]\\
         E[T(n)] &= 
         \frac{1}{n}\sum_{q=1}^n E\left[ T(q-1) + T(n-q) + \Theta(n))
@@ -72,7 +77,7 @@
         E[T(n)] &= 
         \frac{2}{n}\sum_{q=2}^{n - 1} E\left[ T(q)\right] + \Theta(n)) 
         \\
-        \end{align}
+        \end{align*}
   
       \item
         Show that
@@ -92,7 +97,33 @@
         $E[T(n)] = \Theta(n\lg n)$.  (Hint: Show, by substitution, that
         $E[T(n)\leq an\lg n$ for sufficiently large $n$ and for some
           positive constant $a$.) 
-  
+        
+          \begin{align*}
+        E[T(n)] &= 
+        \frac{2}{n}\sum_{q=2}^{n - 1} E\left[ T(q)\right] + \Theta(n)) 
+        \\
+        E[T(n)] &\leq 
+        \frac{2}{n}\sum_{q=2}^{n - 1} an\lg n + \Theta(n)) 
+        \\
+        E[T(n)] &\leq 
+        \frac{2a}{n}(\frac{1}{2}n^2\lg n -
+        \frac{1}{8} n^2 + n\Theta(n))
+        \\
+        E[T(n)] &\leq 
+        2a(\frac{1}{2}n\lg n -
+        \frac{1}{8} n + \Theta(n))
+        \\
+        E[T(n)] &\leq 
+        an\lg n - \frac{a}{4n}  + 2an
+        \\
+        E[T(n)] &\leq 
+        an\lg n + \frac{an7}{4} 
+        \\
+        an\lg n &\leq 
+        an\lg n + \frac{an7}{4} 
+        \\
+        \end{align*}
+        let a be $a \geq 0$ and $n \geq 1$.
     \end{enumerate}
   \end{enumerate}
   

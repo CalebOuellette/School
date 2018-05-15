@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1526341281 "/Users/Caleb/Code/School/305/hw6/hw6.tex" "hw6.pdf" "hw6" 1526341282
-  "/Users/Caleb/Code/School/305/hw6/hw6.tex" 1526341280 3205 ad6e99790016a119ff39ab1fa1729c63 ""
+["pdflatex"] 1526351303 "/Users/Caleb/Code/School/305/hw6/hw6.tex" "hw6.pdf" "hw6" 1526351304
+  "/Users/Caleb/Code/School/305/hw6/hw6.tex" 1526351303 4344 02fadf7eda6d11d083217aa62cf2ada9 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1525139557 749895 e8dbf60817f491a044b7c66d79292ccc ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/pdftex/config/pdftex.map" 1526331648 25648 05532b267bee6ddc7a89371aadda7555 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -40,9 +40,9 @@
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.cfg" 1522081302 1099 14b67ae774a2414bbbaabfae4fd87d91 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.sty" 1522081302 42522 0a5938a28a6f97cb0fb0566f359d9ad6 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/keyval.sty" 1523175985 2678 f35312d5e20bce88169b5fe5596f577c ""
-  "hw6.aux" 1526341282 105 2240e2662fc008f134cf2d992ceb9a2b ""
-  "hw6.tex" 1526341280 3205 ad6e99790016a119ff39ab1fa1729c63 ""
+  "hw6.aux" 1526351304 80 8b2d1639fe86fb42f4050bd3af022cfe ""
+  "hw6.tex" 1526351303 4344 02fadf7eda6d11d083217aa62cf2ada9 ""
   (generated)
   "hw6.pdf"
-  "hw6.log"
   "hw6.aux"
+  "hw6.log"

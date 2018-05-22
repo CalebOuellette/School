@@ -8,10 +8,9 @@ int count = 0;
 int in = 0;
 int out = 0;
 void *buffer[BUFFER_SIZE];
-_Bool ending = false;
 
-int prodWaiters = 0;
-int consumerWaiter = 0;
+_Bool flush = false;
+
 
 pthread_mutex_t bblock  = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t bbempty = PTHREAD_COND_INITIALIZER;
@@ -31,9 +30,8 @@ void bbuff_blocking_insert(void *item)
   count++;
   buffer[in] = item;
   in = (in + 1) % (BUFFER_SIZE);
-  if(count == 1){
-    pthread_cond_signal( &bbempty ); 
-  }
+
+  pthread_cond_signal( &bbempty ); 
   pthread_mutex_unlock(&bblock);
   return;
 };
@@ -43,15 +41,35 @@ void *bbuff_blocking_extract()
   pthread_mutex_lock(&bblock);
   while (count == 0){
     pthread_cond_wait(&bbempty, &bblock);
-    printf("waited\n");
+    if(flush){
+      pthread_mutex_unlock(&bblock);
+      return NULL;
+    }
   }
   count--;
   
   void *nextConsumed = buffer[out];
   out = (out + 1) % (BUFFER_SIZE);
-  if(count == 9){
-    pthread_cond_signal( &bbfull ); 
-  }
+  
+  pthread_cond_signal( &bbfull ); 
   pthread_mutex_unlock(&bblock);
   return nextConsumed;
 };
+
+_Bool bbuff_is_empty(){
+  pthread_mutex_lock(&bblock);
+  if(count == 0){
+    pthread_mutex_unlock(&bblock);
+    return true;
+  }else{
+    pthread_mutex_unlock(&bblock);
+    return false;
+  }
+}
+
+void bbuff_flush_consumers(){
+  pthread_mutex_lock(&bblock);
+  flush = true;
+  pthread_cond_broadcast( &bbempty );  
+  pthread_mutex_unlock(&bblock);
+}

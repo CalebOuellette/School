@@ -16,7 +16,7 @@ void create_factories();
 void create_kids();
 void *candy_kid(void *arg);
 
-void stop_threads(pthread_t tid[], int count);
+void stop_threads(pthread_t tid[], int count, _Bool cancel);
 
 int FACTORIES;
 int KIDS;
@@ -56,14 +56,19 @@ int main(int argc, const char *argv[])
 
   printf("Stopping Factories \n");
   factories_running = false;
-  stop_threads(factoryt, FACTORIES); //    6.        Stop    candy-­‐factory    threads
+
+  stop_threads(factoryt, FACTORIES, false); //    6.        Stop    candy-­‐factory    threads
 
   //    7.        Wait    until    no    more    candy  
-  //printf("Stopping Kids \n");
-  //kids_running = false;
-  //stop_threads(kidt, KIDS); //    8.        Stop    kid    threads
+  while(bbuff_is_empty() == false)
+  ;
+  printf("Stopping Kids \n");
+  kids_running = false;
+  bbuff_flush_consumers();
+  stop_threads(kidt, KIDS, false); //    8.        Stop    kid    threads
   stats_display(); //    9.        Print    statistics
   //    10.    Cleanup    any    allocated    memory
+  stats_cleanup();
   return EXIT_SUCCESS;
 }
 
@@ -99,15 +104,16 @@ void create_kids(pthread_t tid[])
 
 void *candy_kid(void *arg)
 {
-  do  
+  while (kids_running)  
   {
     int wait = rand() % 2;
     candy_t *candy =(candy_t*) bbuff_blocking_extract();
-    stats_record_consumed(candy->factory_number, current_time_in_ms() - candy->time_stamp_in_ms);
-    free(candy);
-    sleep(wait); 
-    printf("Candy Consumed \n");
-  }while (kids_running);
+    if(candy != NULL){
+      stats_record_consumed(candy->factory_number, current_time_in_ms() - candy->time_stamp_in_ms);
+      free(candy);
+      sleep(wait); 
+    }
+  }
   printf("Kid done \n");
   return NULL;
 }
@@ -155,11 +161,14 @@ double current_time_in_ms(void)
   return now.tv_sec * 1000.0 + now.tv_nsec / 1000000.0;
 }
 
-void stop_threads(pthread_t tid[], int count)
+void stop_threads(pthread_t tid[], int count, _Bool cancel)
 {
   for (int i = 0; i < count; i++)
   {
-    pthread_cancel(tid[i]);
+    
+    if(cancel){
+      pthread_cancel(tid[i]);
+    }
     pthread_join(tid[i], NULL);
   }
 }

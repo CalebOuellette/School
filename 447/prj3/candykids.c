@@ -97,8 +97,6 @@ void create_kids(pthread_t tid[])
 
 void *candy_kid(void *arg)
 {
-  int threadID;
-  threadID = *(int *)arg;
   while (kids_running)
   {
     int wait = rand() % 2;

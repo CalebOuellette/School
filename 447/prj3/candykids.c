@@ -58,11 +58,10 @@ int main(int argc, const char *argv[])
   factories_running = false;
   stop_threads(factoryt, FACTORIES); //    6.        Stop    candy-­‐factory    threads
 
-  while (bbuff_is_empty() == false) //    7.        Wait    until    no    more    candy
-    ;
-  printf("Stopping Kids \n");
-  kids_running = false;
-  stop_threads(kidt, KIDS); //    8.        Stop    kid    threads
+  //    7.        Wait    until    no    more    candy  
+  //printf("Stopping Kids \n");
+  //kids_running = false;
+  //stop_threads(kidt, KIDS); //    8.        Stop    kid    threads
   stats_display(); //    9.        Print    statistics
   //    10.    Cleanup    any    allocated    memory
   return EXIT_SUCCESS;
@@ -100,16 +99,16 @@ void create_kids(pthread_t tid[])
 
 void *candy_kid(void *arg)
 {
-  pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
-  pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-  while (kids_running)
+  do  
   {
     int wait = rand() % 2;
     candy_t *candy =(candy_t*) bbuff_blocking_extract();
     stats_record_consumed(candy->factory_number, current_time_in_ms() - candy->time_stamp_in_ms);
     free(candy);
-    sleep(wait);
-  }
+    sleep(wait); 
+    printf("Candy Consumed \n");
+  }while (kids_running);
+  printf("Kid done \n");
   return NULL;
 }
 
@@ -131,7 +130,7 @@ void *candy_factory(void *arg)
   factorysCreate++;
   pthread_mutex_unlock(&fclock); 
   printf("Factory %d started \n", threadID);
-  while (factories_running)
+  do
   {
     int wait = rand() % 4;
     printf("Factory %d ships candy & waits %ds \n", threadID, wait);
@@ -144,7 +143,7 @@ void *candy_factory(void *arg)
     bbuff_blocking_insert(candy);
     stats_record_produced(threadID);
     sleep(wait);
-  }
+  }while (factories_running);
   printf("Candy-Factory %d done \n", threadID);
   return NULL;
 }
@@ -160,9 +159,7 @@ void stop_threads(pthread_t tid[], int count)
 {
   for (int i = 0; i < count; i++)
   {
-    printf("Stopping thread \n");
     pthread_cancel(tid[i]);
     pthread_join(tid[i], NULL);
   }
 }
-

@@ -42,7 +42,7 @@ void stats_record_consumed(int factory_number, double delay_in_ms){
 void stats_display(void){
   printf("%-8s%-8s%-8s%-10s%-10s%-10s\n", "Factory#", "#Made", "#Eaten", "Min Delay", "Avg Delay", "Max Delay");  
   for(int i = 0; i < producers; i++){
-    printf("%-8d%-8d%-8d%-10.5f%-10.5f%-10.5f\n", i, created[i], consumed[i], min[i], avg[i], max[i]);
+    printf("%-8d%-8d%-8d%-10.3f%-10.3f%-10.3f\n", i, created[i], consumed[i], min[i], avg[i], max[i]);
   }
   //"%-25s%-20s%-10.2f%-10.2f%-10.2f\n"
 };

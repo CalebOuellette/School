@@ -25,11 +25,14 @@ int SECONDS;
 _Bool factories_running = true;
 _Bool kids_running = true;
 
+int factorysCreate = 0;
+pthread_mutex_t fclock  = PTHREAD_MUTEX_INITIALIZER;
+
+
 typedef struct
 {
   int factory_number;
   double time_stamp_in_ms;
-  int candy_id;
 } candy_t;
 
 int main(int argc, const char *argv[])
@@ -97,11 +100,12 @@ void create_kids(pthread_t tid[])
 
 void *candy_kid(void *arg)
 {
+  pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
+  pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
   while (kids_running)
   {
     int wait = rand() % 2;
     candy_t *candy =(candy_t*) bbuff_blocking_extract();
-    printf("kid got %d \n", candy->candy_id);
     stats_record_consumed(candy->factory_number, current_time_in_ms() - candy->time_stamp_in_ms);
     free(candy);
     sleep(wait);
@@ -115,23 +119,28 @@ void create_factories(pthread_t tid[])
   for (int i = 0; i < FACTORIES; i++)
   {
     start[i] = i;
-    pthread_create(&(tid[i]), NULL, &candy_factory, &start[i]);
+    pthread_create(&(tid[i]), NULL, &candy_factory, (void *)&(start[i]));
   }
 }
 
 void *candy_factory(void *arg)
 {
   int threadID;
-  threadID = *(int *)arg;
+  pthread_mutex_lock(&fclock); 
+  threadID = factorysCreate;
+  factorysCreate++;
+  pthread_mutex_unlock(&fclock); 
   printf("Factory %d started \n", threadID);
   while (factories_running)
   {
     int wait = rand() % 4;
     printf("Factory %d ships candy & waits %ds \n", threadID, wait);
     candy_t *candy = malloc(sizeof(candy_t));
+    if(candy == 0){
+      printf("Malloc ERROR");
+    }
     candy->factory_number = threadID;
     candy->time_stamp_in_ms = current_time_in_ms();
-    candy->candy_id = rand() % 1000;
     bbuff_blocking_insert(candy);
     stats_record_produced(threadID);
     sleep(wait);
@@ -151,7 +160,9 @@ void stop_threads(pthread_t tid[], int count)
 {
   for (int i = 0; i < count; i++)
   {
+    printf("Stopping thread \n");
     pthread_cancel(tid[i]);
     pthread_join(tid[i], NULL);
   }
 }
+

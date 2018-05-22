@@ -4,7 +4,7 @@ TARGET= candykids
 OBJS = candykids.o bbuff.o stats.o
 
 # Add support for pthread and real-time clock here:
-CFLAGS = -Wall -g -std=c99 -Werror -D_POSIX_C_SOURCE=199309L
+CFLAGS = -Wall -g -std=c99 -Werror -D_POSIX_C_SOURCE=199309L -pthread
 
 
 # You should not need to change any of this:

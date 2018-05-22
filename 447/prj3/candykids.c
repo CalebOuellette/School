@@ -29,12 +29,14 @@ typedef struct
 {
   int factory_number;
   double time_stamp_in_ms;
+  int candy_id;
 } candy_t;
 
 int main(int argc, const char *argv[])
 {
 
   parse_args(argc, argv); //    1.        Extract    arguments
+  printf("%d kids, %d facotires, %d time", KIDS , FACTORIES ,SECONDS );
   bbuff_init();           //    2.        Initialize    modules
   stats_init(FACTORIES);
   pthread_t factoryt[FACTORIES];
@@ -58,7 +60,6 @@ int main(int argc, const char *argv[])
   printf("Stopping Kids \n");
   kids_running = false;
   stop_threads(kidt, KIDS); //    8.        Stop    kid    threads
-
   stats_display(); //    9.        Print    statistics
   //    10.    Cleanup    any    allocated    memory
   return EXIT_SUCCESS;
@@ -102,6 +103,7 @@ void *candy_kid(void *arg)
   {
     int wait = rand() % 2;
     candy_t *candy =(candy_t*) bbuff_blocking_extract();
+    printf("kid got %d \n", candy->candy_id);
     stats_record_consumed(candy->factory_number, current_time_in_ms() - candy->time_stamp_in_ms);
     free(candy);
     sleep(wait);
@@ -115,7 +117,7 @@ void create_factories(pthread_t tid[])
   for (int i = 0; i < FACTORIES; i++)
   {
     start[i] = i;
-    pthread_create(&(tid[i]), NULL, &candy_factory, (void *)&start[i]);
+    pthread_create(&(tid[i]), NULL, &candy_factory, &start[i]);
   }
 }
 
@@ -131,6 +133,7 @@ void *candy_factory(void *arg)
     candy_t *candy = malloc(sizeof(candy_t));
     candy->factory_number = threadID;
     candy->time_stamp_in_ms = current_time_in_ms();
+    candy->candy_id = rand() % 1000;
     bbuff_blocking_insert(candy);
     stats_record_produced(threadID);
     sleep(wait);

@@ -1,0 +1,18 @@
+00400000-00401000 r-xp 00000000 00:2c 906210268                          /home/ouellec/Documents/School/447/ps4/virtual-memory
+00600000-00601000 r--p 00000000 00:2c 906210268                          /home/ouellec/Documents/School/447/ps4/virtual-memory
+00601000-00602000 rw-p 00001000 00:2c 906210268                          /home/ouellec/Documents/School/447/ps4/virtual-memory
+71863e115000-7f1a01764000 rw-p 00000000 00:00 0 
+7f1a01764000-7f1a01924000 r-xp 00000000 08:05 16777367                   /lib/x86_64-linux-gnu/libc-2.23.so
+7f1a01924000-7f1a01b24000 ---p 001c0000 08:05 16777367                   /lib/x86_64-linux-gnu/libc-2.23.so
+7f1a01b24000-7f1a01b28000 r--p 001c0000 08:05 16777367                   /lib/x86_64-linux-gnu/libc-2.23.so
+7f1a01b28000-7f1a01b2a000 rw-p 001c4000 08:05 16777367                   /lib/x86_64-linux-gnu/libc-2.23.so
+7f1a01b2a000-7f1a01b2e000 rw-p 00000000 00:00 0 
+7f1a01b2e000-7f1a01b54000 r-xp 00000000 08:05 16777407                   /lib/x86_64-linux-gnu/ld-2.23.so
+7f1a01d20000-7f1a01d23000 rw-p 00000000 00:00 0 
+7f1a01d53000-7f1a01d54000 r--p 00025000 08:05 16777407                   /lib/x86_64-linux-gnu/ld-2.23.so
+7f1a01d54000-7f1a01d55000 rw-p 00026000 08:05 16777407                   /lib/x86_64-linux-gnu/ld-2.23.so
+7f1a01d55000-7f1a01d56000 rw-p 00000000 00:00 0 
+7ffe7af24000-7ffe7af45000 rw-p 00000000 00:00 0                          [stack]
+7ffe7af53000-7ffe7af56000 r--p 00000000 00:00 0                          [vvar]
+7ffe7af56000-7ffe7af58000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]

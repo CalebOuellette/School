@@ -19,7 +19,7 @@ int main()
       printf("%ld GB could be allocated before malloc failed\n", i * sizeof(size_t));
       return (0);
     }
-    //memset(ptr, i, GIGABYTE); //Line A(uncomment for Q6).
+    memset(ptr, i, GIGABYTE); //Line A(uncomment for Q6).
 
     nanosleep(&sleepValue, NULL);
     i++;

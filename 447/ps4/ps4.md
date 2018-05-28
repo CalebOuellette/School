@@ -32,3 +32,16 @@ II.
 2. $pc is now 0x7ffff7a2d830. It has entered into a function that is in lib c, not in our program.
 
 3. Sum is placed on the stack so it's address is just offset from that. x is passed as an argument.
+
+4. As the program runs it uses more and more memory making VIRT RES go up over and over. %CPU stays pretty low. %memory goes up. SHR stays in the same spot.
+
+5. As more memory is allocated the size of line 4 changes. It grows to lower addresses because the heap grows from the bottom up.
+
+Map 1 737f5b777000
+Map 5 711c9adec000
+
+On my machine virtual memory max is set to unlimited.
+This is larger then physical memory. As the process can write some memory out to the harddrive.
+
+
+6. 

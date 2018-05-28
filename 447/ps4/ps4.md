@@ -1,4 +1,6 @@
-1.
+I. 
+
+1. 
   * a.
     *  Mutial Exclution: Each road is not shared.
     *  Hold and wait: Vehicles can't release a resource a road until the other road is clear.
@@ -12,4 +14,21 @@
 
 4. Internal fragmentation happens when we over allocate memory for a process. Say I need 4 bytes and I am given 8. 4 of those can not be used because they are assigned to me, but I don't need them. This happens in paging because the smallest unit that can be allocated is a page, which can be more then is needed. External fragmentation is when an allocated space of memory does not fit exactly into a spot on physical memory. In segmentation not all chunks are the same size and it is hard to get 100% untilization of memory. When placing the allocated memory we might find a spot that is just a little bit bigger then what we need, however if that is the best fit, the memory is placed there. The margin that bigger then what we needed is the external fragmentation because it probably won't be used.
 
-5. 
+5. Virtual addresss are mapped to physical addresses by finding the page in the page table that the memory maps to, then applying the offset. In order to access the page table, there neeeds to be a registar with the page table location. The time needed to access a memory location is the time it take to load something from memory twice. Once to get it's table location and a second time to retrive it from it's actual location. To speed this up we can use a cache called the TLB.
+
+6. Pages are powers of two so that address can be broken into the page and offset. If it was not a power of two we would have to adjust.
+
+7. Paging a page table creates a hierarchical page table. This is done because without it the page table would be too large. There are other options for page table structure such as Hashed page tables and Inverted page tables.
+
+8. 
+
+II. 
+
+1. 
+  a. 0x600000 to 0x601000
+  b. $sp = 0x7fffffffe790. $fp = 0x7fffffffe7a0. The Stack pointer indicateds where the next function can be placed, where the next free address is. The Frame pointer is in a fixed place at the start of a function so a function can hardcode offsets to this in order to access local data.
+  c. rip 
+
+2. $pc is now 0x7ffff7a2d830. It has entered into a function that is in lib c, not in our program.
+
+3. Sum is placed on the stack so it's address is just offset from that. x is passed as an argument.

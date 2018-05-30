@@ -34,9 +34,58 @@
   \begin{enumerate}
     \item Show that this scheme is an instance of the general
       ``quadratic probing'' scheme by exhibiting the appropriate
-      constants $c_1$ and $c_2$ for equation (11.5).
+      constants $c_1$ and $c_2$ for equation (11.5). \\
+
+      The equation above can be written as \\
+      \begin{align*}
+      h(k, 0) &= j\\
+      h(k, 1) &= j + 1 \mod m\\
+      h(k, 2) &= j + 1 + 2 \mod m\\
+      h(k, 3) &= j + 1 + 2 + 3 \mod m\\
+      h(k, i) &= j + \sum_{q=1}^i q  \mod m\\
+      h(k, i) &= j + \frac{i(i + 1)}{2}  \mod m\\
+      h(k, i) &= j + \frac{i^2}{2} + \frac{i}{2}  \mod m\\
+      \end{align*}
+
+      The general form of the equation is \\
+      \begin{align*}
+      h(k,i) &= (h(k) + c_1 i + c_2i^2) \mod m\\
+      \end{align*}
+      Choose $c_1 = 1/2$ and $c_2 = 1/2$ \\
+      \begin{align*}
+      h(k,i) &= (h(k) + i/2 + i^2/2) \mod m \\
+      h(k,i) &= j + \frac{i}{2} + \frac{i^2}{2}  \mod m \\
+      \end{align*}
       \item Prove that this algorithm examines every table position in
-        the worst case.
+        the worst case.\\
+
+        There are 3 ways to end a search. 1. We find the key. 2. We find an empty entry. 3. i = m.
+        In the worst case we don't find the key and we have a full table. So case 1 and 2 are never met. 
+        Leaving only case 3. Case 3 guarentees that we will not look at more than m entries because we stop
+        when i = m. \\
+
+        Now to prove this claim we must show that over the course of those m tries we don't look at the same item twice.
+        In order to visit the same node twice we would have to get two unqiue numbers such that h(k, i) = h(k, q) where both i and q are less then m-1 and greater then 0.
+
+         \begin{align*}
+      j + \frac{i}{2} + \frac{i^2}{2}  \mod m &= j + \frac{q}{2} + \frac{q^2}{2}  \mod m \\
+      \frac{i}{2} + \frac{i^2}{2}  \mod m &= \frac{q}{2} + \frac{q^2}{2}  \mod m \\
+      \frac{i}{2} + \frac{i^2}{2} - (\frac{q}{2} + \frac{q^2}{2}) \mod m &=  0 \\
+      \frac{(i + i^2) - (q + q^2)}{2}) \mod m &=  0 \\
+      \frac{i(1 + i) - q(1 - q)}{2} \mod m &=  0 \\
+      \frac{(i- q) (i + q + 1)}{2} \mod m &=  0 \\
+      \end{align*}
+      To get mod m to equal 0, (i - q) must equal m, (i + q + 1) must equal m or (i - q)(i + q + 1) must equal m. \\
+
+      Both i and q are less then m, so i - q is diffently not m. \\
+
+      (i + q + 1) could equal m, but if it does then (i - q) is forced to be odd. Because of the divide by two can't be taken out of the odd, it will force (i + q + 1) to be equal to m/2 , not m. \\
+
+      (i + q + 1) can't equal 2m because of i and q are less then m -1. \\
+
+      (i - q)(i + q + 1) can't equal m because one will be odd and the other even, so can't make a power of two.
+
+
   \end{enumerate}
   
 

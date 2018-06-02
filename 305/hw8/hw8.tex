@@ -23,6 +23,9 @@
   \item What is the asymptotic performance of \textsc{Tree-Insert} when
     used to insert $n$ items with identical keys into an initially empty
     binary search tree?
+
+    Sould just be n as the tree grows down the left or right side. Each insert takes N time at worst thus it is $N^2$
+
   \end{enumerate}
   We propose to improve \textsc{Tree-Insert} by testing before line 5
   to determine whether $\attrib{z}{key} \isequal\attrib{x}{key}$ 
@@ -42,11 +45,20 @@
     value of $\attrib{x}{b}$, which alternates between $\const{false}$
     and $\const{true}$ each time we visit $x$ while inserting a node
     with the same key as $x$. 
+
+    n lg n
 \item Keep a list of nodes with equal keys at $x$, and insert $z$ into
   the list.
+
+  n
+
   \item Randomly set $x$ to either $\attrib{x}{left}$ or
     $\attrib{x}{right}$.  (Give the worst-case performance and
     informally derive the expected running time.)
+
+    worst is $n^2$
+
+    n lgn
   \end{enumerate}
   
 

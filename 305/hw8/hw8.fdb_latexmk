@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1527980117 "/Users/Caleb/Code/School/305/hw8/hw8.tex" "hw8.pdf" "hw8" 1527980117
-  "/Users/Caleb/Code/School/305/hw8/hw8.tex" 1527980116 2097 c0184d86ed0f75875ca6d8b6129ec576 ""
+["pdflatex"] 1528178002 "/Users/Caleb/Code/School/305/hw8/hw8.tex" "hw8.pdf" "hw8" 1528178002
+  "/Users/Caleb/Code/School/305/hw8/hw8.tex" 1528178002 2664 2e71da9f7bedd174d3852f8940f978d9 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1525139557 749895 e8dbf60817f491a044b7c66d79292ccc ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/data/pdftex/config/pdftex.map" 1526331648 25648 05532b267bee6ddc7a89371aadda7555 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -57,9 +57,9 @@
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/epstopdf-base.sty" 1522794645 12095 5337833c991d80788a43d3ce26bd1c46 ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/grfext.sty" 1522794645 7075 2fe3d848bba95f139de11ded085e74aa ""
   "/Users/Caleb/Library/Application Support/MiKTeX/texmfs/install/tex/latex/oberdiek/kvoptions.sty" 1522794647 22417 1d9df1eb66848aa31b18a593099cf45c ""
-  "hw8.aux" 1527980117 8 a94a2480d3289e625eea47cd1b285758 ""
-  "hw8.tex" 1527980116 2097 c0184d86ed0f75875ca6d8b6129ec576 ""
+  "hw8.aux" 1528178002 8 a94a2480d3289e625eea47cd1b285758 ""
+  "hw8.tex" 1528178002 2664 2e71da9f7bedd174d3852f8940f978d9 ""
   (generated)
-  "hw8.aux"
   "hw8.pdf"
   "hw8.log"
+  "hw8.aux"

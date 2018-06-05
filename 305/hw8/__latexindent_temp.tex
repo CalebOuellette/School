@@ -24,7 +24,7 @@
     used to insert $n$ items with identical keys into an initially empty
     binary search tree?
 
-    Sould just be n as the tree grows down the left or right side. Each insert takes N time at worst thus it is $N^2$
+    Sould just be n as the tree grows down the left or right side. Each insert takes N actions at worst thus the total to insert N things is $O(N^2)$.
 
   \end{enumerate}
   We propose to improve \textsc{Tree-Insert} by testing before line 5
@@ -46,19 +46,19 @@
     and $\const{true}$ each time we visit $x$ while inserting a node
     with the same key as $x$. 
 
-    n lg n
+    The flipping back and forth will make the tree have a height of lg n. We do n inserts so the performance is $O(n\ lg\ n)$.
 \item Keep a list of nodes with equal keys at $x$, and insert $z$ into
   the list.
 
-  n
+  All inserts will go to the same place, and the tree height is not effected so it is a constant amount of time. Thus n inserts will be $O(n)$.
 
   \item Randomly set $x$ to either $\attrib{x}{left}$ or
     $\attrib{x}{right}$.  (Give the worst-case performance and
     informally derive the expected running time.)
 
-    worst is $n^2$
+    In the worst case on left or right will be selectd and we will end up with teh same tree from part a. where all nodes get inserted down one side. This leads to the same  $O(n^2)$
 
-    n lgn
+    In the expected case we get a 50/50 distribution so we end up wit hthe same tree from part b. this gives $O(n\ lg\ n)$.
   \end{enumerate}
   
 

@@ -43,3 +43,31 @@ Total Faults 13
 
 II. 
 
+1. 
+  time ./a.out
+  real	0m0.165s
+  user	0m0.126s
+  sys	0m0.012s
+
+  time ./a.out > X
+  real	0m0.100s
+  user	0m0.094s
+  sys	0m0.003s
+
+  Writing to the disk took less time. But I did get some inconsistent results.
+
+
+2. 
+  time ./a.out 
+  real	0m0.157s
+  user	0m0.123s
+  sys	0m0.011s
+
+  time ./a.out > Y
+  real	0m0.098s
+  user	0m0.091s
+  sys	0m0.004s
+
+  Printf and write are really close. Once again writting to disk took less time.
+
+3. Writting the commands back to the console through the system to be the difference between printing and writing to disk. Writting to disk seemed to be faster because it had to deal with the system less. On this machine the difference the system call and the lib call were very small.

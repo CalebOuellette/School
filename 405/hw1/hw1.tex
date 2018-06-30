@@ -1,0 +1,72 @@
+\documentclass{article}
+    \usepackage[margin=1in]{geometry}
+    \usepackage{amsmath,cancel}
+    \usepackage{graphicx}
+    \usepackage{alltt}
+  
+  \title{CSCI 305, Homework \# 1}
+  \author{Caleb Ouellette}
+  \date{Due date: Tue, April 24, Midnight}
+  
+  
+  \begin{document}
+  
+  \maketitle
+  
+  Find solutions to each of the following recurrences
+  using the techniques outlined in the lecture notes (``without guessing'').
+  Demonstrate that your closed form finds the same values for several
+  small numbers, and prove by induction that your closed form satisfies
+  the recurrence in general.
+  
+  \begin{enumerate}
+  \item
+    \begin{align*}
+      f(0) &= 3\\
+      f(n) &= 5f(n-1)
+    \end{align*}
+    Sequence:
+    3, 15, 75...
+  
+    Solution:
+    \begin{align*}
+      f(n) &= \cancel{5f(n-1)}\\
+      \cancel{5f(n-1)} &= \cancel{5^2f(n-2)}\\
+      \cancel{5^2f(n-2)} &= \cancel{5^3f(n-3)}\\
+      \cancel{5^3f(n-3)} &= \cancel{5^4f(n-4)}\\
+      &\ldots\\
+      \cancel{5^{k-1}f(n-(k-1)} &= 5^{k}f(n-k)
+    \end{align*}
+      Consider n = k being the last case
+    \begin{align*}
+      f(n) &= 5^{n}f(0)
+    \end{align*}
+    Using the fact that $f(0)=3$ gives 
+    \begin{align*}
+      f(n) &= 5^{n}3
+    \end{align*}
+  
+    Small number checks
+    \begin{align*}
+      f(0) &= 5^{0}3 = 3\\
+      f(1) &= 5^{1}3 = 15\\
+      f(2) &= 5^{2}3 = 75\\
+    \end{align*}
+  
+  
+    Prove
+    \begin{align*}
+      f(n + 1) &= 5^{n + 1}3 \\
+    \end{align*}    
+    Proof
+    \begin{align*}
+      f(n + 1) &= 5f(n) \\    
+      &= 5(5^n3) \\
+      &= 5^{n + 1}3 \\
+    \end{align*}
+  
+  
+  
+  \end{enumerate}
+  
+  \end{document}

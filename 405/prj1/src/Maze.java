@@ -9,7 +9,6 @@ public class Maze {
   private int width;
 
   Maze(int[][] mazeData, int height, int width) {
-    System.out.println(Arrays.deepToString(mazeData));
     this.mazeData = mazeData;
     this.height = height;
     this.width = width;
@@ -21,8 +20,6 @@ public class Maze {
   public int[][] solve() {
     buildSolutionMatrix();
     backTraceSolutions(width - 1, height - 1);
-    System.out.println(Arrays.deepToString(this.solutionData));
-    System.out.println(Arrays.deepToString(this.solution));
     return this.solution;
   }
 

@@ -1,21 +1,25 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
   public static void main(String[] args) {
-    int[][] maze = { { 1, 3, 0 }, { 3, 3, 3 }, { 0, 3, 3 } };
-    int[][] mazeTwo = {
-            {1, 0, 9, 4, 16, -20, 2},
-            {5, 5, 4 ,3,  2, 6, 0},
-            {7, 8, 15, 2, 6, 7, 8,},
-            {4, 4, 17, 19, 2, 9, 2},
-            {5, -6, 7, 2, 2, -2, 2},
-            {3 ,2 ,13 ,3 ,9 ,17 ,3},
-            {4, 5, 7, 8, 15, 9, 1},
-    };
 
-    Maze m = new Maze(mazeTwo, 8, 7);
-    int[][] solution = m.solve();
-    String x = writeOutput(mazeTwo, solution, 8, 7);
-    System.out.print(x);
+    if(args.length != 1){
+      return;
+    }
+
+    try {
+      InputResult maze=  readInput(args[0]);
+      Maze m = new Maze(maze.maze, maze.height, maze.width);
+      int[][] solution = m.solve();
+      String x = writeOutput(maze.maze, solution, maze.height, maze.width);
+      System.out.print(x);
+    } catch (Exception e){
+      return;
+    }
+
   }
 
 
@@ -37,4 +41,53 @@ public class Main {
     out += "\n";
     return out;
   }
+
+  private static class InputResult{
+    int[][] maze;
+    int height;
+    int width;
+  }
+
+
+  public static InputResult readInput(String path) throws Exception{
+    File file = new File(path);
+    BufferedReader br = new BufferedReader(new FileReader(file));
+
+    String st;
+    int height = 0;
+    int width = 0;
+    List<List<Integer>> maze = new ArrayList<List<Integer>>();
+    while ((st = br.readLine()) != null){
+      List<Integer> line = parseLine(st);
+      if(line.size() != 0){
+        height++;
+        width = line.size();
+      }
+      maze.add(line);
+    }
+    int[][] output = new int[height][width];
+
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+        output[y][x] = maze.get(y).get(x);
+      }
+    }
+    InputResult o = new InputResult();
+    o.height = height;
+    o.width = width;
+    o.maze = output;
+    return o;
+  }
+
+  public static List<Integer> parseLine(String input){
+    String[] strArray = input.split(" ");
+    List<Integer>  intArray =  new ArrayList<Integer>();
+    for(int i = 0; i < strArray.length; i++) {
+      if(!strArray[i].equals("")){
+        intArray.add( Integer.parseInt(strArray[i]));
+      }
+    }
+    return intArray;
+  }
+
 }

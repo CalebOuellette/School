@@ -1,0 +1,111 @@
+\documentclass{article}
+    \usepackage[margin=1in]{geometry}
+    \usepackage{amsmath,cancel}
+    \usepackage{graphicx}
+    \usepackage{alltt}
+    \usepackage{listings}
+  \title{CSCI 405, Homework \# 2}
+  \author{Caleb Ouellette}
+  
+  
+  \begin{document}
+  
+  \maketitle
+  \begin{enumerate}
+  \item 
+      
+      a. $H(n) = 3H(\frac{2n}{3})$ \\
+      \\
+      b. $H(n) = \Theta(n^{log_{\frac{3}{2}}3}) = \Theta(n^{2.71}) $ \\
+      \\
+      c. $M(n) = \Theta(n\log n) = 1000 \log 1000 = 3000$ \\
+      \\
+      d. $H(n) = \Theta(n^{2.7}) = 1000^{2.71} = 134896000$ \\
+      \\
+  
+  \item 
+    To solve this I am going to use the optimal substructure stratigie. For each number I will compute
+    the best solution so far. To do this I will perform the following operation for each number. Traverse backwards down the array, 
+    check each number that is smaller then the current number and has the best solution so far. Once found I will take the best so 
+    far and add 1 to it and save it in my solutions array at the same position as the current number. 
+    Finally I will traverse my solution array to find the largest.\\ 
+    \\
+    The bottom row is the table I want to build. 
+    \\
+    \\
+    \begin{tabular}{lllllll}
+    1 & 2  & 3  & 4  & 5  & 6 & 7  \\
+    1 & 9  & 2  & 4  & 7  & 5 & 6  \\
+    1 & 2  & 2  & 3  & 4  & 4 & 5  \\
+    \end{tabular}
+    \begin{lstlisting}
+    def solve(a):
+        s = []
+        i = 0
+        for z in a:
+            x = 0
+            s.append(0)
+            while x < i:
+                if a[x] < a[i]:
+                    if s[x] > s[i]:
+                        s[i] = s[x]
+                x = x + 1
+            s[i] = s[i] + 1
+            i = i + 1
+
+        answer = 0
+        for value in s:
+            if value > answer:
+                answer = value
+
+        return answer
+    \end{lstlisting}
+    This gives the length \\
+  \item
+  This gives the sub array. This builds off the work in the last problem, and adds one array that holds the position of the number before it. This algorithm builds the fourth row in the following table, then uses that to construct the answer. \\
+   \begin{tabular}{lllllll}
+    1 & 2  & 3  & 4  & 5  & 6 & 7  \\
+    1 & 9  & 2  & 4  & 7  & 5 & 6  \\
+    1 & 2  & 2  & 3  & 4  & 4 & 5  \\
+    0 & 0  & 0  & 2  & 3  & 3 & 5  \\
+    \end{tabular}
+    \begin{lstlisting}
+    
+def solve(a):
+    s = []
+    p = []
+    i = 0
+    for z in a:
+        x = 0
+        s.append(0)
+        p.append(i)
+        while x < i:
+            if a[x] < a[i]:
+                if s[x] > s[i]:
+                    s[i] = s[x]
+                    p[i] = x
+            x = x + 1
+        s[i] = s[i] + 1
+        i = i + 1
+
+    answer = 0
+    st = -1
+    i = 0
+    for value in s:
+        if value > answer:
+            answer = value
+            st = i
+        i = i + 1
+
+    out = []
+    x = 0
+    while x < answer:
+        out = [a[st]] + out
+        st = p[st]
+        x = x + 1
+    return out
+
+    \end{lstlisting}
+
+  \end{enumerate}
+  \end{document}

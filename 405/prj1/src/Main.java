@@ -13,9 +13,13 @@ public class Main {
     try {
       InputResult maze=  readInput(args[0]);
       Maze m = new Maze(maze.maze, maze.height, maze.width);
-      int[][] solution = m.solve();
-      String x = writeOutput(maze.maze, solution, maze.height, maze.width);
-      System.out.print(x);
+      ArrayList<int[][]> solutions = m.solve();
+      for(int[][] solution : solutions){
+        String x = writeOutput(maze.maze, solution, maze.height, maze.width);
+        System.out.print(x);
+      }
+
+
     } catch (Exception e){
       return;
     }

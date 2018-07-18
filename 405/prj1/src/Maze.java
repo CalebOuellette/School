@@ -4,7 +4,7 @@ public class Maze {
 
   private int[][] mazeData;
   private int[][] solutionData;
-  private int[][] solution;
+  private ArrayList<int[][]> solution;
   private int height;
   private int width;
 
@@ -13,13 +13,14 @@ public class Maze {
     this.height = height;
     this.width = width;
     this.solutionData = new int[height][width];
-    this.solution = new int[height][width];
-    solution[height - 1][width - 1] = 1;
+    this.solution = new ArrayList<int[][]>();
+    this.solution.add(new int[height][width]);
+    this.solution.get(0)[height - 1][width - 1] = 1;
   }
 
-  public int[][] solve() {
+  public ArrayList<int[][]> solve() {
     buildSolutionMatrix();
-    backTraceSolutions(width - 1, height - 1);
+    backTraceSolutions(width - 1, height - 1, this.solution.get(0));
     return this.solution;
   }
 
@@ -77,10 +78,11 @@ public class Maze {
     }
   }
 
-  private void backTraceSolutions(int x, int y) {
+  private void backTraceSolutions(int x, int y, int[][] s) {
     // find best move
+    int[][] working = cloneMyTwoArray(s);
     if (x == 0 && y == 0) {
-      solution[x][y] = 1;
+      working[x][y] = 1;
       return;
     }
 
@@ -111,14 +113,29 @@ public class Maze {
 
 
     int bestOptions = possilbeMoves.get(0).value;
-
+    int option = 0;
     for (int i = 0; i < possilbeMoves.size(); i++) {
       Pair p = possilbeMoves.get(i);
       if(p.value == bestOptions) {
-        solution[p.y][p.x] = 1;
-        backTraceSolutions(p.x, p.y);
+        if(option != 0){
+          s = cloneMyTwoArray(working);
+          this.solution.add(s);
+        }
+        s[p.y][p.x] = 1;
+        backTraceSolutions(p.x, p.y, s);
+        option++;
       }
     }
+  }
+
+  private int[][] cloneMyTwoArray(int[][] in){
+    int[][] n = new int[height][width];
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+        n[y][x] = in[y][x];
+      }
+    }
+    return n;
   }
 
 
